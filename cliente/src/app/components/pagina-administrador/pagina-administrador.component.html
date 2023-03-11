@@ -1,0 +1,93 @@
+<div class="bodyMain">
+    <div class="bodyPage">
+        <h1>Administrador de la Tienda</h1>
+        <div> 
+            <!--Boton para ir a la pagina de clientes-->
+            <a [routerLink]="['/clientes']" class="waves-effect waves-light btn-large">
+                <i class="material-icons left">person</i>Clientes
+            </a> 
+            <!--Boton para agregar producto-->
+            <a [routerLink]="['/pagina-agregar-producto']" class="waves-effect waves-light btn-large">
+                <i class="material-icons left">add</i>Agregar Producto 
+            </a> 
+            <!--Boton para ir a la pagina de empleados-->
+            <a [routerLink]="['/pagina-empleados']" class="waves-effect waves-light btn-large">
+                <i class="material-icons left">person</i>Empleados
+            </a> 
+            <!--Boton para ir a la pagina facturas-->
+            <a [routerLink]="['/pagina-facturas']" class="waves-effect waves-light btn-large">
+                <i class="material-icons left">content_paste</i>Facturas
+            </a>
+            <!--Boton para ir a la pagina ventas-->
+            <a [routerLink]="['/pagina-ventas']" class="waves-effect waves-light btn-large">
+                <i class="material-icons left">attach_money</i>Ventas
+            </a>
+            <!--Boton para cerrar sesión-->
+            <a class="waves-effect waves-light btn-small" [routerLink]="['/pagina-principal']">
+                <i class="material-icons left">exit_to_app</i>Cerrar Sesión
+            </a>
+        </div>
+        <h2>Productos</h2>
+        <!--Buscador por id o nombre-->
+        <div class="row">
+            <div class="input-field">
+                <input id="search" type="text" class="validate">
+                <label for="search">Buscar</label>
+            </div>
+            <!--Boton para mostar los videojuegos-->
+            <a (click)="mostrarVideojuego()" class="waves-effect waves-light btn-small" routerLink="/productos">
+                <i class="material-icons left">videogame_asset</i>Videojuegos
+            </a>
+            <!--Boton para mostar los componentes-->
+            <a (click)="mostrarComponente()" class="waves-effect waves-light btn-small" routerLink="/productos">
+                <i class="material-icons left">computer</i>Componentes
+            </a>
+            <!--Boton para mostar las consolas de videojuegos-->
+            <a (click)="mostrarConsola()" class="waves-effect waves-light btn-small" routerLink="/productos">
+                <i class="material-icons left">videogame_asset</i>Consolas
+            </a>
+        </div>
+        <!--Tabla de productos-->
+        <table class="tabla">
+            <thead class="titulo">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Consola</th>
+                    <th>Genero</th>
+                    <th>Valoracion</th>
+                    <th>Caracteristicas</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="cuerpo">
+                <tr *ngFor="let producto of productos">
+                    <td>{{producto.id_producto}}</td>
+                    <td>{{producto.nombre}}</td>
+                    <td>{{producto.tipo}}</td>
+                    <td>{{producto.consola}}</td>
+                    <td>{{producto.genero}}</td>
+                    <td>{{producto.valoracion}}</td>
+                    <td>{{producto.caracteristicas}}</td>
+                    <td>{{producto.precio}}</td>
+                    <td>{{producto.stock}}</td>
+                    <td>
+                        <img src="{{producto.imagen}}">
+                    </td>
+                    <td class="acciones">
+                        <a [routerLink]="['/pagina-modificar-producto', producto.id_producto]" class="waves-effect waves-light btn-small" routerLink="/editar-producto">
+                            <i class="material-icons left">edit</i>Editar
+                        </a>
+                        <a (click)="eliminarProducto(producto.id_producto)" class="waves-effect waves-light btn-small" routerLink="/eliminar-producto">
+                            <i class="material-icons left">delete</i>Eliminar
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

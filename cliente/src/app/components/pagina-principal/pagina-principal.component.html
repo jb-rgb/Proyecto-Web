@@ -1,0 +1,71 @@
+<div class="bodyPrincipal">
+    <div>
+        <app-navbar></app-navbar>
+    </div>
+    <div class="buscar">
+        <div class="imagePrincipal">
+            <i class="material-icons prefix large">phonelink</i>
+        </div>
+        <div class="buscador">
+            <div class="input-field col s12">
+                <i class="material-icons prefix">search</i>
+                <input id="icon_prefix" type="text" class="validate">
+                <label for="icon_prefix">Buscar</label>
+            </div>
+        </div>
+        <div class="button">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Buscar
+                <i class="material-icons right">send</i>
+            </button>
+        </div>
+    </div>
+    <!-- <div class="seleccion">
+        <div class="button">
+            <a [routerLink]="['/login']">
+                <button class="btn waves-effect waves-light buttonIngresar" type="submit" name="action">Ingresar
+                    <i class="material-icons prefix">account_circle</i>
+                </button>
+            </a>
+            <a [routerLink]="['/registrar']">
+                <button class="btn waves-effect waves-light buttonRegistar" type="submit" name="action">Registrase
+                    <i class="material-icons prefix">account_circle</i>
+                </button>
+            </a>
+        </div>
+    </div> -->
+    <div class="categoria">
+        <h5 class="tipado">Categorias:</h5>
+    </div>
+    <div class="categorias">
+        <div class="videojuegos">
+            <a [routerLink]="['/pagina-videojuegos']">
+            <div class="videojuegos__imagen">
+                <img src="../../../assets/Imagenes/videojuegos.png" alt="Videojuegos" width="100" height="100">
+            </div>
+            <div class="videojuegos__texto">
+                <h5>Videojuegos</h5>
+            </div>
+            </a>
+        </div>
+        <div class="consolas">
+            <a [routerLink]="['/pagina-consolas']">
+            <div class="consolas__imagen">
+                <img src="../../../assets/Imagenes/consolas.jpg" alt="Consolas" width="100" height="100">
+            </div>
+            <div class="consolas__texto">
+                <h5>Consolas</h5>
+            </div>
+            </a>
+        </div>
+        <div class="componentes">
+            <a [routerLink]="['/pagina-componentes-pc']">
+            <div class="componentes__imagen">
+                <img src="../../../assets/Imagenes/componentes.webp" alt="Componentes" width="100" height="100">
+            </div>
+            <div class="componentes__texto">
+                <h5>Componentes</h5>
+            </div>
+            </a>
+        </div>
+    </div>
+</div>

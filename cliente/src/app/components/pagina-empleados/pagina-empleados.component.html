@@ -1,0 +1,80 @@
+<div class="bodyMain">
+    <div class="bodyPage">
+        <h1>Administrador de la Tienda</h1>
+        <div>
+            <!--Boton para ir a la pagina de clientes-->
+            <a [routerLink]="['/clientes']" class="waves-effect waves-light btn-large">
+                <i class="material-icons left">person</i>Clientes
+            </a>
+            <!--Boton para agregar empleado / administrador-->
+            <a [routerLink]="['/pagina-agregar-admin']" class="waves-effect waves-light btn-large">
+                <i class="material-icons left">add</i>Agregar Empleado
+            </a>
+            <!--Boton para ir a la pagina de productos-->
+            <a [routerLink]="['/pagina-administrador']" class="waves-effect waves-light btn-large">
+                <i class="material-icons left">child_friendly</i>Pagina Administrador
+            </a>
+            <!--Boton para ir a la pagina facturas-->
+            <a [routerLink]="['/pagina-facturas']" class="waves-effect waves-light btn-large">
+                <i class="material-icons left">content_paste</i>Facturas
+            </a>
+            <!--Boton para ir a la pagina ventas-->
+            <a [routerLink]="['/pagina-ventas']" class="waves-effect waves-light btn-large">
+                <i class="material-icons left">attach_money</i>Ventas
+            </a>
+            <!--Boton para cerrar sesión-->
+            <a class="waves-effect waves-light btn-small" [routerLink]="['/pagina-principal']">
+                <i class="material-icons left">exit_to_app</i>Cerrar Sesión
+            </a>
+        </div>
+        <h2>Empleados</h2>
+        <div class="row">
+            <div class="input-field">
+                <input id="search" type="text" class="validate">
+                <label for="search">Buscar</label>
+            </div>
+            <!--Boton para mostar los vendedores-->
+            <a (click)="mostrarVendedor()" class="waves-effect waves-light btn-small" routerLink="/empleados">
+                <i class="material-icons left">person</i>Vendedores
+            </a>
+            <!--Boton para mostar los administradores-->
+            <a (click)="mostrarAdministrador()" class="waves-effect waves-light btn-small" routerLink="/administradores">
+                <i class="material-icons left">person</i>Administradores
+            </a>
+        </div>
+        <!--Tabla de empleados-->
+        <table class="tabla">
+            <thead class="titulo">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo</th>
+                    <th>Rol</th>
+                    <th>Contraseña</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="cuerpo">
+                <tr *ngFor="let empleado of empleados">
+                    <td>{{empleado.id_empleado}}</td>
+                    <td>{{empleado.nombre}}</td>
+                    <td>{{empleado.apellido}}</td>
+                    <td>{{empleado.correo}}</td>
+                    <td>{{empleado.puesto}}</td>
+                    <td>{{empleado.password}}</td>
+                    <td class="acciones">
+                        <!--Boton para modificar empleado / administrador-->
+                        <a [routerLink]="['/pagina-modificar-empleado', empleado.id_empleado]" class="waves-effect waves-light btn-small">
+                            <i class="material-icons left">edit</i>Modificar
+                        </a>
+                        <!--Boton para eliminar empleado / administrador-->
+                        <a (click)="eliminarEmpleado(empleado.id_empleado)" class="waves-effect waves-light btn-small">
+                            <i class="material-icons left">delete</i>Eliminar
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

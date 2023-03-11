@@ -1,0 +1,213 @@
+<div class="bodyMain">
+  <div class="bodyPage">
+    <div class="logo">
+      <i class="material-icons prefix large">personal_video</i>
+    </div>
+    <div class="seleccion">
+      <div class="button">
+          <!--Buscador-->
+          <div class="input-field col s12">
+              <input id="search" type="search" required>
+              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+          </div>
+          <app-navbar></app-navbar>
+      </div>
+    </div>
+    <div class="productos">
+      <div class="producto">
+        <table class="centered">
+          <thead>
+            <th>Nombre</th>
+            <th>Imagen</th>
+            <th>Caracteristicas</th>
+            <th>Precio</th>
+            <th>Valoracion</th>
+            <th>Agregar</th>
+          </thead>
+          <tbody *ngFor="let producto of productos">
+            <td>{{producto.nombre}}</td>
+            <td>
+              <img src="{{producto.imagen}}">
+            </td>
+            <td>{{producto.caracteristicas}}</td>
+            <td>{{producto.precio}}</td>
+            <td>{{producto.valoracion}}</td>
+            <td>
+              <a (click)="agregarCarrito(producto.id_producto, producto.precio)" [routerLink]="['/pagina-carrito']" class="waves-effect waves-light btn-large">
+                <i class="material-icons">add_shopping_cart</i>
+              </a>
+            </td>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <aside class="filtro">
+      <h6>Opiniones</h6>
+      <ul>
+        <li>
+          <label (click)="mostrarValoracion10()">
+            <input type="checkbox">
+            <span>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star</i>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label (click)="mostrarValoracion9()">
+            <input type="checkbox">
+            <span>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star_half</i>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label (click)="mostrarValoracion8()">
+            <input type="checkbox">
+            <span>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star_border</i>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label (click)="mostrarValoracion7()">
+            <input type="checkbox">
+            <span>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star_half</i>
+              <i class="material-icons prefix tiny">star_border</i>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label (click)="mostrarValoracion6()">
+            <input type="checkbox">
+            <span> 
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star_border</i>
+              <i class="material-icons prefix tiny">star_border</i>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label (click)="mostrarValoracion5()">
+            <input type="checkbox">
+            <span>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star_half</i>
+              <i class="material-icons prefix tiny">star_border</i>
+              <i class="material-icons prefix tiny">star_border</i>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label (click)="mostrarValoracion4()">
+            <input type="checkbox">
+            <span>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star_border</i>
+              <i class="material-icons prefix tiny">star_border</i>
+              <i class="material-icons prefix tiny">star_border</i>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label (click)="mostrarValoracion3()">
+            <input type="checkbox">
+            <span>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star_half</i>
+              <i class="material-icons prefix tiny">star_border</i>
+              <i class="material-icons prefix tiny">star_border</i>
+              <i class="material-icons prefix tiny">star_border</i>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label (click)="mostrarValoracion2()">
+            <input type="checkbox">
+            <span>
+              <i class="material-icons prefix tiny">star</i>
+              <i class="material-icons prefix tiny">star_border</i>
+              <i class="material-icons prefix tiny">star_border</i>
+              <i class="material-icons prefix tiny">star_border</i>
+              <i class="material-icons prefix tiny">star_border</i>
+            </span>
+          </label>
+        </li>
+        <li>
+          <label (click)="mostrarValoracion1()">
+            <input type="checkbox">
+            <span>
+              <i class="material-icons prefix tiny">star_half</i>
+              <i class="material-icons prefix tiny">star_border</i>
+              <i class="material-icons prefix tiny">star_border</i>
+              <i class="material-icons prefix tiny">star_border</i>
+              <i class="material-icons prefix tiny">star_border</i>
+            </span>
+          </label>
+        </li>
+      </ul>
+      <h6>Consola</h6>
+      <ul>
+        <li>
+          <label (click)="mostrarTipoConsolaXbox()">
+            <input type="checkbox" id="marca1" name="marca1" value="marca1" />
+            <span>Xbox</span>
+          </label>
+        </li>
+        <li>
+          <label (click)="mostrarTipoConsolaPS()">
+            <input type="checkbox" id="marca2" name="marca2" value="marca2" />
+            <span>PlayStation</span>
+          </label>
+        </li>
+        <li>
+          <label (click)="mostrarTipoConsolaNintendo()">
+            <input type="checkbox" id="marca3" name="marca3" value="marca3" />
+            <span>Nintendo</span>
+          </label>  
+        </li>
+      </ul>
+      <h6>Tipo</h6>
+      <ul>
+        <li>
+          <label (click)="mostrarVideojuego()">
+            <input type="checkbox" id="marca4" name="marca4" value="marca4" />
+            <span>Videojuego</span>
+          </label>  
+        </li>
+        <li>
+          <label (click)="mostrarConsola()">
+            <input type="checkbox" id="marca5" name="marca5" value="marca5" />
+            <span>Consola</span>
+          </label>  
+        </li>
+        <li>
+          <label (click)="mostrarComponente()">
+            <input type="checkbox" id="marca6" name="marca6" value="marca6" />
+            <span>Componente</span>
+          </label>  
+        </li>
+      </ul>
+    </aside>
+  </div>
+</div>

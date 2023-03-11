@@ -1,0 +1,104 @@
+.bodyPage {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+    background-color: #0097a7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    grid-column: 1 / 5;
+    grid-row: 1 / 2;
+}
+
+.seleccion {
+    display: flex;
+    justify-content: space-around;
+    padding: auto;
+    margin: 10px 10px;
+    grid-row: 2 / 3;
+    grid-column: 1 / 5;
+}
+
+.buttonIngresar {
+    justify-content: center;
+    padding: auto;
+    margin: 0 auto;
+}
+
+.buttonRegistrarse {
+    justify-content: space-around;
+    padding: auto;
+    margin: 0 auto;
+}
+
+.productos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background: #ADD8E6;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    grid-column: 2 / 5;
+    grid-row: 3 / 5;
+}
+
+.producto {
+    display: flex;
+    gap: 10px;
+}
+
+.filtro {
+    background: #ADD8E6;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    grid-column: 1 / 2;
+    grid-row: 3 / 5;
+}
+
+table, thead, tbody, th, td {
+    border: 1px solid black;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #000000;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+thead {
+    border: 2px solid #000000;
+}
+
+th {
+    background-color: #F4F4F4;
+    color: #4B4B4B;
+    padding: 10px;
+    text-align: center;
+}
+
+td {
+    background-color: #F4F4F4;
+    color: #4B4B4B;
+    padding: 10px;
+    text-align: center;
+    /* border: 1px solid black; */
+}
+
+span {
+    color: #000000 !important;
+}

@@ -1,0 +1,41 @@
+<div class="bodyMain">
+    <div class="bodyPage">
+        <div class="logo">
+            <i class="material-icons prefix large">phonelink</i>
+        </div>
+        <div class="productos">
+            <h3>Carrito de compras</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Imagen</th>
+                        <th>Caracteristicas</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let carrito of carritos">
+                        <td>{{carrito.nombre}}</td>
+                        <td>{{carrito.imagen}}</td>
+                        <td>{{carrito.caracteristicas}}</td>
+                        <td>{{carrito.cantidad}}</td>
+                        <td>{{carrito.precio}}</td>
+                        <td>
+                            <a (click)="eliminarCarrito(carrito.id_carrito)" class="waves-effect waves-light btn-small acciones" routerLink="/eliminar-producto">
+                                <i class="material-icons left">remove_shopping_cart</i>Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="total">
+            <h3>Total:</h3>
+            <h3 *ngFor="let total of totalCarritos">$ {{total.total_carrito}}</h3>
+            <a [routerLink]="['/pagina-factura', id_cliente]" class="waves-effect waves-light btn-small">Comprar</a>
+        </div>
+    </div>
+</div>

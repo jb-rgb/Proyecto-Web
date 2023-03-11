@@ -1,0 +1,135 @@
+<div class="bodyMain">
+    <div class="bodyPage">
+        <div class="logo">
+            <i class="material-icons prefix large">phonelink</i>
+        </div>
+        <section>
+            <form class="formulario">
+                <fieldset>
+                    <legend>Factura</legend>
+                </fieldset>
+                <div class="contenedor-campos">
+                    <h4>Cliente: {{nombreCliente}}</h4>
+                    <div class="campo">
+                        <label>Direccion: </label>
+                        <input [(ngModel)]="cliente.direccion" type="text" name="direccion" id="direccion" placeholder="Direccion">
+                    </div>
+                    <div class="campo">
+                        <label>Pais: </label>
+                        <input [(ngModel)]="cliente.pais" type="text" name="pais" id="pais" placeholder="Pais">
+                    </div>
+                    <div class="campo">
+                        <label>Estado: </label>
+                        <input [(ngModel)]="cliente.estado" type="text" name="estado" id="estado" placeholder="Estado">
+                    </div>
+                    <div class="campo">
+                        <label>Ciudad: </label>
+                        <input [(ngModel)]="cliente.municipio" type="text" name="ciudad" id="ciudad" placeholder="Ciudad">
+                    </div>
+                    <div class="campo">
+                        <label>Telefono: </label>
+                        <input [(ngModel)]="cliente.telefono" name="telefono" id="telefono" type="text">
+                    </div>
+                    <div class="campo">
+                        <label>Codigo Postal: </label>
+                        <input [(ngModel)]="cliente.codigo_postal" type="text" name="codigo_postal" id="codigo_postal" placeholder="Codigo Postal">
+                    </div>                   
+                    <select [(ngModel)]="cliente.id_pago" class="campo browser-default" name="tipoPago" id="tipoPago">
+                        <option disabled selected>--Método de Pago--</option>
+                        <option value="1">Tarjeta</option>
+                        <option value="2">Deposito</option>
+                        <option value="3">Transferencia</option>
+                        <label for="tipoPago">Metodo de Pago:</label>
+                    </select>
+                    <a (click)="viuslizarTarjeta()" class="waves-effect waves-light btn-small">Tarjeta</a>
+                    <a (click)="visualizarDeposito()" class="waves-effect waves-light btn-small">Deposito</a>
+                    <a (click)="visualizarTransferencia()" class="waves-effect waves-light btn-small">Transferencia</a>
+                </div>
+            </form>
+        </section>
+        <div class="total">
+            <h3>Total: $ {{total}}</h3>
+            <a (click)="actualizarCliente()" (click)="insertarVenta()" [routerLink]="['/pagina-principal']" class="waves-effect waves-light btn-small">Pagar</a>
+        </div>
+    </div>
+</div>
+
+<!--Modals-->
+
+<div id="modalTarjeta" class="modal">
+    <form class="formulario">
+        <div class="modal-content">
+            <div class="campo">
+                <label>Tipo Tarjeta: </label>
+                <input type="number" name="tipoTarjeta" id="tipoTarjeta">
+            </div>
+            <div class="campo">
+                <label>Nombre: </label>
+                <input type="text" name="nombre" id="nombre">
+            </div>
+            <div class="campo">
+                <label>Fecha de Vencimiento: </label>
+                <input type="text" name="fechaVencimiento" id="fechaVencimiento">
+            </div>
+            <div class="campo">
+                <label>CCV: </label>
+                <input type="number" name="ccv" id="ccv">
+            </div>
+            <div class="campo">
+                <label>Numero de cuenta: </label>
+                <input type="number" name="numeroCuenta" id="numeroCuenta">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-close waves-effect waves-green btn-flat">ACEPTAR</a>
+        </div>
+    </form>
+</div>
+
+<div id="modalDeposito" class="modal">
+    <form class="formulario">
+        <div class="modal-content">
+            <div class="campo">
+                <label>Tipo Deposito: </label>
+                <input type="number" name="tipoDeposito" id="tipoDeposito">
+            </div>
+            <div class="campo">
+                <label>Nombre: </label>
+                <input type="text" name="nombre" id="nombre">
+            </div>
+            <div class="campo">
+                <label>Numero de deposito: </label>
+                <input type="number" name="numeroDeposito" id="numeroDeposito">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-close waves-effect waves-green btn-flat">ACEPTAR</a>
+        </div>
+    </form>
+</div>
+
+<div id="modalTransferencia" class="modal">
+    <form class="formulario">
+        <div class="modal-content">
+            <div class="campo">
+                <label>Tipo Transferencia: </label>
+                <input type="number" name="tipoTransferencia" id="tipoTransferencia">
+            </div>
+            <div class="campo">
+                <label>Nombre: </label>
+                <input type="text" name="nombre" id="nombre">
+            </div>
+            <div class="campo">
+                <label>Numero de transferencia: </label>
+                <input type="number" name="numeroTransferencia" id="numeroTransferencia">
+            </div>
+            <div class="campo">
+                <label>Clave interbancaria: </label>
+                <input type="number" name="claveInterbancaria" id="claveInterbancaria">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="modal-close waves-effect waves-green btn-flat">ACEPTAR</a>
+        </div>
+    </form>
+</div>

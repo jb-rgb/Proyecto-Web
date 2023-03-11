@@ -1,0 +1,66 @@
+.bodyPage {
+  background-color: #ADD8E6;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+    background-color: #0097a7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+}
+
+.seleccion {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    margin: 0 15px;
+}
+
+.buttonIngresar {
+    justify-content: center;
+    padding: auto;
+    margin: 0 auto;
+}
+
+.buttonRegistrarse {
+    justify-content: space-around;
+    padding: auto;
+    margin: 0 auto;
+}
+
+.grid {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.componente {
+    border: 10px solid #000000;
+    text-align: center;
+    border-radius: 50px;
+}
+
+.componente:hover {
+    border: 10px solid #FFFFFF;
+    cursor: pointer;
+}
+
+.componente h5 {
+    font-weight: bold;
+}
+
+.componente:last-child {
+    grid-column: 2 / 3;
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
+}

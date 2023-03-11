@@ -1,0 +1,52 @@
+<div class="bodyLogin">
+  <div class="container">
+    <div class="row">
+      <div class=" loginDiv">
+        <div class="row loginContainer">
+          <div class="">
+            <div class="">
+              <img src="assets/img/utm_ova.gif" class="responsive-img" alt="" />
+            </div>
+          </div>
+          <div class="">
+            <div class="loginTitulo">
+              <h5>Iniciar Sesión</h5>
+            </div>
+            <div class="row">
+              <div class="col s12 customInput">
+                <i class="material-icons prefix">email</i>
+                <input
+                  [(ngModel)]="empleado.correo"
+                  class="browser-default"
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="correo"
+                  autocomplete="off"
+                />
+              </div>
+              <div class="col s12 customInput">
+                <i class="material-icons prefix">vpn_key</i>
+                <input
+                  [(ngModel)]="empleado.password"
+                  class="browser-default"
+                  type="password"
+                  name="password"
+                  id="password"
+                  placeholder="contraseña"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <button (click)="verificarUsuario()" class="btn col l12 s12 m12 btnLogin">LOGIN</button>
+              <div class="divOlvide">
+                <a href="">Olvidé mi contraseña!</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

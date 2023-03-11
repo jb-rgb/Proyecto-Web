@@ -1,0 +1,98 @@
+.bodyPage {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+    background-color: #0097a7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+}
+
+.productos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background: #ADD8E6;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    grid-column: 1 / 3;
+    grid-row: 2 / 4;
+}
+
+.producto {
+    display: flex;
+    gap: 10px;
+}
+
+.total {
+    background: #ADD8E6;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    grid-column: 3 / 4;
+    grid-row: 2 / 4;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+h6,
+p {
+    margin: 0;
+}
+
+h6,
+h5,
+p {
+    text-align: center;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #000000;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+thead {
+    border: 2px solid #000000;
+}
+
+th {
+    background-color: #F4F4F4;
+    color: #4B4B4B;
+    padding: 10px;
+    text-align: center;
+}
+
+td {
+    background-color: #F4F4F4;
+    color: #4B4B4B;
+    padding: 10px;
+    text-align: center;
+    /* border: 1px solid black; */
+}
+
+.acciones {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+}

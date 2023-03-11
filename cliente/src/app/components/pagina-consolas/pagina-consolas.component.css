@@ -1,0 +1,92 @@
+.bodyMain {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #0097A7;
+    width: 100%;
+    height: 100vh;
+    width: 100vw;
+}
+
+.mainPage {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #DFE9F3;
+}
+
+.logo {
+    width: 100%;
+    height: 100%;
+    background-color: #ADD8E6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.selection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #DFE9F3;
+}
+
+.xbox,
+.playstation,
+.nintendo {
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    background-color: #ADD8E6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.xbox,
+.playstation,
+.nintendo:hover {
+    cursor: pointer;
+}
+
+.xbox__image,
+.playstation__image,
+.nintendo__image,
+.xbox__texto,
+.playstation__texto,
+.nintendo__texto {
+    width: 100%;
+    height: 100%;
+    background-color: #DFE9F3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    border: 5px solid #000000;
+}
+
+a {
+    text-decoration: none !important;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

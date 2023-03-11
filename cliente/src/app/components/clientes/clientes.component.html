@@ -1,0 +1,63 @@
+<div class="bodyMain">
+    <div class="bodyMain">
+        <h1>Administrador de la Tienda</h1>
+        <div class="botones">
+            <!--Boton para ir a la pagina administrador-->
+            <a [routerLink]="['/pagina-administrador']" class="waves-effect waves-light btn-large">
+                <i class="material-icons left">child_friendly</i>Pagina Administrador
+            </a>
+            <!--Boton para ir a la pagina empleados-->
+            <a [routerLink]="['/pagina-empleados']" class="waves-effect waves-light btn-large">
+                <i class="material-icons left">person</i>Pagina Empleados
+            </a>
+            <!--Boton para ir a la pagina facturas-->
+            <a [routerLink]="['/pagina-facturas']" class="waves-effect waves-light btn-large">
+                <i class="material-icons left">content_paste</i>Facturas
+            </a>
+            <!--Boton para ir a la pagina ventas-->
+            <a [routerLink]="['/pagina-ventas']" class="waves-effect waves-light btn-large">
+                <i class="material-icons left">attach_money</i>Ventas
+            </a>
+            <!--Boton para cerrar sesión-->
+            <a class="waves-effect waves-light btn-small" [routerLink]="['/pagina-principal']">
+                <i class="material-icons left">exit_to_app</i>Cerrar Sesión
+            </a>
+        </div>
+        <h2>Clientes</h2>
+        <!--Buscador por id o nombre-->
+        <div class="row">
+            <div class="input-field">
+                <input id="search" type="text" class="validate">
+                <label for="search">Buscar</label>
+            </div>
+        </div>
+        <table class="tabla">
+            <thead class="titulo">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Correo</th>
+                    <th>Telefono</th>
+                    <th>Codigo Postal</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="cuerpo">
+                <tr *ngFor="let cliente of clientes">
+                    <td>{{cliente.id_cliente}}</td>
+                    <td>{{cliente.nombre}}</td>
+                    <td>{{cliente.apellido}}</td>
+                    <td>{{cliente.correo}}</td>
+                    <td>{{cliente.telefono}}</td>
+                    <td>{{cliente.codigo_postal}}</td>
+                    <td class="acciones">
+                        <a (click)="eliminarCliente(cliente.id_cliente)" class="waves-effect waves-light btn-small">
+                            <i class="material-icons left">delete</i>Eliminar
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

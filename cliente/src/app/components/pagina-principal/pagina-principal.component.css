@@ -1,0 +1,182 @@
+.bodyPrincipal {
+  background-color: #ADD8E6;
+  height: 100vh; /* 100 por ciento del alto del dispositivo*/
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  font-family: "Roboto", sans-serif;
+}
+
+.buscar {
+    display: flex;
+    padding: auto;
+    margin: 0 auto;
+}
+
+.imagenPrincipal {
+    background-color: white;
+    justify-content: left;
+    margin: 4px 2px;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.buscador {
+    justify-content: center;
+    padding: auto;
+    margin: 0 auto;
+    width: 70%;
+}
+
+.button {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
+.seleccion {
+    display: flex;
+    justify-content: space-around;
+    padding: auto;
+    margin: 0 auto;
+}
+
+.buttonIngresar {
+    justify-content: center;
+    padding: auto;
+    margin: 0 auto;
+}
+
+.buttonRegistrarse {
+    justify-content: space-around;
+    padding: auto;
+    margin: 0 auto;
+}
+
+.categoria {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: auto;
+    margin: 0 auto;
+}
+
+.tipado {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: xx-large;
+}
+
+.categorias {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: auto;
+    margin: 0 auto;
+}
+
+.videojuegos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid #000000;
+}
+
+.videojuegos:hover {
+    border: 5px solid #F4F4F4;
+    cursor: pointer;
+}
+
+.videojuegos__imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.videojuegos__texto {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.consolas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid #000000;
+}
+
+.consolas:hover {
+    border: 5px solid #F4F4F4;
+    cursor: pointer;
+}
+
+.consolas__imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.consolas__texto {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.componentes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid #000000;
+}
+
+.componentes:hover {
+    border: 5px solid #F4F4F4;
+    cursor: pointer;
+}
+
+.componentes__imagen {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.componentes__texto {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.videojuegos__imagen,
+.consolas__imagen,
+.componentes__imagen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: auto;
+    margin: 10px 10px;
+}
+
+a {
+    text-decoration: none !important;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}

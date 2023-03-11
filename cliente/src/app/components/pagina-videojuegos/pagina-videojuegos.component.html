@@ -1,0 +1,42 @@
+<div class="bodyMain">
+    <div class="mainPage">
+        <div class="logo">
+            <i class="material-icons prefix large">videogame_asset</i>
+        </div>
+        <div class="seleccion">
+            <app-navbar></app-navbar>
+        </div>
+        <div class="selection">
+            <div class="xbox">
+                <a (click)="mostrarTipoConsolaXbox()" [routerLink]="['/pagina-producto']">
+                <div class="xbox__image">
+                    <img src="../../../assets/Imagenes/logo-Xbox.png" alt="xbox" width="100" height="100">
+                </div>
+                <div class="xbox__texto">
+                    <h5>Xbox</h5>
+                </div>
+                </a>
+            </div>
+            <div class="playstation">
+                <a (click)="mostrarTipoConsolaPS()" [routerLink]="['/pagina-producto']">
+                <div class="playstation__image">
+                    <img src="../../../assets/Imagenes/logo-PS.png" alt="playstation" width="100" height="100">
+                </div>
+                <div class="playstation__texto">
+                    <h5>Playstation</h5>
+                </div>
+                </a>
+            </div>
+            <div class="nintendo">
+                <a (click)="mostrarTipoConsolaNintendo()" [routerLink]="['/pagina-producto']">
+                <div class="nintendo__image">
+                    <img src="../../../assets/Imagenes/nintendo-logo.png" alt="nintendo" width="100" height="100">
+                </div>
+                <div class="nintendo__texto">
+                    <h5>Nintendo</h5>
+                </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

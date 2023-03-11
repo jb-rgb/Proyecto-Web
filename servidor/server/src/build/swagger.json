@@ -1,0 +1,3978 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "REST API Tienda Videojuegos",
+        "description": "<html><body>Esta es la documentacion de la API para un sistema de control de una tienda de videojuegos. <p>Para poder usar esta API es necesario solicitar el token y con esto poder utilizar los servicios proporcionados.</p> <br> <p>Autenticacion y token de API</b></p><p>El administrador del sistema de la tienda de videojuegos proporciona el api-token. Una vez que haya creado y confirmado su cuenta. </p></body></html>",
+        "license": {
+            "name": "MIT",
+            "url": "https://opensource.org/licenses/MIT"
+        }
+    },
+    "host": "localhost:3000",
+    "basePath": "",
+    "tags": [
+        {
+            "name": "Clientes",
+            "description": "API para obtener informacion de los clientes"
+        },
+        {
+            "name": "Empleados",
+            "description": "API para obtener informacion de los empleados"
+        },
+        {
+            "name": "Productos",
+            "description": "API para obtener informacion de los productos"
+        },
+        {
+            "name": "detalleVentas",
+            "description": "API para obtener informacion de los detalles de las ventas"
+        },
+        {
+            "name": "Ventas",
+            "description": "API para obtener informacion de las ventas"
+        },
+        {
+            "name": "Facturas",
+            "description": "API para obtener informacion de las facturas"
+        },
+        {
+            "name": "detalleFacturas",
+            "description": "API para obtener informacion de los detalles de las facturas"
+        },
+        {
+            "name": "Pagos",
+            "description": "API para obtener informacion de los tipos de pagos"
+        },
+        {
+            "name": "Depositos",
+            "description": "API para obtener informacion de los de depositos"
+        },
+        {
+            "name": "Tarjetas",
+            "description": "API para obtener informacion de las tarjetas"
+        },
+        {
+            "name": "Transferencias",
+            "description": "API para obtener informacion de las transferencias"
+        },
+        {
+            "name": "Carritos",
+            "description": "API para obtener informacion de los carritos"
+        }
+    ],
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/api/clientes": {
+            "get": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Listado de todos los clientes que existen en la tienda de videojuegos.",
+                "description": "<p>Servicio que devuelve la información detallada de todos los clientes</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los clientes?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_cliente": 1,
+                                    "nombre": "Luis",
+                                    "apellido": "Barahona",
+                                    "direccion": "Calle del Cedro No. 3 Col. Militar",
+                                    "correo": "prueba@gmail.com",
+                                    "password": "root1234",
+                                    "telefono": "9531892930",
+                                    "pais": "Mexico",
+                                    "estado": "Oaxaca",
+                                    "municipio": "Huajuapan de Leon",
+                                    "codigo_postal": "69006",
+                                    "id_pago": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Clientes"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido",
+                        "tags": [
+                            "Clientes"
+                        ]
+                    }
+                }
+            }
+        },
+        "/api/clientes/{id}": {
+            "get": {
+                "tags": [
+                    "Clientes"
+                ],
+                "summary": "Muestra la información de un cliente, dado su id.",
+                "description": "<p>Servicio que devuelve la información detallada de un cliente</p><p>&nbsp;</p><p><em><strong>¿Cuál es el cliente?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_cliente": 1,
+                                    "nombre": "Luis",
+                                    "apellido": "Barahona",
+                                    "direccion": "Calle del Cedro No. 3 Col. Militar",
+                                    "correo": "prueba@gmail.com",
+                                    "password": "root1234",
+                                    "telefono": "9531892930",
+                                    "pais": "Mexico",
+                                    "estado": "Oaxaca",
+                                    "municipio": "Huajuapan de Leon",
+                                    "codigo_postal": "69006",
+                                    "id_pago": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Cliente"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "requiere id del cliente",
+                        "type": "string",
+                        "default": "1"
+                    }
+                ]
+            }
+        },
+        "/api/clientes/update/{idCliente}": {
+            "put": {
+                "summary": "Modificar los datos de un cliente",
+                "description": "<p>Servicio que modifica la informacion de un cliente.</p><p>&nbsp;</p><p><em><strong>¿Cuál es ese cliente?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idCliente",
+                        "in": "path",
+                        "description": "Ingrese el id del cliente",
+                        "required": true,
+                        "default": 1
+                    },
+                    {
+                        "name": "Cliente",
+                        "in": "body",
+                        "description": "Ingrese la info del cliente",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/viejoCliente"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Clientes"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/clientes/delete/{idCliente}": {
+            "delete": {
+                "summary": "Eliminar los datos de un cliente",
+                "description": "<p>Servicio que elimina la información de un cliente</p><p>&nbsp;</p><p><em><strong>¿Cuál es ese cliente?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idCliente",
+                        "in": "path",
+                        "description": "Ingrese el id del cliente",
+                        "required": true,
+                        "default": 1
+                    }
+                ],
+                "tags": [
+                    "Clientes"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/clientes/": {
+            "post": {
+                "summary": "Agrega un cliente",
+                "description": "<p>Servicio que ingresa un cliente mas al sistema </p><p>&nbsp;</p><p><em><strong>¿Cual cliente se agrega?</strong></em></p>",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Cliente",
+                        "in": "body",
+                        "description": "Ingrese los datos del cliente",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/nuevoCliente"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Clientes"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cliente creado",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "fieldCount": 0,
+                                    "affectedRows": 1,
+                                    "insertId": 4,
+                                    "serverStatus": 2,
+                                    "warningCount": 0,
+                                    "message": "",
+                                    "protocol41": true,
+                                    "changedRows": 0
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#definitions/Clientes"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/clientes/verificarCliente": {
+            "post": {
+                "summary": "Vereficar Cliente",
+                "description": "<p>Servicio que verifica si un cliente esta dado de alta en el sistema</p><p>&nbsp;</p><p><em><strong>¿Cual cliente se veririca?</strong></em></p>",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Cliente",
+                        "in": "body",
+                        "descripcion": "Ingrese los datos del cliente",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/verificarCliente"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Clientes"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El cliente esta dado de alta en el sistema"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/clientes/registrarCliente": {
+            "post": {
+                "summary": "Registra Cliente",
+                "description": "<p>Servicio que registra a un nuevo cliente en el sistema</p><p>&nbsp;</p><p><em><strong>¿Cual cliente se registra?</strong></em></p>",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Cliente",
+                        "in": "body",
+                        "descripcion": "Ingrese los datos del cliente",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/registrarCliente"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Clientes"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El cliente fue dado de alta en el sistema"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/empleados": {
+            "get": {
+                "tags": [
+                    "Empleados"
+                ],
+                "summary": "Listado de todos los empleados que existen en la tienda de videojuegos.",
+                "description": "<p>Servicio que devuelve la información detallada de todos los empleados </p><p>&nbsp;</p><p><em><strong>¿Cuáles son los empleados?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_empleado": 1,
+                                    "nombre": "Jorge",
+                                    "apellido": "Barahona",
+                                    "puesto": "Administrador",
+                                    "password": "root1234",
+                                    "correo": "prueba2@gmail.com"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Empleados"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido",
+                        "tags": [
+                            "Empleados"
+                        ]
+                    }
+                }
+            }
+        },
+        "/api/empleados/{id}": {
+            "get": {
+                "tags": [
+                    "Empleados"
+                ],
+                "summary": "Muestra la información de un empleado, dado su id.",
+                "description": "<p>Servicio que devuelve la información detallada de un empleado</p><p>&nbsp;</p><p><em><strong>¿Cuál es el empleado?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_empleado": 1,
+                                    "nombre": "Jorge",
+                                    "apellido": "Barahona",
+                                    "puesto": "Administrador",
+                                    "password": "root1234",
+                                    "correo": "prueba2@gmail.com"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Empleado"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "requiere id del empleado",
+                        "type": "string",
+                        "default": "1"
+                    }
+                ]
+            }
+        },
+        "/api/empleados/mostrarRol/{rol}": {
+            "get": {
+                "tags": [
+                    "Empleados"
+                ],
+                "summary": "Muestra la información de los empleados, dado su rol.",
+                "description": "<p>Servicio que devuelve la información detallada de los empleados</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los empleados?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_empleado": 1,
+                                    "nombre": "Jorge",
+                                    "apellido": "Barahona",
+                                    "puesto": "Administrador",
+                                    "password": "root1234",
+                                    "correo": "prueba2@gmail.com"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Empleado"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "rol",
+                        "in": "path",
+                        "required": true,
+                        "description": "requiere el rol del empleado",
+                        "type": "string",
+                        "default": "Administrador"
+                    }
+                ]
+            }
+        },
+        "/api/empleados/update/{idEmpleado}": {
+            "put": {
+                "summary": "Modificar los datos de un empleado",
+                "description": "<p>Servicio que modifica la informacion de un empleado.</p><p>&nbsp;</p><p><em><strong>¿Cuál es ese empleado?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idEmpleado",
+                        "in": "path",
+                        "description": "Ingrese el id del empleado",
+                        "required": true,
+                        "default": 1
+                    },
+                    {
+                        "name": "Empleado",
+                        "in": "body",
+                        "description": "Ingrese la info del empleado",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/viejoEmpleado"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Empleados"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/empleados/delete/{idEmpleado}": {
+            "delete": {
+                "summary": "Eliminar los datos de un empleado",
+                "description": "<p>Servicio que elimina la información de un empleado</p><p>&nbsp;</p><p><em><strong>¿Cuál es ese empleado?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idEmpleado",
+                        "in": "path",
+                        "description": "Ingrese el id del empleado",
+                        "required": true,
+                        "default": 1
+                    }
+                ],
+                "tags": [
+                    "Empleados"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/empleados/": {
+            "post": {
+                "summary": "Agrega un empleado",
+                "description": "<p>Servicio que ingresa un empleado mas al sistema </p><p>&nbsp;</p><p><em><strong>¿Cual empleado se agrega?</strong></em></p>",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Empleado",
+                        "in": "body",
+                        "description": "Ingrese los datos del empleado",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/nuevoEmpleado"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Empleados"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Empleado creado",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "fieldCount": 0,
+                                    "affectedRows": 1,
+                                    "insertId": 4,
+                                    "serverStatus": 2,
+                                    "warningCount": 0,
+                                    "message": "",
+                                    "protocol41": true,
+                                    "changedRows": 0
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#definitions/Empleados"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/empleados/verificarEmpleado": {
+            "post": {
+                "summary": "Verefica empleado",
+                "description": "<p>Servicio que verifica a un empleado del sistema </p><p>&nbsp;</p><p><em><strong>¿Cual empleado se verefica?</strong></em></p>",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Empleado",
+                        "in": "body",
+                        "description": "Ingrese los datos del empleado",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/verificaEmpleado"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Empleados"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "El empleado pertenece al sistema"
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/productos": {
+            "get": {
+                "tags": [
+                    "Productos"
+                ],
+                "summary": "Listado de todos los productos que existen en la tienda de videojuegos.",
+                "description": "<p>Servicio que devuelve la información detallada de todos los productos </p><p>&nbsp;</p><p><em><strong>¿Cuáles son los productos?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_producto": 1,
+                                    "nombre": "Halo 4",
+                                    "tipo": "Videojuego",
+                                    "consola": "Xbox",
+                                    "genero": "Shooter",
+                                    "stock": "10",
+                                    "precio": "349.99",
+                                    "caracteristicas": "Juego exclusivo para la plataforma de Xbox",
+                                    "valoracion": 5,
+                                    "imagen": "C:/fakepath/image.jpg"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Productos"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido",
+                        "tags": [
+                            "Productos"
+                        ]
+                    }
+                }
+            }
+        },
+        "/api/productos/{id}": {
+            "get": {
+                "tags": [
+                    "Productos"
+                ],
+                "summary": "Muestra la información de un producto, dado su id.",
+                "description": "<p>Servicio que devuelve la información detallada de un producto</p><p>&nbsp;</p><p><em><strong>¿Cuál es el producto?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_producto": 1,
+                                    "nombre": "Halo 4",
+                                    "tipo": "Videojuego",
+                                    "consola": "Xbox",
+                                    "genero": "Shooter",
+                                    "stock": "10",
+                                    "precio": "349.99",
+                                    "caracteristicas": "Juego exclusivo para la plataforma de Xbox",
+                                    "valoracion": 5,
+                                    "imagen": "C:/fakepath/image.jpg"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Producto"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "requiere id del producto",
+                        "type": "string",
+                        "default": "1"
+                    }
+                ]
+            }
+        },
+        "/api/productos/mostrarTipo/{tipo}": {
+            "get": {
+                "tags": [
+                    "Productos"
+                ],
+                "summary": "Muestra la información de un producto, dado su tipo.",
+                "description": "<p>Servicio que devuelve la información detallada de los productos</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los productos?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_producto": 1,
+                                    "nombre": "Halo 4",
+                                    "tipo": "Videojuego",
+                                    "consola": "Xbox",
+                                    "genero": "Shooter",
+                                    "stock": "10",
+                                    "precio": "349.99",
+                                    "caracteristicas": "Juego exclusivo para la plataforma de Xbox",
+                                    "valoracion": 5,
+                                    "imagen": "C:/fakepath/image.jpg"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Producto"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "tipo",
+                        "in": "path",
+                        "required": true,
+                        "description": "requiere tipo del producto",
+                        "type": "string",
+                        "default": "Videojuego"
+                    }
+                ]
+            }
+        },
+        "/api/productos/mostrarConsola/{consola}": {
+            "get": {
+                "tags": [
+                    "Productos"
+                ],
+                "summary": "Muestra la información de un producto, dado su consola.",
+                "description": "<p>Servicio que devuelve la información detallada de los productos</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los productos?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_producto": 1,
+                                    "nombre": "Halo 4",
+                                    "tipo": "Videojuego",
+                                    "consola": "Xbox",
+                                    "genero": "Shooter",
+                                    "stock": "10",
+                                    "precio": "349.99",
+                                    "caracteristicas": "Juego exclusivo para la plataforma de Xbox",
+                                    "valoracion": 5,
+                                    "imagen": "C:/fakepath/image.jpg"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Producto"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "consola",
+                        "in": "path",
+                        "required": true,
+                        "description": "requiere consola del producto",
+                        "type": "string",
+                        "default": "Xbox"
+                    }
+                ]
+            }
+        },
+        "/api/productos/mostrarValoracion/{valoracion}": {
+            "get": {
+                "tags": [
+                    "Productos"
+                ],
+                "summary": "Muestra la valoracion de los productos, dado su valoracion.",
+                "description": "<p>Servicio que devuelve la información detallada de los productos</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los productos?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_producto": 1,
+                                    "nombre": "Halo 4",
+                                    "tipo": "Videojuego",
+                                    "consola": "Xbox",
+                                    "genero": "Shooter",
+                                    "stock": "10",
+                                    "precio": "349.99",
+                                    "caracteristicas": "Juego exclusivo para la plataforma de Xbox",
+                                    "valoracion": 5,
+                                    "imagen": "C:/fakepath/image.jpg"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/Producto"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "valoracion",
+                        "in": "path",
+                        "required": true,
+                        "description": "requiere valoracion del producto",
+                        "type": "string",
+                        "default": "5"
+                    }
+                ]
+            }
+        },
+        "/api/productos/update/{idProducto}": {
+            "put": {
+                "summary": "Modificar los datos de un producto",
+                "description": "<p>Servicio que modifica la informacion de un producto.</p><p>&nbsp;</p><p><em><strong>¿Cuál es ese producto?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idProducto",
+                        "in": "path",
+                        "description": "Ingrese el id del producto",
+                        "required": true,
+                        "default": 1
+                    },
+                    {
+                        "name": "Producto",
+                        "in": "body",
+                        "description": "Ingrese la info del producto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/viejoProducto"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Productos"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/productos/delete/{idProducto}": {
+            "delete": {
+                "summary": "Eliminar los datos de un producto",
+                "description": "<p>Servicio que elimina la información de un producto</p><p>&nbsp;</p><p><em><strong>¿Cuál es ese producto?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idProducto",
+                        "in": "path",
+                        "description": "Ingrese el id del producto",
+                        "required": true,
+                        "default": 1
+                    }
+                ],
+                "tags": [
+                    "Productos"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/productos/": {
+            "post": {
+                "summary": "Agrega un producto",
+                "description": "<p>Servicio que ingresa un producto mas al sistema </p><p>&nbsp;</p><p><em><strong>¿Cual producto se agrega?</strong></em></p>",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Producto",
+                        "in": "body",
+                        "description": "Ingrese los datos del producto",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/nuevoProducto"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Productos"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Producto creado",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "fieldCount": 0,
+                                    "affectedRows": 1,
+                                    "insertId": 4,
+                                    "serverStatus": 2,
+                                    "warningCount": 0,
+                                    "message": "",
+                                    "protocol41": true,
+                                    "changedRows": 0
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#definitions/Productos"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/detalleVentas": {
+            "get": {
+                "tags": [
+                    "detalleVentas"
+                ],
+                "summary": "Listado de todos los detalles de las ventas que existen en la tienda de videojuegos.",
+                "description": "<p>Servicio que devuelve la información detallada de todos los detalles de las ventas</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los detalles ventas?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_detalle_venta": 1,
+                                    "id_producto": 1,
+                                    "id_venta": 1,
+                                    "id_cliente": 1,
+                                    "cantidad": 2,
+                                    "precio": 599.99
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/detalleVentas"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido",
+                        "tags": [
+                            "detalleVentas"
+                        ]
+                    }
+                }
+            }
+        },
+        "/api/detalleVentas/{id1}": {
+            "get": {
+                "tags": [
+                    "detalleVentas"
+                ],
+                "summary": "Muestra la información de un detalle venta, dado el id de la venta y el id del producto.",
+                "description": "<p>Servicio que devuelve la información detallada de un detalle venta</p><p>&nbsp;</p><p><em><strong>¿Cuál es el detalle venta?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_detalle_venta": 1,
+                                    "id_producto": 1,
+                                    "id_venta": 1,
+                                    "id_cliente": 1,
+                                    "cantidad": 2,
+                                    "precio": 599.99
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/detalleVenta"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id1",
+                        "in": "path",
+                        "required": true,
+                        "description": "requiere id del detalle venta",
+                        "type": "string",
+                        "default": "1"
+                    }
+                ]
+            }
+        },
+        "/api/detalleVentas/update/{idDetalleVenta}": {
+            "put": {
+                "summary": "Modificar los datos de un detalle ventas",
+                "description": "<p>Servicio que modifica la informacion de un detalle venta.</p><p>&nbsp;</p><p><em><strong>¿Cuál es ese detalle venta?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idDetalleVenta",
+                        "in": "path",
+                        "description": "Ingrese el id del detalle venta",
+                        "required": true,
+                        "default": 1
+                    },
+                    {
+                        "name": "Detalle Venta",
+                        "in": "body",
+                        "description": "Ingrese la info del detalle venta",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/viejoDetalleVenta"
+                        }
+                    }
+                ],
+                "tags": [
+                    "detalleVentas"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/detalleVentas/delete/{idDetalleVenta}": {
+            "delete": {
+                "summary": "Eliminar los datos de un detalleVenta",
+                "description": "<p>Servicio que elimina la información de un detalleVenta</p><p>&nbsp;</p><p><em><strong>¿Cuál es ese detalle venta?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idDetalleVenta",
+                        "in": "path",
+                        "description": "Ingrese el id del detalle venta",
+                        "required": true,
+                        "default": 1
+                    }
+                ],
+                "tags": [
+                    "detalleVentas"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/detalleVentas/": {
+            "post": {
+                "summary": "Agrega un detalle venta",
+                "description": "<p>Servicio que ingresa un detalle venta mas al sistema </p><p>&nbsp;</p><p><em><strong>¿Cual detalle venta se agrega?</strong></em></p>",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Detalle Venta",
+                        "in": "body",
+                        "description": "Ingrese los datos del detalle venta",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/nuevoDetalleVenta"
+                        }
+                    }
+                ],
+                "tags": [
+                    "detalleVentas"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "detalle venta creada",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "fieldCount": 0,
+                                    "affectedRows": 1,
+                                    "insertId": 4,
+                                    "serverStatus": 2,
+                                    "warningCount": 0,
+                                    "message": "",
+                                    "protocol41": true,
+                                    "changedRows": 0
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#definitions/detalleVentas"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/ventas": {
+            "get": {
+                "tags": [
+                    "Ventas"
+                ],
+                "summary": "Listado de todas las ventas que existen en la tienda de videojuegos.",
+                "description": "<p>Servicio que devuelve la información detallada de todas las ventas</p><p>&nbsp;</p><p><em><strong>¿Cuáles son las ventas?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_venta": 1,
+                                    "fecha": "10-12-2022",
+                                    "id_cliente": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/ventas"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido",
+                        "tags": [
+                            "Ventas"
+                        ]
+                    }
+                }
+            }
+        },
+        "/api/ventas/{id1}": {
+            "get": {
+                "tags": [
+                    "Ventas"
+                ],
+                "summary": "Muestra la información de una venta, dado el id de la venta.",
+                "description": "<p>Servicio que devuelve la información detallada de una venta</p><p>&nbsp;</p><p><em><strong>¿Cuál es la venta?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_venta": 1,
+                                    "fecha": "10-12-2022",
+                                    "id_cliente": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/venta"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id1",
+                        "in": "path",
+                        "required": true,
+                        "description": "requiere id de la venta",
+                        "type": "string",
+                        "default": "1"
+                    }
+                ]
+            }
+        },
+        "/api/ventas/venta/info": {
+            "get": {
+                "tags": [
+                    "Ventas"
+                ],
+                "summary": "Listado de todas las ventas que estan en el sistema.",
+                "description": "<p>Servicio que devuelve la información detallada de todas las ventas</p><p>&nbsp;</p><p><em><strong>¿Cuáles son las ventas?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_venta": 23,
+                                    "id_pago": 2,
+                                    "id_producto": 8,
+                                    "fecha": "2023-02-12T01:01:08.000Z",
+                                    "nombre": "Juan",
+                                    "cantidad": 1,
+                                    "precio": 500
+                                },
+                                {
+                                    "id_venta": 22,
+                                    "id_pago": 1,
+                                    "id_producto": 6,
+                                    "fecha": "2023-02-12T00:38:29.000Z",
+                                    "nombre": "Valeria",
+                                    "cantidad": 1,
+                                    "precio": 499
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/ventas"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido",
+                        "tags": [
+                            "Ventas"
+                        ]
+                    }
+                }
+            }
+        },
+        "/api/ventas/venta/total/sum": {
+            "get": {
+                "tags": [
+                    "Ventas"
+                ],
+                "summary": "Muestra el total de las ventas.",
+                "description": "<p>Servicio que devuelve la información detallada de todas las ventas</p><p>&nbsp;</p><p><em><strong>¿Cuáles son las ventas?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "precio_total": 76797
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/ventas"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido",
+                        "tags": [
+                            "Ventas"
+                        ]
+                    }
+                }
+            }
+        },
+        "/api/ventas/update/{idVenta}": {
+            "put": {
+                "summary": "Modificar los datos de una venta",
+                "description": "<p>Servicio que modifica la informacion de una venta.</p><p>&nbsp;</p><p><em><strong>¿Cuál es esa venta?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idVenta",
+                        "in": "path",
+                        "description": "Ingrese el id de la venta",
+                        "required": true,
+                        "default": 1
+                    },
+                    {
+                        "name": "Venta",
+                        "in": "body",
+                        "description": "Ingrese la info de la venta",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/viejoVenta"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Ventas"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/ventas/delete/{idVenta}": {
+            "delete": {
+                "summary": "Eliminar los datos de una venta",
+                "description": "<p>Servicio que elimina la información de una venta</p><p>&nbsp;</p><p><em><strong>¿Cuál es esa venta?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idVenta",
+                        "in": "path",
+                        "description": "Ingrese el id de la venta",
+                        "required": true,
+                        "default": 1
+                    }
+                ],
+                "tags": [
+                    "Ventas"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/ventas/": {
+            "post": {
+                "summary": "Agrega una venta",
+                "description": "<p>Servicio que ingresa una venta mas al sistema </p><p>&nbsp;</p><p><em><strong>¿Cual venta se agrega?</strong></em></p>",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Venta",
+                        "in": "body",
+                        "description": "Ingrese los datos de la venta",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/nuevoVenta"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Ventas"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Venta creada",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "fieldCount": 0,
+                                    "affectedRows": 1,
+                                    "insertId": 4,
+                                    "serverStatus": 2,
+                                    "warningCount": 0,
+                                    "message": "",
+                                    "protocol41": true,
+                                    "changedRows": 0
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#definitions/ventas"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/facturas": {
+            "get": {
+                "tags": [
+                    "Facturas"
+                ],
+                "summary": "Listado de todas las facturas que existen en la tienda de videojuegos.",
+                "description": "<p>Servicio que devuelve la información detallada de todas las facturas</p><p>&nbsp;</p><p><em><strong>¿Cuáles son las facturas?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_factura": 1,
+                                    "id_venta": 1,
+                                    "fecha": "10-12-2022"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/facturas"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido",
+                        "tags": [
+                            "Facturas"
+                        ]
+                    }
+                }
+            }
+        },
+        "/api/facturas/{id1}": {
+            "get": {
+                "tags": [
+                    "Facturas"
+                ],
+                "summary": "Muestra la información de una factura, dado el id de la factura.",
+                "description": "<p>Servicio que devuelve la información detallada de una factura</p><p>&nbsp;</p><p><em><strong>¿Cuál es la factura?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_factura": 1,
+                                    "id_venta": 1,
+                                    "fecha": "10-12-2022"
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/factura"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id1",
+                        "in": "path",
+                        "required": true,
+                        "description": "requiere id de la factura",
+                        "type": "string",
+                        "default": "1"
+                    }
+                ]
+            }
+        },
+        "/api/facturas/factura/info": {
+            "get": {
+                "tags": [
+                    "Facturas"
+                ],
+                "summary": "Listado de todas las facturas que estan en el sistema.",
+                "description": "<p>Servicio que devuelve la información detallada de todas las facturas</p><p>&nbsp;</p><p><em><strong>¿Cuáles son las facturas?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_venta": 23,
+                                    "id_pago": 2,
+                                    "id_factura": 22,
+                                    "id_producto": 8,
+                                    "fecha": "2023-02-12T01:01:08.000Z",
+                                    "nombre": "Juan",
+                                    "cantidad": 1,
+                                    "precio": 500
+                                },
+                                {
+                                    "id_venta": 22,
+                                    "id_pago": 1,
+                                    "id_factura": 21,
+                                    "id_producto": 6,
+                                    "fecha": "2023-02-12T00:38:29.000Z",
+                                    "nombre": "Valeria",
+                                    "cantidad": 1,
+                                    "precio": 499
+                                },
+                                {
+                                    "id_venta": 22,
+                                    "id_pago": 1,
+                                    "id_factura": 21,
+                                    "id_producto": 9,
+                                    "fecha": "2023-02-12T00:38:29.000Z",
+                                    "nombre": "Valeria",
+                                    "cantidad": 1,
+                                    "precio": 6000
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/facturas"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido",
+                        "tags": [
+                            "Facturas"
+                        ]
+                    }
+                }
+            }
+        },
+        "/api/facturas/factura/total/sum": {
+            "get": {
+                "tags": [
+                    "Facturas"
+                ],
+                "summary": "Muestra el total de las ventas.",
+                "description": "<p>Servicio que devuelve la información detallada de todas las facturas</p><p>&nbsp;</p><p><em><strong>¿Cuáles son las facturas?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "precio_total": 76797
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/facturas"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido",
+                        "tags": [
+                            "Facturas"
+                        ]
+                    }
+                }
+            }
+        },
+        "/api/facturas/update/{idFactura}": {
+            "put": {
+                "summary": "Modificar los datos de una factura",
+                "description": "<p>Servicio que modifica la informacion de una factura.</p><p>&nbsp;</p><p><em><strong>¿Cuál es esa factura?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idFactura",
+                        "in": "path",
+                        "description": "Ingrese el id de la factura",
+                        "required": true,
+                        "default": 1
+                    },
+                    {
+                        "name": "Factura",
+                        "in": "body",
+                        "description": "Ingrese la info de la venta",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/viejoFactura"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Facturas"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/facturas/delete/{idFactura}": {
+            "delete": {
+                "summary": "Eliminar los datos de una factura",
+                "description": "<p>Servicio que elimina la información de una factura</p><p>&nbsp;</p><p><em><strong>¿Cuál es esa factura?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idFactura",
+                        "in": "path",
+                        "description": "Ingrese el id de la factura",
+                        "required": true,
+                        "default": 1
+                    }
+                ],
+                "tags": [
+                    "Facturas"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/facturas/": {
+            "post": {
+                "summary": "Agrega una factura",
+                "description": "<p>Servicio que ingresa una factura mas al sistema </p><p>&nbsp;</p><p><em><strong>¿Cual factura se agrega?</strong></em></p>",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Factura",
+                        "in": "body",
+                        "description": "Ingrese los datos de la factura",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/nuevoFactura"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Facturas"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Factura creada",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "fieldCount": 0,
+                                    "affectedRows": 1,
+                                    "insertId": 4,
+                                    "serverStatus": 2,
+                                    "warningCount": 0,
+                                    "message": "",
+                                    "protocol41": true,
+                                    "changedRows": 0
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#definitions/facturas"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/detalleFacturas": {
+            "get": {
+                "tags": [
+                    "detalleFacturas"
+                ],
+                "summary": "Listado de todas los detalles facturas que existen en la tienda de videojuegos.",
+                "description": "<p>Servicio que devuelve la información detallada de todas los detalles facturas</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los detalles facturas?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_factura": 1,
+                                    "id_venta": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/detalleFacturas"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido",
+                        "tags": [
+                            "detalleFacturas"
+                        ]
+                    }
+                }
+            }
+        },
+        "/api/detalleFacturas/{id1}/{id2}": {
+            "get": {
+                "tags": [
+                    "detalleFacturas"
+                ],
+                "summary": "Muestra la información de un detalle factura, dado el id de la venta y el id de la factura.",
+                "description": "<p>Servicio que devuelve la información detallada de un detalle factura</p><p>&nbsp;</p><p><em><strong>¿Cuál es el detalle factura?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_factura": 1,
+                                    "id_venta": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/detalleFactura"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id1",
+                        "in": "path",
+                        "required": true,
+                        "description": "requiere id de la factura",
+                        "type": "string",
+                        "default": "1"
+                    },
+                    {
+                        "name": "id2",
+                        "in": "path",
+                        "required": true,
+                        "description": "requiere id de la venta",
+                        "type": "string",
+                        "default": "1"
+                    }
+                ]
+            }
+        },
+        "/api/detalleFacturas/update/{idFactura}/{idVenta}": {
+            "put": {
+                "summary": "Modificar los datos de un detalle factura",
+                "description": "<p>Servicio que modifica la informacion de un detalle factura.</p><p>&nbsp;</p><p><em><strong>¿Cuál es ese detalle factura?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idFactura",
+                        "in": "path",
+                        "description": "Ingrese el id de la factura",
+                        "required": true,
+                        "default": 1
+                    },
+                    {
+                        "name": "idVenta",
+                        "in": "path",
+                        "description": "Ingrese el id de la venta",
+                        "required": true,
+                        "default": 1
+                    },
+                    {
+                        "name": "Detalle Factura",
+                        "in": "body",
+                        "description": "Ingrese la info del detalle factura",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/viejoDetalleFactura"
+                        }
+                    }
+                ],
+                "tags": [
+                    "detalleFacturas"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/detalleFacturas/delete/{idFactura}/{idVenta}": {
+            "delete": {
+                "summary": "Eliminar los datos de un detalleFactura",
+                "description": "<p>Servicio que elimina la información de un detalleFactura</p><p>&nbsp;</p><p><em><strong>¿Cuál es ese detalle factura?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idFactura",
+                        "in": "path",
+                        "description": "Ingrese el id de la factura",
+                        "required": true,
+                        "default": 1
+                    },
+                    {
+                        "name": "idVenta",
+                        "in": "path",
+                        "description": "Ingrese el id de la venta",
+                        "required": true,
+                        "default": 1
+                    }
+                ],
+                "tags": [
+                    "detalleFacturas"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/detalleFacturas/": {
+            "post": {
+                "summary": "Agrega un detalle factura",
+                "description": "<p>Servicio que ingresa un detalle factura mas al sistema </p><p>&nbsp;</p><p><em><strong>¿Cual detalle factura se agrega?</strong></em></p>",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Detalle Factura",
+                        "in": "body",
+                        "description": "Ingrese los datos del detalle factura",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/nuevoDetalleFactura"
+                        }
+                    }
+                ],
+                "tags": [
+                    "detalleFacturas"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "detalle factura creada",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "fieldCount": 0,
+                                    "affectedRows": 1,
+                                    "insertId": 4,
+                                    "serverStatus": 2,
+                                    "warningCount": 0,
+                                    "message": "",
+                                    "protocol41": true,
+                                    "changedRows": 0
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#definitions/detalleFacturas"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/pagos": {
+            "get": {
+                "tags": [
+                    "Pagos"
+                ],
+                "summary": "Listado de todas los tipos de pagos que existen en la tienda de videojuegos.",
+                "description": "<p>Servicio que devuelve la información detallada de todos los tipos de pagos</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los tipos de pagos?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "tipo_pago": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/pagos"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido",
+                        "tags": [
+                            "Pagos"
+                        ]
+                    }
+                }
+            }
+        },
+        "/api/pagos/{id1}": {
+            "get": {
+                "tags": [
+                    "Pagos"
+                ],
+                "summary": "Muestra la información de un tipo de pago, dado el id del tipo de pago.",
+                "description": "<p>Servicio que devuelve la información detallada de un tipo de pago</p><p>&nbsp;</p><p><em><strong>¿Cuál es el tipo de pago?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "tipo_pago": 1
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/pago"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id1",
+                        "in": "path",
+                        "required": true,
+                        "description": "requiere id del tipo de pago",
+                        "type": "string",
+                        "default": "1"
+                    }
+                ]
+            }
+        },
+        "/api/pagos/update/{idPago}": {
+            "put": {
+                "summary": "Modificar los datos de un tipo de pago",
+                "description": "<p>Servicio que modifica la informacion de un tipo de pago.</p><p>&nbsp;</p><p><em><strong>¿Cuál es ese tipo de pago?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idPago",
+                        "in": "path",
+                        "description": "Ingrese el id del tipo del pago",
+                        "required": true,
+                        "default": 1
+                    },
+                    {
+                        "name": "Pago",
+                        "in": "body",
+                        "description": "Ingrese la info del tipo de pago",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/viejoPago"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Pagos"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/pagos/delete/{idPago}": {
+            "delete": {
+                "summary": "Eliminar los datos de un tipo de pago",
+                "description": "<p>Servicio que elimina la información de un tipo de pago</p><p>&nbsp;</p><p><em><strong>¿Cuál es ese tipo de pago?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idPago",
+                        "in": "path",
+                        "description": "Ingrese el id del tipo de pago",
+                        "required": true,
+                        "default": 1
+                    }
+                ],
+                "tags": [
+                    "Pagos"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/pagos/": {
+            "post": {
+                "summary": "Agrega un tipo de pago",
+                "description": "<p>Servicio que ingresa un tipo de pago mas al sistema </p><p>&nbsp;</p><p><em><strong>¿Cual tipo de pago se agrega?</strong></em></p>",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Pago",
+                        "in": "body",
+                        "description": "Ingrese los datos del tipo de pago",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/nuevoPago"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Pagos"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Pago creado",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "fieldCount": 0,
+                                    "affectedRows": 1,
+                                    "insertId": 4,
+                                    "serverStatus": 2,
+                                    "warningCount": 0,
+                                    "message": "",
+                                    "protocol41": true,
+                                    "changedRows": 0
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#definitions/pagos"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/depositos": {
+            "get": {
+                "tags": [
+                    "Depositos"
+                ],
+                "summary": "Listado de todas los depositos que existen en la tienda de videojuegos.",
+                "description": "<p>Servicio que devuelve la información detallada de todos los depositos</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los depositos?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_deposito": 1,
+                                    "tipo_pago": 1,
+                                    "nombre": "Jorge Luis Barahona Avalos",
+                                    "numero_deposito": 123456789
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/depositos"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido",
+                        "tags": [
+                            "Depositos"
+                        ]
+                    }
+                }
+            }
+        },
+        "/api/depositos/{id1}": {
+            "get": {
+                "tags": [
+                    "Depositos"
+                ],
+                "summary": "Muestra la información de un deposito, dado el id del deposito.",
+                "description": "<p>Servicio que devuelve la información detallada de un deposito</p><p>&nbsp;</p><p><em><strong>¿Cuál es el deposito?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_deposito": 1,
+                                    "tipo_pago": 1,
+                                    "nombre": "Jorge Luis Barahona Avalos",
+                                    "numero_deposito": 123456789
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/deposito"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id1",
+                        "in": "path",
+                        "required": true,
+                        "description": "requiere id del deposito",
+                        "type": "string",
+                        "default": "1"
+                    }
+                ]
+            }
+        },
+        "/api/depositos/update/{idDeposito}": {
+            "put": {
+                "summary": "Modificar los datos de un deposito",
+                "description": "<p>Servicio que modifica la informacion de un deposito.</p><p>&nbsp;</p><p><em><strong>¿Cuál es ese deposito?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idDeposito",
+                        "in": "path",
+                        "description": "Ingrese el id del deposito",
+                        "required": true,
+                        "default": 1
+                    },
+                    {
+                        "name": "Deposito",
+                        "in": "body",
+                        "description": "Ingrese la info del deposito",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/viejoDeposito"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Depositos"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/depositos/delete/{idDeposito}": {
+            "delete": {
+                "summary": "Eliminar los datos de un deposito",
+                "description": "<p>Servicio que elimina la información de un deposito</p><p>&nbsp;</p><p><em><strong>¿Cuál es ese deposito?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idDeposito",
+                        "in": "path",
+                        "description": "Ingrese el id del deposito",
+                        "required": true,
+                        "default": 1
+                    }
+                ],
+                "tags": [
+                    "Depositos"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/depositos/": {
+            "post": {
+                "summary": "Agrega un deposito",
+                "description": "<p>Servicio que ingresa un deposito mas al sistema </p><p>&nbsp;</p><p><em><strong>¿Cual deposito se agrega?</strong></em></p>",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Deposito",
+                        "in": "body",
+                        "description": "Ingrese los datos del deposito",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/nuevoDeposito"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Depositos"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Deposito creado",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "fieldCount": 0,
+                                    "affectedRows": 1,
+                                    "insertId": 4,
+                                    "serverStatus": 2,
+                                    "warningCount": 0,
+                                    "message": "",
+                                    "protocol41": true,
+                                    "changedRows": 0
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#definitions/depositos"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/tarjetas": {
+            "get": {
+                "tags": [
+                    "Tarjetas"
+                ],
+                "summary": "Listado de todas las tarjetas que existen en la tienda de videojuegos.",
+                "description": "<p>Servicio que devuelve la información detallada de todas las tarjetas</p><p>&nbsp;</p><p><em><strong>¿Cuáles son las tarjetas?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_tarjeta": 1,
+                                    "tipo_tarjeta": 1,
+                                    "nombre": "Jorge Luis Barahona Avalos",
+                                    "fecha_vencimiento": "05/25",
+                                    "CCV": 123,
+                                    "numero_cuenta": 12345678
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/tarjetas"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido",
+                        "tags": [
+                            "Tarjetas"
+                        ]
+                    }
+                }
+            }
+        },
+        "/api/tarjetas/{id1}": {
+            "get": {
+                "tags": [
+                    "Tarjetas"
+                ],
+                "summary": "Muestra la información de una tarjeta, dado el id de la tarjeta.",
+                "description": "<p>Servicio que devuelve la información detallada de una tarjeta</p><p>&nbsp;</p><p><em><strong>¿Cuál es la tarjeta?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_tarjeta": 1,
+                                    "tipo_tarjeta": 1,
+                                    "nombre": "Jorge Luis Barahona Avalos",
+                                    "fecha_vencimiento": "05/25",
+                                    "CCV": 123,
+                                    "numero_cuenta": 12345678
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/tarjeta"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id1",
+                        "in": "path",
+                        "required": true,
+                        "description": "requiere id de la tarjeta",
+                        "type": "string",
+                        "default": "1"
+                    }
+                ]
+            }
+        },
+        "/api/tarjetas/update/{idTarjeta}": {
+            "put": {
+                "summary": "Modificar los datos de una tarjeta",
+                "description": "<p>Servicio que modifica la informacion de una tarjeta.</p><p>&nbsp;</p><p><em><strong>¿Cuál es esa tarjeta?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idTarjeta",
+                        "in": "path",
+                        "description": "Ingrese el id de la tarjeta",
+                        "required": true,
+                        "default": 1
+                    },
+                    {
+                        "name": "Tarjeta",
+                        "in": "body",
+                        "description": "Ingrese la info de la tarjeta",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/viejoTarjeta"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Tarjetas"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/tarjetas/delete/{idTarjeta}": {
+            "delete": {
+                "summary": "Eliminar los datos de una tarjeta",
+                "description": "<p>Servicio que elimina la información de una tarjeta</p><p>&nbsp;</p><p><em><strong>¿Cuál es esa tarjeta?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idTarjeta",
+                        "in": "path",
+                        "description": "Ingrese el id de la tarjeta",
+                        "required": true,
+                        "default": 1
+                    }
+                ],
+                "tags": [
+                    "Tarjetas"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/tarjetas/": {
+            "post": {
+                "summary": "Agrega una tarjeta",
+                "description": "<p>Servicio que ingresa una tarjeta mas al sistema </p><p>&nbsp;</p><p><em><strong>¿Cual tarjeta se agrega?</strong></em></p>",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Tarjeta",
+                        "in": "body",
+                        "description": "Ingrese los datos de la tarjeta",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/nuevoTarjeta"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Tarjetas"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tarjeta creada",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "fieldCount": 0,
+                                    "affectedRows": 1,
+                                    "insertId": 4,
+                                    "serverStatus": 2,
+                                    "warningCount": 0,
+                                    "message": "",
+                                    "protocol41": true,
+                                    "changedRows": 0
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#definitions/tarjetas"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/transferencias": {
+            "get": {
+                "tags": [
+                    "Transferencias"
+                ],
+                "summary": "Listado de todas las transferencias que existen en la tienda de videojuegos.",
+                "description": "<p>Servicio que devuelve la información detallada de todas las transferencias</p><p>&nbsp;</p><p><em><strong>¿Cuáles son las transferencias?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_transferencia": 1,
+                                    "tipo_transferencia": 3,
+                                    "nombre": "Jorge Luis Barahona Avalos",
+                                    "numero_transferencia": 132465,
+                                    "clave_interbancaria": 123456789
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/transferencias"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido",
+                        "tags": [
+                            "Transferencias"
+                        ]
+                    }
+                }
+            }
+        },
+        "/api/transferencias/{id1}": {
+            "get": {
+                "tags": [
+                    "Transferencias"
+                ],
+                "summary": "Muestra la información de una transferencia, dado el id de la transferencia.",
+                "description": "<p>Servicio que devuelve la información detallada de una transferencia</p><p>&nbsp;</p><p><em><strong>¿Cuál es la transferencia?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_transferencia": 1,
+                                    "tipo_transferencia": 3,
+                                    "nombre": "Jorge Luis Barahona Avalos",
+                                    "numero_transferencia": 132465,
+                                    "clave_interbancaria": 123456789
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/transferencia"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id1",
+                        "in": "path",
+                        "required": true,
+                        "description": "requiere id de la transferencia",
+                        "type": "string",
+                        "default": "1"
+                    }
+                ]
+            }
+        },
+        "/api/transferencias/update/{idTransferencia}": {
+            "put": {
+                "summary": "Modificar los datos de una transferencia",
+                "description": "<p>Servicio que modifica la informacion de una transferencia.</p><p>&nbsp;</p><p><em><strong>¿Cuál es esa trasferencia?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idTransferencia",
+                        "in": "path",
+                        "description": "Ingrese el id de la transferencia",
+                        "required": true,
+                        "default": 1
+                    },
+                    {
+                        "name": "Transferencia",
+                        "in": "body",
+                        "description": "Ingrese la info de la transferencia",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/viejoTransferencia"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Transferencias"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/transferencias/delete/{idTransferencia}": {
+            "delete": {
+                "summary": "Eliminar los datos de una transferencia",
+                "description": "<p>Servicio que elimina la información de una transferencia</p><p>&nbsp;</p><p><em><strong>¿Cuál es esa transferencia?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idTransferencia",
+                        "in": "path",
+                        "description": "Ingrese el id de la transferencia",
+                        "required": true,
+                        "default": 1
+                    }
+                ],
+                "tags": [
+                    "Transferencias"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/transferencias/": {
+            "post": {
+                "summary": "Agrega una transferencia",
+                "description": "<p>Servicio que ingresa una transferencia mas al sistema </p><p>&nbsp;</p><p><em><strong>¿Cual transferencia se agrega?</strong></em></p>",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Transferencia",
+                        "in": "body",
+                        "description": "Ingrese los datos de la transferencia",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/nuevoTransferencia"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Transferencias"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Transferencia creada",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "fieldCount": 0,
+                                    "affectedRows": 1,
+                                    "insertId": 4,
+                                    "serverStatus": 2,
+                                    "warningCount": 0,
+                                    "message": "",
+                                    "protocol41": true,
+                                    "changedRows": 0
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#definitions/tranferencias"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        },
+        "/api/carritos": {
+            "get": {
+                "tags": [
+                    "Carritos"
+                ],
+                "summary": "Listado de todas los carritos que existen en la tienda de videojuegos.",
+                "description": "<p>Servicio que devuelve la información detallada de todas los carritos</p><p>&nbsp;</p><p><em><strong>¿Cuáles son los carritos?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_carrito": 31,
+                                    "id_cliente": 9,
+                                    "id_producto": 8,
+                                    "cantidad": 1,
+                                    "precio": 1400
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/carritos"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido",
+                        "tags": [
+                            "Carritos"
+                        ]
+                    }
+                }
+            }
+        },
+        "/api/carritos/{id1}": {
+            "get": {
+                "tags": [
+                    "Carritos"
+                ],
+                "summary": "Muestra la información de un carrito, dado el id del carrito.",
+                "description": "<p>Servicio que devuelve la información detallada de un carrito</p><p>&nbsp;</p><p><em><strong>¿Cuál es el carrito?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_carrito": 31,
+                                    "id_cliente": 9,
+                                    "id_producto": 8,
+                                    "cantidad": 1,
+                                    "precio": 1400
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/carrito"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id1",
+                        "in": "path",
+                        "required": true,
+                        "description": "requiere id del carrito",
+                        "type": "string",
+                        "default": "1"
+                    }
+                ]
+            }
+        },
+        "/api/carritos/carrito/{idCliente}": {
+            "get": {
+                "tags": [
+                    "Carritos"
+                ],
+                "summary": "Muestra la información de un carrito, dado el id del cliente.",
+                "description": "<p>Servicio que devuelve la información detallada de un carrito</p><p>&nbsp;</p><p><em><strong>¿Cuál es el carrito?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id_carrito": 30,
+                                    "cantidad": 1,
+                                    "nombre": "Halo 4",
+                                    "imagen": "C:\\fakepath\\logo-Xbox.png",
+                                    "caracteristicas": "Cuarta entrega de la serie de videojuegos de Halo",
+                                    "precio": 499
+                                },
+                                {
+                                    "id_carrito": 31,
+                                    "cantidad": 1,
+                                    "nombre": "Halo Infinite",
+                                    "imagen": "C:\\fakepath\\Halo4.jpg",
+                                    "caracteristicas": "Ultima entrega de la saga de Halo",
+                                    "precio": 1400
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/carrito"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "idCliente",
+                        "in": "path",
+                        "required": true,
+                        "description": "requiere id del cliente",
+                        "type": "string",
+                        "default": "1"
+                    }
+                ]
+            }
+        },
+        "/api/carritos/carrito/total/{idCliente}": {
+            "get": {
+                "tags": [
+                    "Carritos"
+                ],
+                "summary": "Muestra el total de un carrito, dado el id del cliente.",
+                "description": "<p>Servicio que devuelve la información detallada de un carrito</p><p>&nbsp;</p><p><em><strong>¿Cuál es el carrito?</strong></em></p>",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "total_carrito": 1899
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/carrito"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "idCliente",
+                        "in": "path",
+                        "required": true,
+                        "description": "requiere id del cliente",
+                        "type": "string",
+                        "default": "1"
+                    }
+                ]
+            }
+        },
+        "/api/carrito/update/{idCarrito}": {
+            "put": {
+                "summary": "Modificar los datos de un carrito",
+                "description": "<p>Servicio que modifica la informacion de un carrito.</p><p>&nbsp;</p><p><em><strong>¿Cuál es ese carrito?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idCarrito",
+                        "in": "path",
+                        "description": "Ingrese el id del carrito",
+                        "required": true,
+                        "default": 1
+                    },
+                    {
+                        "name": "Carrito",
+                        "in": "body",
+                        "description": "Ingrese la info del carrito",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/viejoCarrito"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Carritos"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/carritos/delete/{idCarrito}": {
+            "delete": {
+                "summary": "Eliminar los datos de un carrito",
+                "description": "<p>Servicio que elimina la información de un carrito</p><p>&nbsp;</p><p><em><strong>¿Cuál es ese carrito?</strong></em></p>",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "idCarrito",
+                        "in": "path",
+                        "description": "Ingrese el id del carrito",
+                        "required": true,
+                        "default": 1
+                    }
+                ],
+                "tags": [
+                    "Carritos"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "servicio OK"
+                    }
+                }
+            }
+        },
+        "/api/carritos/": {
+            "post": {
+                "summary": "Agrega un carrito",
+                "description": "<p>Servicio que ingresa un carrito mas al sistema </p><p>&nbsp;</p><p><em><strong>¿Cual carrito se agrega?</strong></em></p>",
+                "operationId": "create",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "Carrito",
+                        "in": "body",
+                        "description": "Ingrese los datos del carrito",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#definitions/nuevoCarrito"
+                        }
+                    }
+                ],
+                "tags": [
+                    "Carritos"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Carrito creado",
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "fieldCount": 0,
+                                    "affectedRows": 1,
+                                    "insertId": 4,
+                                    "serverStatus": 2,
+                                    "warningCount": 0,
+                                    "message": "",
+                                    "protocol41": true,
+                                    "changedRows": 0
+                                }
+                            ]
+                        },
+                        "schema": {
+                            "$ref": "#definitions/carritos"
+                        }
+                    },
+                    "403": {
+                        "description": "Prohibido"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Clientes": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Cliente"
+            }
+        },
+        "Cliente": {
+            "type": "object",
+            "properties": {
+                "id_cliente": {
+                    "type": "number",
+                    "description": "Identificador unico de cliente"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del cliente"
+                },
+                "apellido": {
+                    "type": "string",
+                    "description": "Apellido del cliente"
+                },
+                "direccion": {
+                    "type": "string",
+                    "description": "Direccion del cliente"
+                },
+                "correo": {
+                    "type": "string",
+                    "description": "Correo del cliente"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Contraseña del cliente"
+                },
+                "telefono": {
+                    "type": "string",
+                    "description": "Telefono del cliente"
+                },
+                "pais": {
+                    "type": "string",
+                    "description": "Pais del cliente"
+                },
+                "estado": {
+                    "type": "string",
+                    "description": "Estado del cliente"
+                },
+                "municipio": {
+                    "type": "string",
+                    "description": "Municipio del cliente"
+                },
+                "codigo_postal": {
+                    "type": "string",
+                    "description": "Codigo postal del cliente"
+                },
+                "id_pago": {
+                    "type": "number",
+                    "description": "Identificador de un tipo de pago"
+                }
+            }
+        },
+        "nuevoCliente": {
+            "type": "object",
+            "properties": {
+                "id_cliente": {
+                    "type": "number",
+                    "description": "Identificador unico de cliente"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del cliente"
+                },
+                "apellido": {
+                    "type": "string",
+                    "description": "Apellido del cliente"
+                },
+                "direccion": {
+                    "type": "string",
+                    "description": "Direccion del cliente"
+                },
+                "correo": {
+                    "type": "string",
+                    "description": "Correo del cliente"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Contraseña del cliente"
+                },
+                "telefono": {
+                    "type": "string",
+                    "description": "Telefono del cliente"
+                },
+                "pais": {
+                    "type": "string",
+                    "description": "Pais del cliente"
+                },
+                "estado": {
+                    "type": "string",
+                    "description": "Estado del cliente"
+                },
+                "municipio": {
+                    "type": "string",
+                    "description": "Municipio del cliente"
+                },
+                "codigo_postal": {
+                    "type": "string",
+                    "description": "Codigo postal del cliente"
+                },
+                "id_pago": {
+                    "type": "number",
+                    "description": "Identificador de un tipo de pago"
+                }
+            }
+        },
+        "viejoCliente": {
+            "type": "object",
+            "properties": {
+                "id_cliente": {
+                    "type": "number",
+                    "description": "Identificador unico de cliente"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del cliente"
+                },
+                "apellido": {
+                    "type": "string",
+                    "description": "Apellido del cliente"
+                },
+                "direccion": {
+                    "type": "string",
+                    "description": "Direccion del cliente"
+                },
+                "correo": {
+                    "type": "string",
+                    "description": "Correo del cliente"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Contraseña del cliente"
+                },
+                "telefono": {
+                    "type": "string",
+                    "description": "Telefono del cliente"
+                },
+                "pais": {
+                    "type": "string",
+                    "description": "Pais del cliente"
+                },
+                "estado": {
+                    "type": "string",
+                    "description": "Estado del cliente"
+                },
+                "municipio": {
+                    "type": "string",
+                    "description": "Municipio del cliente"
+                },
+                "codigo_postal": {
+                    "type": "string",
+                    "description": "Codigo postal del cliente"
+                },
+                "id_pago": {
+                    "type": "number",
+                    "description": "Identificador de un tipo de pago"
+                }
+            }
+        },
+        "verificarCliente": {
+            "type": "object",
+            "properties": {
+                "correo": {
+                    "type": "string",
+                    "description": "Correo del cliente"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Contraseña del cliente"
+                }
+            }
+        },
+        "registrarCliente": {
+            "type": "object",
+            "properties": {
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del cliente"
+                },
+                "apellido": {
+                    "type": "string",
+                    "description": "Apellido del cliente"
+                },
+                "correo": {
+                    "type": "string",
+                    "description": "Correo del cliente"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Contraseña del cliente"
+                }
+            }
+        },
+        "Empleados": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Empleado"
+            }
+        },
+        "Empleado": {
+            "type": "object",
+            "properties": {
+                "id_empleado": {
+                    "type": "number",
+                    "description": "Identificador unico de empleado"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del empleado"
+                },
+                "apellido": {
+                    "type": "string",
+                    "description": "Apellido del empleado"
+                },
+                "puesto": {
+                    "type": "string",
+                    "description": "Puesto del empleado"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Password del empleado"
+                },
+                "correo": {
+                    "type": "string",
+                    "description": "Correo del empleado"
+                }
+            }
+        },
+        "nuevoEmpleado": {
+            "type": "object",
+            "properties": {
+                "id_empleado": {
+                    "type": "number",
+                    "description": "Identificador unico de empleado"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del empleado"
+                },
+                "apellido": {
+                    "type": "string",
+                    "description": "Apellido del empleado"
+                },
+                "puesto": {
+                    "type": "string",
+                    "description": "Puesto del empleado"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Password del empleado"
+                },
+                "correo": {
+                    "type": "string",
+                    "description": "Correo del empleado"
+                }
+            }
+        },
+        "viejoEmpleado": {
+            "type": "object",
+            "properties": {
+                "id_empleado": {
+                    "type": "number",
+                    "description": "Identificador unico de empleado"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del empleado"
+                },
+                "apellido": {
+                    "type": "string",
+                    "description": "Apellido del empleado"
+                },
+                "puesto": {
+                    "type": "string",
+                    "description": "Puesto del empleado"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Password del empleado"
+                },
+                "correo": {
+                    "type": "string",
+                    "description": "Correo del empleado"
+                }
+            }
+        },
+        "verificaEmpleado": {
+            "type": "object",
+            "properties": {
+                "correo": {
+                    "type": "string",
+                    "description": "Correo del empleado"
+                },
+                "password": {
+                    "type": "string",
+                    "description": "Contraseña del empleado"
+                }
+            }
+        },
+        "Productos": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Producto"
+            }
+        },
+        "Producto": {
+            "type": "object",
+            "properties": {
+                "id_producto": {
+                    "type": "number",
+                    "description": "Identificador unico de producto"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del producto"
+                },
+                "tipo": {
+                    "type": "string",
+                    "description": "Tipo del producto"
+                },
+                "consola": {
+                    "type": "string",
+                    "description": "Consola del producto"
+                },
+                "genero": {
+                    "type": "string",
+                    "description": "Genero del producto"
+                },
+                "stock": {
+                    "type": "number",
+                    "description": "Stock del producto"
+                },
+                "precio": {
+                    "type": "number",
+                    "description": "Precio del producto"
+                },
+                "caracteristicas": {
+                    "type": "string",
+                    "description": "Caracteristicas del producto"
+                },
+                "valoracion": {
+                    "type": "number",
+                    "description": "Valoracion del producto"
+                },
+                "imagen": {
+                    "type": "string",
+                    "descripcion": "Imagen del producto"
+                }
+            }
+        },
+        "nuevoProducto": {
+            "type": "object",
+            "properties": {
+                "id_producto": {
+                    "type": "number",
+                    "description": "Identificador unico de producto"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del producto"
+                },
+                "tipo": {
+                    "type": "string",
+                    "description": "Tipo del producto"
+                },
+                "consola": {
+                    "type": "string",
+                    "description": "Consola del producto"
+                },
+                "genero": {
+                    "type": "string",
+                    "description": "Genero del producto"
+                },
+                "stock": {
+                    "type": "number",
+                    "description": "Stock del producto"
+                },
+                "precio": {
+                    "type": "number",
+                    "description": "Precio del producto"
+                },
+                "caracteristicas": {
+                    "type": "string",
+                    "description": "Caracteristicas del producto"
+                },
+                "valoracion": {
+                    "type": "number",
+                    "description": "Valoracion del producto"
+                },
+                "imagen": {
+                    "type": "string",
+                    "descripcion": "Imagen del producto"
+                }
+            }
+        },
+        "viejoProducto": {
+            "type": "object",
+            "properties": {
+                "id_producto": {
+                    "type": "number",
+                    "description": "Identificador unico de producto"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del producto"
+                },
+                "tipo": {
+                    "type": "string",
+                    "description": "Tipo del producto"
+                },
+                "consola": {
+                    "type": "string",
+                    "description": "Consola del producto"
+                },
+                "genero": {
+                    "type": "string",
+                    "description": "Genero del producto"
+                },
+                "stock": {
+                    "type": "number",
+                    "description": "Stock del producto"
+                },
+                "precio": {
+                    "type": "number",
+                    "description": "Precio del producto"
+                },
+                "caracteristicas": {
+                    "type": "string",
+                    "description": "Caracteristicas del producto"
+                },
+                "valoracion": {
+                    "type": "number",
+                    "description": "Valoracion del producto"
+                },
+                "imagen": {
+                    "type": "string",
+                    "descripcion": "Imagen del producto"
+                }
+            }
+        },
+        "detalleVentas": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/detalleVenta"
+            }
+        },
+        "detalleVenta": {
+            "type": "object",
+            "properties": {
+                "id_detalle_venta": {
+                    "type": "number",
+                    "descripcion": "Identificador unico de detalle venta"
+                },
+                "id_producto": {
+                    "type": "number",
+                    "description": "Identificador unico de producto"
+                },
+                "id_venta": {
+                    "type": "number",
+                    "description": "Identificador unico de venta"
+                },
+                "id_cliente": {
+                    "type": "number",
+                    "description": "Identificador unico de cliente"
+                },
+                "cantidad": {
+                    "type": "number",
+                    "description": "Cantidad del producto seleccionado"
+                },
+                "precio": {
+                    "type": "number",
+                    "description": "Precio total del producto"
+                }
+            }
+        },
+        "nuevoDetalleVenta": {
+            "type": "object",
+            "properties": {
+                "id_detalle_venta": {
+                    "type": "number",
+                    "descripcion": "Identificador unico de detalle venta"
+                },
+                "id_producto": {
+                    "type": "number",
+                    "description": "Identificador unico de producto"
+                },
+                "id_venta": {
+                    "type": "number",
+                    "description": "Identificador unico de venta"
+                },
+                "id_cliente": {
+                    "type": "number",
+                    "description": "Identificador unico de cliente"
+                },
+                "cantidad": {
+                    "type": "number",
+                    "description": "Cantidad del producto seleccionado"
+                },
+                "precio": {
+                    "type": "number",
+                    "description": "Precio total del producto"
+                }
+            }
+        },
+        "viejoDetalleVenta": {
+            "type": "object",
+            "properties": {
+                "id_detalle_venta": {
+                    "type": "number",
+                    "descripcion": "Identificador unico de detalle venta"
+                },
+                "id_producto": {
+                    "type": "number",
+                    "description": "Identificador unico de producto"
+                },
+                "id_venta": {
+                    "type": "number",
+                    "description": "Identificador unico de venta"
+                },
+                "id_cliente": {
+                    "type": "number",
+                    "description": "Identificador unico de cliente"
+                },
+                "cantidad": {
+                    "type": "number",
+                    "description": "Cantidad del producto seleccionado"
+                },
+                "precio": {
+                    "type": "number",
+                    "description": "Precio total del producto"
+                }
+            }
+        },
+        "ventas": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/venta"
+            }
+        },
+        "venta": {
+            "type": "object",
+            "properties": {
+                "id_venta": {
+                    "type": "number",
+                    "description": "Identificador unico de venta"
+                },
+                "fecha": {
+                    "type": "string",
+                    "description": "Fecha de la compra del producto seleccionado"
+                },
+                "id_cliente": {
+                    "type": "number",
+                    "description": "Identificador unico de cliente"
+                }
+            }
+        },
+        "nuevoVenta": {
+            "type": "object",
+            "properties": {
+                "id_venta": {
+                    "type": "number",
+                    "description": "Identificador unico de venta"
+                },
+                "fecha": {
+                    "type": "string",
+                    "description": "Fecha de la compra del producto seleccionado"
+                },
+                "id_cliente": {
+                    "type": "number",
+                    "description": "Identificador unico de cliente"
+                }
+            }
+        },
+        "viejoVenta": {
+            "type": "object",
+            "properties": {
+                "id_venta": {
+                    "type": "number",
+                    "description": "Identificador unico de venta"
+                },
+                "fecha": {
+                    "type": "string",
+                    "description": "Fecha de la compra del producto seleccionado"
+                },
+                "id_cliente": {
+                    "type": "number",
+                    "description": "Identificador unico de cliente"
+                }
+            }
+        },
+        "facturas": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/factura"
+            }
+        },
+        "factura": {
+            "type": "object",
+            "properties": {
+                "id_factura": {
+                    "type": "number",
+                    "description": "Identificador unico de factura"
+                },
+                "id_venta": {
+                    "type": "number",
+                    "description": "Identificador unico de venta"
+                },
+                "fecha": {
+                    "type": "string",
+                    "description": "Fecha de la compra del producto seleccionado"
+                }
+            }
+        },
+        "nuevoFactura": {
+            "type": "object",
+            "properties": {
+                "id_factura": {
+                    "type": "number",
+                    "description": "Identificador unico de factura"
+                },
+                "id_venta": {
+                    "type": "number",
+                    "description": "Identificador unico de venta"
+                },
+                "fecha": {
+                    "type": "string",
+                    "description": "Fecha de la compra del producto seleccionado"
+                }
+            }
+        },
+        "viejoFactura": {
+            "type": "object",
+            "properties": {
+                "id_factura": {
+                    "type": "number",
+                    "description": "Identificador unico de factura"
+                },
+                "id_venta": {
+                    "type": "number",
+                    "description": "Identificador unico de venta"
+                },
+                "fecha": {
+                    "type": "string",
+                    "description": "Fecha de la compra del producto seleccionado"
+                }
+            }
+        },
+        "detalleFacturas": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/detalleFactura"
+            }
+        },
+        "detalleFactura": {
+            "type": "object",
+            "properties": {
+                "id_factura": {
+                    "type": "number",
+                    "description": "Identificador unico de factura"
+                },
+                "id_venta": {
+                    "type": "number",
+                    "description": "Identificador unico de venta"
+                }
+            }
+        },
+        "nuevoDetalleFactura": {
+            "type": "object",
+            "properties": {
+                "id_factura": {
+                    "type": "number",
+                    "description": "Identificador unico de factura"
+                },
+                "id_venta": {
+                    "type": "number",
+                    "description": "Identificador unico de venta"
+                }
+            }
+        },
+        "viejoDetalleFactura": {
+            "type": "object",
+            "properties": {
+                "id_factura": {
+                    "type": "number",
+                    "description": "Identificador unico de factura"
+                },
+                "id_venta": {
+                    "type": "number",
+                    "description": "Identificador unico de venta"
+                }
+            }
+        },
+        "pagos": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/pago"
+            }
+        },
+        "pago": {
+            "type": "object",
+            "properties": {
+                "tipo_pago": {
+                    "type": "number",
+                    "description": "Identificador unico del tipo de pago"
+                }
+            }
+        },
+        "nuevoPago": {
+            "type": "object",
+            "properties": {
+                "tipo_pago": {
+                    "type": "number",
+                    "description": "Identificador unico del tipo de pago"
+                }
+            }
+        },
+        "viejoPago": {
+            "type": "object",
+            "properties": {
+                "tipo_pago": {
+                    "type": "number",
+                    "description": "Identificador unico del tipo de pago"
+                }
+            }
+        },
+        "depositos": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/deposito"
+            }
+        },
+        "deposito": {
+            "type": "object",
+            "properties": {
+                "id_deposito": {
+                    "type": "number",
+                    "description": "Identificador unico de deposito"
+                },
+                "tipo_deposito": {
+                    "type": "number",
+                    "descripcion": "Numero del tipo de pago(Deposito = 2)"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del que hizo el deposito"
+                },
+                "numero_deposito": {
+                    "type": "number",
+                    "description": "Número del deposito"
+                }
+            }
+        },
+        "nuevoDeposito": {
+            "type": "object",
+            "properties": {
+                "id_deposito": {
+                    "type": "number",
+                    "description": "Identificador unico de deposito"
+                },
+                "tipo_deposito": {
+                    "type": "number",
+                    "descripcion": "Numero del tipo de pago(Deposito = 2)"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del que hizo el deposito"
+                },
+                "numero_deposito": {
+                    "type": "number",
+                    "description": "Número del deposito"
+                }
+            }
+        },
+        "viejoDeposito": {
+            "type": "object",
+            "properties": {
+                "id_deposito": {
+                    "type": "number",
+                    "description": "Identificador unico de deposito"
+                },
+                "tipo_deposito": {
+                    "type": "number",
+                    "descripcion": "Numero del tipo de pago(Deposito = 2)"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del que hizo el deposito"
+                },
+                "numero_deposito": {
+                    "type": "number",
+                    "description": "Número del deposito"
+                }
+            }
+        },
+        "tarjetas": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/tarjeta"
+            }
+        },
+        "tarjeta": {
+            "type": "object",
+            "properties": {
+                "id_tarjeta": {
+                    "type": "number",
+                    "description": "Identificador unico de tarjeta"
+                },
+                "tipo_tarjeta": {
+                    "type": "number",
+                    "descripcion": "Numero del tipo de pago(Tarjeta = 1)"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del que hizo el pago con la tarjeta"
+                },
+                "fecha_vencimiento": {
+                    "type": "string",
+                    "format": "fecha de vencimiento de la tarjeta"
+                },
+                "CCV": {
+                    "type": "number",
+                    "description": "Código de los CCVs"
+                },
+                "numero_cuenta": {
+                    "type": "number",
+                    "description": "Número de la cuenta"
+                }
+            }
+        },
+        "nuevoTarjeta": {
+            "type": "object",
+            "properties": {
+                "id_tarjeta": {
+                    "type": "number",
+                    "description": "Identificador unico de tarjeta"
+                },
+                "tipo_tarjeta": {
+                    "type": "number",
+                    "descripcion": "Numero del tipo de pago(Tarjeta = 1)"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del que hizo el pago con la tarjeta"
+                },
+                "fecha_vencimiento": {
+                    "type": "string",
+                    "format": "fecha de vencimiento de la tarjeta"
+                },
+                "CCV": {
+                    "type": "number",
+                    "description": "Código de los CCVs"
+                },
+                "numero_cuenta": {
+                    "type": "number",
+                    "description": "Número de la cuenta"
+                }
+            }
+        },
+        "viejoTarjeta": {
+            "type": "object",
+            "properties": {
+                "id_tarjeta": {
+                    "type": "number",
+                    "description": "Identificador unico de tarjeta"
+                },
+                "tipo_tarjeta": {
+                    "type": "number",
+                    "descripcion": "Numero del tipo de pago(Tarjeta = 1)"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del que hizo el pago con la tarjeta"
+                },
+                "fecha_vencimiento": {
+                    "type": "string",
+                    "format": "fecha de vencimiento de la tarjeta"
+                },
+                "CCV": {
+                    "type": "number",
+                    "description": "Código de los CCVs"
+                },
+                "numero_cuenta": {
+                    "type": "number",
+                    "description": "Número de la cuenta"
+                }
+            }
+        },
+        "tranferencias": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/transferencia"
+            }
+        },
+        "transferencia": {
+            "type": "object",
+            "properties": {
+                "id_transferencia": {
+                    "type": "number",
+                    "description": "Identificador unico de transferencia"
+                },
+                "tipo_transferencia": {
+                    "type": "number",
+                    "descripcion": "Numero del tipo de pago(Transferencia = 3)"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del que hizo la transferencia"
+                },
+                "numero_transferencia": {
+                    "type": "number",
+                    "description": "Número de la transferencia"
+                },
+                "clave_interbancaria": {
+                    "type": "number",
+                    "description": "Número de la clave interbancaria"
+                }
+            }
+        },
+        "nuevoTransferencia": {
+            "type": "object",
+            "properties": {
+                "id_transferencia": {
+                    "type": "number",
+                    "description": "Identificador unico de transferencia"
+                },
+                "tipo_transferencia": {
+                    "type": "number",
+                    "descripcion": "Numero del tipo de pago(Transferencia = 3)"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del que hizo la transferencia"
+                },
+                "numero_transferencia": {
+                    "type": "number",
+                    "description": "Número de la transferencia"
+                },
+                "clave_interbancaria": {
+                    "type": "number",
+                    "description": "Número de la clave interbancaria"
+                }
+            }
+        },
+        "viejoTransferencia": {
+            "type": "object",
+            "properties": {
+                "id_transferencia": {
+                    "type": "number",
+                    "description": "Identificador unico de transferencia"
+                },
+                "tipo_transferencia": {
+                    "type": "number",
+                    "descripcion": "Numero del tipo de pago(Transferencia = 3)"
+                },
+                "nombre": {
+                    "type": "string",
+                    "description": "Nombre del que hizo la transferencia"
+                },
+                "numero_transferencia": {
+                    "type": "number",
+                    "description": "Número de la transferencia"
+                },
+                "clave_interbancaria": {
+                    "type": "number",
+                    "description": "Número de la clave interbancaria"
+                }
+            }
+        },
+        "carritos": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/carrito"
+            }
+        },
+        "carrito": {
+            "type": "object",
+            "properties": {
+                "id_carrito": {
+                    "type": "number",
+                    "description": "Identificador unico de carrito"
+                },
+                "id_cliente": {
+                    "type": "number",
+                    "descripcion": "Identificador unico de cliente"
+                },
+                "id_producto": {
+                    "type": "number",
+                    "description": "Identificador unico de producto"
+                },
+                "cantidad": {
+                    "type": "number",
+                    "description": "Cantidad del producto seleccionado"
+                },
+                "total": {
+                    "type": "number",
+                    "description": "Precio total del producto"
+                }
+            }
+        },
+        "nuevoCarrito": {
+            "type": "object",
+            "properties": {
+                "id_carrito": {
+                    "type": "number",
+                    "description": "Identificador unico de carrito"
+                },
+                "id_cliente": {
+                    "type": "number",
+                    "descripcion": "Identificador unico de cliente"
+                },
+                "id_producto": {
+                    "type": "number",
+                    "description": "Identificador unico de producto"
+                },
+                "cantidad": {
+                    "type": "number",
+                    "description": "Cantidad del producto seleccionado"
+                },
+                "total": {
+                    "type": "number",
+                    "description": "Precio total del producto"
+                }
+            }
+        },
+        "viejoCarrito": {
+            "type": "object",
+            "properties": {
+                "id_carrito": {
+                    "type": "number",
+                    "description": "Identificador unico de carrito"
+                },
+                "id_cliente": {
+                    "type": "number",
+                    "descripcion": "Identificador unico de cliente"
+                },
+                "id_producto": {
+                    "type": "number",
+                    "description": "Identificador unico de producto"
+                },
+                "cantidad": {
+                    "type": "number",
+                    "description": "Cantidad del producto seleccionado"
+                },
+                "total": {
+                    "type": "number",
+                    "description": "Precio total del producto"
+                }
+            }
+        }
+    }
+}
