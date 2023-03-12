@@ -85,7 +85,7 @@
         </div>
         <div class="modal-footer">
             <!--Boton para agregar producto-->
-            <button (click)="edit ? modificarProducto() : agregarProducto()" class="btn waves-effect waves-light" type="submit" name="action">Guardar
+            <button  href="!#" (click)="agregarProducto()" class="btn waves-effect waves-light" type="submit" name="action">Guardar
                 <i class="material-icons right">send</i>
             </button>
         </div>
@@ -94,30 +94,34 @@
 
 <div id="modalAgregarEmpleado" class="modal">
     <form class="formulario">
+        <h2>Rellena el formulario</h2>
         <div class="modal-content">
-            <div class="campo">
-                <label>Tipo Tarjeta: </label>
-                <input type="number" name="tipoTarjeta" id="tipoTarjeta">
+            <div class="input-field">
+                <input [(ngModel)]="empleado.nombre" type="text" name="nombre" id="nombre">
+                <label for="nombre">Nombre</label>
             </div>
-            <div class="campo">
-                <label>Nombre: </label>
-                <input type="text" name="nombre" id="nombre">
+            <div class="input-field">
+                <input [(ngModel)]="empleado.apellido" type="text" name="apellido" id="apellido">
+                <label for="apellido">Apellido</label>
             </div>
-            <div class="campo">
-                <label>Fecha de Vencimiento: </label>
-                <input type="text" name="fechaVencimiento" id="fechaVencimiento">
+            <div class="input-field">
+                <input [(ngModel)]="empleado.correo" type="text" name="correo" id="correo">
+                <label for="correo">Correo</label>
             </div>
-            <div class="campo">
-                <label>CCV: </label>
-                <input type="number" name="ccv" id="ccv">
+            <div class="input-field">
+                <input [(ngModel)]="empleado.puesto" type="text" name="rol" id="rol">
+                <label for="rol">Rol</label>
             </div>
-            <div class="campo">
-                <label>Numero de cuenta: </label>
-                <input type="number" name="numeroCuenta" id="numeroCuenta">
+            <div class="input-field">
+                <input [(ngModel)]="empleado.password" type="password" name="contrasena" id="contrasena">
+                <label for="contrasena">Contraseña</label>
             </div>
         </div>
         <div class="modal-footer">
-            <a class="modal-close waves-effect waves-green btn-flat">ACEPTAR</a>
+            <!--Boton para agregar -->
+            <button (click)="agregarEmpleado()" class="btn waves-effect waves-light" type="submit" name="action">Guardar
+                <i class="material-icons right">send</i>
+            </button>
         </div>
     </form>
 </div>

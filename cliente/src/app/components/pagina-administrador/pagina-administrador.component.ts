@@ -12,7 +12,6 @@ declare var $: any;
 export class PaginaAdministradorComponent implements OnInit{
   edit: boolean = false;
   producto = new Producto();
-  producto1: any
   productos:any;
   productoActual:any;
   tipoV = 'Videojuego';
@@ -115,15 +114,16 @@ export class PaginaAdministradorComponent implements OnInit{
   }
 
   visualizarModificarProducto(id_producto: number) {
-    console.log(this.producto1);
+    console.log(this.producto);
     this.productoService.listOne(id_producto).subscribe(
       (resProducto: any) => {
         console.log(resProducto);
-        this.producto1 = resProducto;
+        this.producto = resProducto;
         $("#modalModificarProducto").modal();
         $("#modalModificarProducto").modal("open");
-      }
-    )
+      },
+      (err: any) => console.error(err)
+    );
   }
 
   agregarProducto() {

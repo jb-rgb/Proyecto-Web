@@ -1,28 +1,7 @@
 <div class="bodyMain">
     <div class="bodyPage">
+        <app-navbar-admin></app-navbar-admin>
         <h1>Administrador de la Tienda</h1>
-        <div> 
-            <!--Boton para ir a la pagina de clientes-->
-            <a [routerLink]="['/clientes']" class="waves-effect waves-light btn-large">
-                <i class="material-icons left">person</i>Clientes
-            </a>
-            <!--Boton para ir a la pagina de empleados-->
-            <a [routerLink]="['/pagina-empleados']" class="waves-effect waves-light btn-large">
-                <i class="material-icons left">person</i>Empleados
-            </a> 
-            <!--Boton para ir a la pagina de productos-->
-            <a [routerLink]="['/pagina-administrador']" class="waves-effect waves-light btn-large">
-                <i class="material-icons left">child_friendly</i>Pagina Administrador
-            </a>
-            <!--Boton para ir a la pagina ventas-->
-            <a [routerLink]="['/pagina-ventas']" class="waves-effect waves-light btn-large">
-                <i class="material-icons left">attach_money</i>Ventas
-            </a>
-            <!--Boton para cerrar sesión-->
-            <a class="waves-effect waves-light btn-small" [routerLink]="['/pagina-principal']">
-                <i class="material-icons left">exit_to_app</i>Cerrar Sesión
-            </a>
-        </div>
         <h2>Facturas</h2>
         <!--Tabla de productos-->
         <table class="tabla">

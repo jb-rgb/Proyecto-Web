@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmpleadoService } from 'src/app/services/empleado.service';
+import { Empleado } from 'src/app/models/empleado';
+
+declare var $: any;
 
 @Component({
   selector: 'app-pagina-empleados',
@@ -9,6 +12,7 @@ import { EmpleadoService } from 'src/app/services/empleado.service';
 })
 export class PaginaEmpleadosComponent implements OnInit {
   empleados: any;
+  empleado = new Empleado();
   rolA = 'Administrador';
   rolV = 'Vendedor';
   constructor (
@@ -24,6 +28,11 @@ export class PaginaEmpleadosComponent implements OnInit {
       },
       (err: any) => console.error(err)
     );
+    $(document).ready(function () {
+      $(".modal").modal();
+      $(".dropdown-trigger").dropdown();
+      $(".select").formSelect();
+    })
   }
   listar() {
     this.empleadoService.list().subscribe(
@@ -70,6 +79,47 @@ export class PaginaEmpleadosComponent implements OnInit {
         console.log(resEmpledo);
         this.empleados = resEmpledo;
         console.log(this.empleados);
+      },
+      (err: any) => console.error(err)
+    );
+  }
+
+  visualizarModificarEmpleado(id: number) {
+    console.log(this.empleado);
+    this.empleadoService.listOne(id).subscribe(
+      (resEmpleado: any) => {
+        console.log(resEmpleado);
+        this.empleado = resEmpleado;
+        $("#modalModificarEmpleado").modal();
+        $("#modalModificarEmpleado").modal("open");
+      },
+      (err: any) => console.error(err)
+    );
+  }
+
+  agregarEmpleado() {
+    delete this.empleado.id_empleado;
+    this.empleadoService.create(this.empleado).subscribe(
+      (resEmpleado: any) => {
+        console.log(resEmpleado);
+        console.log('Empleado ingresado con exito');
+      },
+      (err: any) => console.error(err)
+    );
+  }
+  
+  modificarEmpleado() {
+    this.empleadoService.update(this.empleado).subscribe(
+      (resEmpleado: any) => {
+        console.log('Empleado modificado con exito');
+        this.empleadoService.list().subscribe(
+          (resEmpleado: any) => {
+            console.log(resEmpleado);
+            this.empleados = resEmpleado;
+            console.log(this.empleados);
+          },
+          (err: any) => console.error(err)
+        );
       },
       (err: any) => console.error(err)
     );
