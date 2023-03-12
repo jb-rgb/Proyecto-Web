@@ -24,6 +24,7 @@ import { ModificarClienteComponent } from './components/modificar-cliente/modifi
 import { PaginaFacturasComponent } from './components/pagina-facturas/pagina-facturas.component';
 import { PaginaVentasComponent } from './components/pagina-ventas/pagina-ventas.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavbarAdminComponent } from './components/navbar-admin/navbar-admin.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ModificarClienteComponent,
     PaginaFacturasComponent,
     PaginaVentasComponent,
-    NavbarComponent
+    NavbarComponent,
+    NavbarAdminComponent
   ],
   imports: [
     BrowserModule,
