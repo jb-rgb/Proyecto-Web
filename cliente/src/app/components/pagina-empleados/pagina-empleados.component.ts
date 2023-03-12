@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EmpleadoService } from 'src/app/services/empleado.service';
 import { Empleado } from 'src/app/models/empleado';
+import { ComunicationService } from 'src/app/services/comunication.service';
 
 declare var $: any;
 
@@ -17,8 +18,18 @@ export class PaginaEmpleadosComponent implements OnInit {
   rolV = 'Vendedor';
   constructor (
     private empleadoService: EmpleadoService,
+    private comunicationService: ComunicationService,
     private router: Router
-  ) { this.listar(); }
+  ) { 
+    this.comunicationService.observador$.subscribe(
+      (msg) => {
+        console.log(msg);
+        if (msg.componente == 2) 
+          this.listar();
+      }
+    )
+    this.listar(); 
+  }
   ngOnInit(): void {
     this.empleadoService.list().subscribe(
       (resEmpleado: any) => {

@@ -4,6 +4,8 @@ import { ProductoService } from 'src/app/services/producto.service';
 import { EmpleadoService } from 'src/app/services/empleado.service';
 import { Producto } from 'src/app/models/producto';
 import { Empleado } from 'src/app/models/empleado';
+import { ComunicationService } from 'src/app/services/comunication.service';
+
 declare var $: any
 
 @Component({
@@ -21,6 +23,7 @@ export class NavbarAdminComponent implements OnInit {
   constructor(
     private productoService: ProductoService,
     private empleadoService: EmpleadoService,
+    private comunicationService: ComunicationService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) { this.listar(); }
@@ -44,6 +47,20 @@ export class NavbarAdminComponent implements OnInit {
     })
   }
 
+  /* enviarMensaje(componente: number) {
+    let opciones = { "componente": componente };
+    console.log(opciones);
+    this.comunicationService.enviar(opciones);
+    producto : 1
+    empleado : 2
+  } */
+
+  enviarMensaje(componente: number) {
+    let opciones = { "componente": componente };
+    console.log(opciones);
+    this.comunicationService.enviar(opciones);
+  }
+
   visualizarAgregarProducto() {
     console.log("Agregar Producto");
     $("#modalAgregarProducto").modal();
@@ -62,6 +79,7 @@ export class NavbarAdminComponent implements OnInit {
       (resProducto: any) => {
         console.log(resProducto);
         console.log('Producto ingresado con exito');
+        this.enviarMensaje(1);
       },
       (err: any) => console.error(err)
     );
@@ -101,6 +119,7 @@ export class NavbarAdminComponent implements OnInit {
       (resEmpleado: any) => {
         console.log(resEmpleado);
         console.log('Empleado ingresado con exito');
+        this.enviarMensaje(2);
       },
       (err: any) => console.error(err)
     );

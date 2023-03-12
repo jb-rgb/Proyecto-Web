@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductoService } from 'src/app/services/producto.service';
 import { Producto } from 'src/app/models/producto';
+import { ComunicationService } from 'src/app/services/comunication.service';
+
 declare var $: any;
 
 @Component({
@@ -19,9 +21,17 @@ export class PaginaAdministradorComponent implements OnInit{
   tipoCo = 'Componente';
   constructor(
     private productoService: ProductoService,
+    private comunicationService: ComunicationService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
+    this.comunicationService.observador$.subscribe(
+      (msg) => {
+        console.log(msg);
+        if (msg.componente == 1)
+          this.listar();
+      }
+    )
     this.listar();
   }
   ngOnInit(): void {
