@@ -91,7 +91,7 @@ class ClienteController {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
             // Validar contraseña
-            const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/;
+            const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9])(?=.{10,})/;
             if (!passwordRegex.test(req.body.password)) {
                 res.status(400).json({ message: 'La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial.' });
                 return;
