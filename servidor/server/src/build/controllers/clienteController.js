@@ -65,25 +65,25 @@ class ClienteController {
     verificarCliente(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
-            const consulta = `SELECT nombre, id_cliente, password FROM cliente WHERE correo = "${req.body.correo}" AND password = "${req.body.password}"`;
+            const consulta = `SELECT nombre, id_cliente, password FROM cliente WHERE correo = "${req.body.correo}"`;
             console.log(consulta);
             const respuesta = yield database_1.default.query(consulta);
             if (respuesta.length == 0) {
-                console.log("null");
-                res.json(null);
+                console.log("Usuario no encontrado");
+                res.json({ mensaje: "Usuario no encontrado" });
+                return;
+            }
+            const cliente = respuesta[0];
+            const contrasenaCoincide = yield bcryptjs_1.default.compare(req.body.password, cliente.password);
+            if (contrasenaCoincide) {
+                console.log("Contraseña correcta");
+                res.json({ id_cliente: cliente.id_cliente, nombre: cliente.nombre });
                 return;
             }
             else {
-                const cliente = respuesta[0];
-                const contrasenaCoincide = yield bcryptjs_1.default.compare(req.body.password, cliente.password);
-                if (contrasenaCoincide) {
-                    res.json({ id_cliente: cliente.id_cliente, nombre: cliente.nombre });
-                    return;
-                }
-                else {
-                    res.json(null);
-                    return;
-                }
+                console.log("Contraseña incorrecta");
+                res.json({ mensaje: "Contraseña incorrecta" });
+                return;
             }
         });
     }

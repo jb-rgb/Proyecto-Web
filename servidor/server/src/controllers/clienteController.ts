@@ -42,23 +42,24 @@ class ClienteController {
     }
     public async verificarCliente(req: Request, res: Response): Promise<void> {
         console.log(req.body);
-        const consulta = `SELECT nombre, id_cliente, password FROM cliente WHERE correo = "${req.body.correo}" AND password = "${req.body.password}"`;
+        const consulta = `SELECT nombre, id_cliente, password FROM cliente WHERE correo = "${req.body.correo}"`;
         console.log(consulta);
         const respuesta = await pool.query(consulta);
         if (respuesta.length == 0) {
-            console.log("null");
-            res.json(null);
+            console.log("Usuario no encontrado");
+            res.json({ mensaje: "Usuario no encontrado" });
+            return;
+        }
+        const cliente = respuesta[0];
+        const contrasenaCoincide = await bcrypt.compare(req.body.password, cliente.password);
+        if (contrasenaCoincide) {
+            console.log("Contraseña correcta");
+            res.json({ id_cliente: cliente.id_cliente, nombre: cliente.nombre });
             return;
         } else {
-            const cliente = respuesta[0];
-            const contrasenaCoincide = await bcrypt.compare(req.body.password, cliente.password);
-            if (contrasenaCoincide) {
-                res.json({ id_cliente: cliente.id_cliente, nombre: cliente.nombre });
-                return;
-            } else {
-                res.json(null);
-                return;
-            }
+            console.log("Contraseña incorrecta");
+            res.json({ mensaje: "Contraseña incorrecta" });
+            return;
         }
     }
     public async registrarCliente(req: Request, res: Response): Promise<void> {
