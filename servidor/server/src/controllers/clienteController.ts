@@ -42,20 +42,35 @@ class ClienteController {
     }
     public async verificarCliente(req: Request, res: Response): Promise<void> {
         console.log(req.body);
-        const consulta = `SELECT nombre, id_cliente FROM cliente WHERE correo = "${req.body.correo}" AND password = "${req.body.password}"`;
+        const consulta = `SELECT nombre, id_cliente, password FROM cliente WHERE correo = "${req.body.correo}" AND password = "${req.body.password}"`;
         console.log(consulta);
         const respuesta = await pool.query(consulta);
-        if(respuesta.length == 0) {
+        if (respuesta.length == 0) {
             console.log("null");
             res.json(null);
-            return ;
-        } else {
-            res.json(respuesta[0]);
             return;
+        } else {
+            const cliente = respuesta[0];
+            const contrasenaCoincide = await bcrypt.compare(req.body.password, cliente.password);
+            if (contrasenaCoincide) {
+                res.json({ id_cliente: cliente.id_cliente, nombre: cliente.nombre });
+                return;
+            } else {
+                res.json(null);
+                return;
+            }
         }
     }
     public async registrarCliente(req: Request, res: Response): Promise<void> {
         console.log(req.body);
+
+        // Validar contraseña
+        const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,})/;
+        if (!passwordRegex.test(req.body.password)) {
+            res.status(400).json({ message: 'La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial.' });
+            return;
+        }
+
         const salt = await bcrypt.genSalt(10);
         req.body.password = await bcrypt.hash(req.body.password, salt);
         const consulta = `INSERT INTO cliente (id_cliente, nombre, apellido, direccion, correo, password, telefono, pais, estado, municipio, codigo_postal) VALUES (NULL, '${req.body.nombre}', '${req.body.apellido}', NULL, '${req.body.correo}', '${req.body.password}', NULL, NULL, NULL, NULL, NULL)`;
