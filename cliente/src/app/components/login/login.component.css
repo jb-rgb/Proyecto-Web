@@ -68,3 +68,28 @@ div img {
 .divOlvide {
   text-align: center;
 }
+a:hover {
+  cursor: pointer;
+}
+.olvideContrasenya {
+  color: #0097a7;
+  padding: 30px;
+  font-size: medium;
+}
+.modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #dfe9f3;
+    color: #000000;
+}
+label {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: #000000;
+}
+.modal input {
+  font-family: 'Roboto', sans-serif;
+  color: #000000;
+}
