@@ -1,7 +1,10 @@
 import express, { Application } from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import pool from "./database";
+const correoAcceso = require('./correoAcceso');
 class Server {
     public app: Application;
     constructor() {
@@ -22,7 +25,10 @@ class Server {
         this.app.use(express.urlencoded({ extended: false }));
     }
     routes(): void {
-        
+        this.app.post('/enviarCorreoRecuperarContrasenya', (req, res) => {
+            console.log("Mandando el correo");
+            correoAcceso(req.body);
+        });
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

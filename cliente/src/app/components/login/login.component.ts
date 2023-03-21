@@ -4,6 +4,7 @@ import { Empleado } from 'src/app/models/empleado';
 import { Cliente } from 'src/app/models/cliente';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { EmpleadoService } from 'src/app/services/empleado.service';
+import { CorreoService } from 'src/app/services/correo.service';
 import Swal from 'sweetalert2';
 
 declare var $: any
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private clienteService: ClienteService,
     private empleadoService: EmpleadoService,
+    private correoService: CorreoService,
     private router: Router
   ) { }
 
@@ -66,5 +68,11 @@ export class LoginComponent implements OnInit {
     console.log("modalCambiarContrasenya");
     $('#modalCambiarContrasenya').modal({ dismissible: false });
     $('#modalCambiarContrasenya').modal('open');
+  }
+  cambiarContrasenya() {
+    console.log(this.cliente);
+    this.correoService.enviarCorreoRecuperarContrasenya(this.cliente).subscribe((resUsuario: any) => {
+      console.log(resUsuario);
+    }, (err: any) => console.error(err));
   }
 }

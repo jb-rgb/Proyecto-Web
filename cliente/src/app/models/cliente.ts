@@ -16,7 +16,7 @@ export class Cliente {
         this.nombre = '';
         this.apellido = '';
         this.direccion = '';
-        this.correo = '';
+        this.correo = 'bacj010509@gs.utm.mx';
         this.password = '';
         this.telefono = '';
         this.pais = '';

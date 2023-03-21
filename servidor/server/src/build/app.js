@@ -7,6 +7,7 @@ const express_1 = __importDefault(require("express"));
 const morgan_1 = __importDefault(require("morgan"));
 const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const correoAcceso = require('./correoAcceso');
 class Server {
     constructor() {
         dotenv_1.default.config();
@@ -25,6 +26,10 @@ class Server {
         this.app.use(express_1.default.urlencoded({ extended: false }));
     }
     routes() {
+        this.app.post('/enviarCorreoRecuperarContrasenya', (req, res) => {
+            console.log("Mandando el correo");
+            correoAcceso(req.body);
+        });
     }
     start() {
         this.app.listen(this.app.get('port'), () => {

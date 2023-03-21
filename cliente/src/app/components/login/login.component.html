@@ -52,13 +52,13 @@
       <div class="row">
         <div class="col s12">
           <label>Correo electrónico</label>
-          <input required type="email"  placeholder="correo">
+          <input required type="email"  placeholder="correo" value="{{cliente.correo}}">
 
         </div>
       </div>
       <div class="row">
         <div class="col s6 center">
-          <a class=" modal-action modal-close
+          <a (click)="cambiarContrasenya()" class=" modal-action modal-close
   
   waves-effect waves-green btn-flat">Enviar</a>
 
