@@ -49,7 +49,7 @@ export class RecuperarComponent {
           else if(this.cliente1.password[i]>='0'&& this.cliente1.password[i]<='9')
           {countDigitos++;
           }
-        else if((this.cliente1.password[i]>='a'&& this.cliente1.password[i]<='z') || this.usuario1.password[i]<=' '){
+        else if((this.cliente1.password[i]>='a'&& this.cliente1.password[i]<='z') || this.cliente1.password[i]<=' '){
           
         }
         else{
@@ -65,9 +65,9 @@ export class RecuperarComponent {
 
 
       if(countDigitos > 0 && countEspecial > 0 && countMayus > 0){
-        this.clienteService.CambiarPassword(this.cliente1).subscribe((res:any) =>{
-          console.log(res);
-        })
+        // this.clienteService.CambiarPassword(this.cliente1).subscribe((res:any) =>{
+        //   console.log(res);
+        // })
         this.router.navigate(['login'])
 
       }
