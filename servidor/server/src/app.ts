@@ -29,7 +29,31 @@ class Server {
             console.log("Mandando el correo");
             correoAcceso(req.body);
         });
+        this.app.post('/decodificarMail', async (req, res) => {
+            let decodificado;
+            try {
+                decodificado = jwt.verify(req.body.token, process.env.TOKEN_SECRET || 'prueba');
+                console.log(decodificado);
+                const result1 = await this.queryProfesor(decodificado) as any;
+                console.log(result1);
+                if (result1.length == 0)
+                    res.json(0);
+                else
+                    res.json(result1[0]);
+            }
+            catch (err) { res.json(0); }
+        });
     }
+    queryProfesor = (decodificado: any) => {
+        return new Promise((resolve, reject) => {
+            let consulta = 'SELECT correo FROM clientes WHERE correo="' + decodificado + '"';
+            pool.query(consulta, (error: any, results: any) => {
+                if (error)
+                    return reject(error);
+                return resolve(results);
+            });
+        });
+    };
     start() {
         this.app.listen(this.app.get('port'), () => {
             console.log(`Listening on port ${this.app.get('port')}`);

@@ -91,11 +91,11 @@ class ClienteController {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
             // Validar contraseña
-            const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9])(?=.{10,})/;
-            if (!passwordRegex.test(req.body.password)) {
-                res.status(400).json({ message: 'La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial.' });
-                return;
-            }
+            // const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9])(?=.{8,})/;
+            // if (!passwordRegex.test(req.body.password)) {
+            //     res.status(400).json({ message: 'La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial.' });
+            //     return;
+            // }
             const salt = yield bcryptjs_1.default.genSalt(10);
             req.body.password = yield bcryptjs_1.default.hash(req.body.password, salt);
             const consulta = `INSERT INTO cliente (id_cliente, nombre, apellido, direccion, correo, password, telefono, pais, estado, municipio, codigo_postal) VALUES (NULL, '${req.body.nombre}', '${req.body.apellido}', NULL, '${req.body.correo}', '${req.body.password}', NULL, NULL, NULL, NULL, NULL)`;

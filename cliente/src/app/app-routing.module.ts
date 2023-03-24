@@ -19,6 +19,7 @@ import { ClientesComponent } from './components/clientes/clientes.component';
 import { ModificarClienteComponent } from './components/modificar-cliente/modificar-cliente.component';
 import { PaginaFacturasComponent } from './components/pagina-facturas/pagina-facturas.component';
 import { PaginaVentasComponent } from './components/pagina-ventas/pagina-ventas.component';
+import { RecuperarComponent } from './components/recuperar/recuperar.component';
 
 const routes: Routes = [
   {
@@ -102,6 +103,10 @@ const routes: Routes = [
     path: 'pagina-ventas',
     component: PaginaVentasComponent
   },
+  {
+    path: 'recuperar/:token',
+    component: RecuperarComponent
+  }
 ];
 
 @NgModule({

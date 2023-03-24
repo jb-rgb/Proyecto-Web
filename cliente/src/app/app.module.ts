@@ -25,6 +25,7 @@ import { PaginaFacturasComponent } from './components/pagina-facturas/pagina-fac
 import { PaginaVentasComponent } from './components/pagina-ventas/pagina-ventas.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NavbarAdminComponent } from './components/navbar-admin/navbar-admin.component';
+import { RecuperarComponent } from './components/recuperar/recuperar.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { NavbarAdminComponent } from './components/navbar-admin/navbar-admin.com
     PaginaFacturasComponent,
     PaginaVentasComponent,
     NavbarComponent,
-    NavbarAdminComponent
+    NavbarAdminComponent,
+    RecuperarComponent
   ],
   imports: [
     BrowserModule,

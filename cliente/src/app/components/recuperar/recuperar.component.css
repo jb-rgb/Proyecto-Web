@@ -1,0 +1,95 @@
+@import "~material-design-icons/iconfont/material-icons.css";
+
+.bodyLogin {
+  background: linear-gradient(
+    90deg,
+    #ADD8E6 0%,
+    #0097a7 50%,
+    #ADD8E6 100%
+  );
+  height: 100vh; /* 100 por ciento del alto del dispositivo*/
+  width: 100vw; /* 100 por ciento del alto del dispositivo*/
+}
+div img {
+  position: absolute;
+  left: 30%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+}
+.loginDiv {
+  top: 20vh;
+  position: relative;
+  background-color: #dfe9f3;
+  width: 100%;
+  border-radius: 40px;
+  height: auto;
+}
+.loginContainer {
+  padding: 30px;
+}
+.loginTitulo {
+  width: 100%;
+  text-align: center;
+}
+.loginTitulo h5 {
+  font-weight: bold;
+}
+.customInput {
+  height: 50px;
+  width: 100%;
+  margin-top: 30px;
+  background-color: #FFFFFF;
+
+  border-radius: 100px;
+  padding: 14px !important;
+}
+.customInput input {
+  position: relative;
+  padding-left: 30px;
+  border-style: none;
+  background-color: transparent;
+  outline: none;
+}
+.customInput i {
+  position: absolute;
+  color: #757575;
+  z-index: 999;
+  transition: all 2s ease 0s;
+}
+.customInput:hover i {
+  color: #ffc107 !important;
+  transition: all 2s ease 0s;
+}
+.btnLogin {
+  border-radius: 100px;
+  background-color: #ffc107;
+}
+.divOlvide {
+  text-align: center;
+}
+a:hover {
+  cursor: pointer;
+}
+.olvideContrasenya {
+  color: #0097a7;
+  padding: 30px;
+  font-size: medium;
+}
+.modal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #dfe9f3;
+    color: #000000;
+}
+label {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  color: #000000;
+}
+.modal input {
+  font-family: 'Roboto', sans-serif;
+  color: #000000;
+}
