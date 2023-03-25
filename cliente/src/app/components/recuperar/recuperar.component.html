@@ -10,22 +10,17 @@
               <div class="row">
                 <div class="col s12 customInput">
                     <i class="material-icons prefix">vpn_key</i>
-                    <input class="browser-default" type="password" name="password"
+                    <input [(ngModel)]="cliente1.password" class="browser-default" type="password" name="password"
                       id="password" placeholder="contraseña" autocomplete="off" />
                 </div>
                 <div class="col s12 customInput">
                   <i class="material-icons prefix">vpn_key</i>
-                  <input class="browser-default" type="confirmarPassword" name="confirmarPassword"
-                    id="confirmarPassword" placeholder="onfirmar contraseña" autocomplete="off" />
+                  <input [(ngModel)]="cliente2.password" class="browser-default" type="password" name="confirmarPassword"
+                    id="confirmarPassword" placeholder="confirmar contraseña" autocomplete="off" />
                 </div>
               </div>
               <div class="row">
-                <button  class="btn col l12 s12 m12 btnLogin">LOGIN</button>
-                <div class="row">
-                  <div class="col s12 center olvideContrasenya">
-                    <a >Olvidé mi contraseña</a>
-                  </div>
-                </div>
+                <button (click)="enviarContrasenia()" class="btn col l12 s12 m12 btnLogin">CONFIRMAR</button>
               </div>
             </div>
           </div>

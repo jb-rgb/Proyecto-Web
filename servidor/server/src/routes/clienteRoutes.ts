@@ -13,6 +13,7 @@ class ClienteRoutes {
         this.router.post('/', validarToken, clienteController.create);
         this.router.post('/verificarCliente', validarToken, clienteController.verificarCliente);
         this.router.post('/registrarCliente', validarToken, clienteController.registrarCliente);
+        this.router.post('/cambiarPassword', clienteController.cambiarPassword);
         this.router.put('/update/:idCliente', validarToken, clienteController.update);
         this.router.delete('/delete/:idCliente', validarToken, clienteController.delete);
     }

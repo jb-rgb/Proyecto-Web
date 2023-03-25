@@ -35,4 +35,7 @@ export class ClienteService {
   registrarCliente(cliente: Cliente) {
     return this.http.post(`${environment.API_URI}/api/clientes/registrarCliente`, cliente, {headers: headers});
   }
+  cambiarPassword(cliente: any) {
+    return this.http.post(`${environment.API_URI}/api/clientes/cambiarPassword`, cliente);
+  }
 }

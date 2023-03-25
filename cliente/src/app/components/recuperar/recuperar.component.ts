@@ -65,9 +65,9 @@ export class RecuperarComponent {
 
 
       if(countDigitos > 0 && countEspecial > 0 && countMayus > 0){
-        // this.clienteService.CambiarPassword(this.cliente1).subscribe((res:any) =>{
-        //   console.log(res);
-        // })
+        this.clienteService.cambiarPassword(this.cliente1).subscribe((res:any) =>{
+           console.log(res);
+        })
         this.router.navigate(['login'])
 
       }

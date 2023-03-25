@@ -80,6 +80,20 @@ class ClienteController {
         console.log(respuesta);
         res.json(respuesta);
     }
+    public async cambiarPassword(req: Request, res: Response): Promise<void> {
+        console.log(req.body);
+        let pass = req.body.password;
+        let cor=req.body.correo;
+        console.log(pass,cor);
+        const salt = await bcrypt.genSalt(10);
+        req.body.password = await bcrypt.hash(req.body.password, salt);
+        console.log(req.body.password)
+       
+     
+        const resp = await pool.query("UPDATE cliente set password=? where correo=?",[req.body.password,req.body.correo]);
+
+        res.json(resp);
+    }
 }
 
 export const clienteController = new ClienteController();

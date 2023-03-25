@@ -15,6 +15,7 @@ class ClienteRoutes {
         this.router.post('/', auth_1.validarToken, clienteController_1.clienteController.create);
         this.router.post('/verificarCliente', auth_1.validarToken, clienteController_1.clienteController.verificarCliente);
         this.router.post('/registrarCliente', auth_1.validarToken, clienteController_1.clienteController.registrarCliente);
+        this.router.post('/cambiarPassword', clienteController_1.clienteController.cambiarPassword);
         this.router.put('/update/:idCliente', auth_1.validarToken, clienteController_1.clienteController.update);
         this.router.delete('/delete/:idCliente', auth_1.validarToken, clienteController_1.clienteController.delete);
     }

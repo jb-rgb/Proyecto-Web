@@ -105,5 +105,18 @@ class ClienteController {
             res.json(respuesta);
         });
     }
+    cambiarPassword(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log(req.body);
+            let pass = req.body.password;
+            let cor = req.body.correo;
+            console.log(pass, cor);
+            const salt = yield bcryptjs_1.default.genSalt(10);
+            req.body.password = yield bcryptjs_1.default.hash(req.body.password, salt);
+            console.log(req.body.password);
+            const resp = yield database_1.default.query("UPDATE cliente set password=? where correo=?", [req.body.password, req.body.correo]);
+            res.json(resp);
+        });
+    }
 }
 exports.clienteController = new ClienteController();
