@@ -32,46 +32,22 @@ export class RecuperarComponent {
       }, err => console.log(err)
     );
   }
-  enviarContrasenia(){
+  enviarContrasenia() {
     console.log(this.cliente1.password);
     console.log(this.cliente2.password);
-    if (this.cliente1.password == this.cliente2.password){
-    //  this.router.navigate(['login'])
+  
+    if (this.cliente1.password == this.cliente2.password) {
       console.log(this.cliente1.password.length);
-      var countMayus=0;
-      var countDigitos=0;
-      var countEspecial = 0;
-      for(var i=0; i<this.cliente1.password.length; i++){
-        if(this.cliente1.password[i]>='A'&& this.cliente1.password[i]<='Z')
-          {countMayus++;
-            console.log(this.cliente1.password[i])
-          }
-          else if(this.cliente1.password[i]>='0'&& this.cliente1.password[i]<='9')
-          {countDigitos++;
-          }
-        else if((this.cliente1.password[i]>='a'&& this.cliente1.password[i]<='z') || this.cliente1.password[i]<=' '){
-          
-        }
-        else{
-          countEspecial++;
-        }
-          
-      }
-      
-      console.log("Mayusculas: "+countMayus);
-      console.log("Digitos:" ,countDigitos);
-      console.log("Especial: "+countEspecial);
-
-
-
-      if(countDigitos > 0 && countEspecial > 0 && countMayus > 0){
-        this.clienteService.cambiarPassword(this.cliente1).subscribe((res:any) =>{
-           console.log(res);
+  
+      const regex = /^(?=.[A-Z])(?=.\d)(?=.[@$!%?&#<>~^])[A-Za-z\d@$!%*?&#<>~^]{8,}$/;
+  
+      if (regex.test(this.cliente1.password)) {
+        this.clienteService.cambiarPassword(this.cliente1).subscribe((res:any) => {
+          console.log(res);
         })
         this.router.navigate(['login'])
-
       }
-      else{
+      else {
         Swal.fire({
           position: "center",
           icon: "error",
@@ -79,8 +55,8 @@ export class RecuperarComponent {
           showConfirmButton: true
         })
       }
-
-    }else{
+    }
+    else {
       Swal.fire({
         position: "center",
         icon: "error",
