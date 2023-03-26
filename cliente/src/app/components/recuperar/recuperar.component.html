@@ -8,14 +8,20 @@
                 <h5>Recuperar Contraseña</h5>
               </div>
               <div class="row">
+                <div *ngIf="showPasswordValidationMessage" class="password-validation">
+                  {{passwordValidationMessage}}
+                </div>
                 <div class="col s12 customInput">
                     <i class="material-icons prefix">vpn_key</i>
-                    <input [(ngModel)]="cliente1.password" class="browser-default" type="password" name="password"
+                    <input (input)="onPasswordChange($event)" [(ngModel)]="cliente1.password" class="browser-default" type="password" name="password"
                       id="password" placeholder="contraseña" autocomplete="off" />
+                </div>
+                <div *ngIf="showPasswordEqual" class="password-validation">
+                  {{passwordEqualMessage}}
                 </div>
                 <div class="col s12 customInput">
                   <i class="material-icons prefix">vpn_key</i>
-                  <input [(ngModel)]="cliente2.password" class="browser-default" type="password" name="confirmarPassword"
+                  <input (input)="passwordEqual($event)" [(ngModel)]="cliente2.password" class="browser-default" type="password" name="confirmarPassword"
                     id="confirmarPassword" placeholder="confirmar contraseña" autocomplete="off" />
                 </div>
               </div>

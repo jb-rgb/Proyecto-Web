@@ -93,3 +93,6 @@ label {
   font-family: 'Roboto', sans-serif;
   color: #000000;
 }
+.password-validation {
+  color: red;
+}
