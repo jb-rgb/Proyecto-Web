@@ -5,6 +5,8 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import pool from "./database";
 const correoAcceso = require('./correoAcceso');
+import fs from 'fs';
+
 class Server {
     public app: Application;
     constructor() {
@@ -12,6 +14,7 @@ class Server {
         this.app = express();
         this.config();
         this.routes();
+        this.app.use(express.static(__dirname + "/img"));
     }
     config(): void {
         this.app.use(express.urlencoded({

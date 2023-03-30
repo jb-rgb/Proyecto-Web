@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductoService } from 'src/app/services/producto.service';
 import { Producto } from 'src/app/models/producto';
+import { environment } from 'src/app/environments/enviroments';
 
 @Component({
   selector: 'app-pagina-videojuegos',
@@ -14,6 +15,7 @@ export class PaginaVideojuegosComponent {
   consolaX = 'Xbox';
   consolaP = 'PS';
   consolaN = 'Nintendo';
+  liga: string = environment.API_URI_IMAGENES;
 
   constructor(
     private productoService: ProductoService,

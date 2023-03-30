@@ -19,12 +19,14 @@ export class PaginaAdministradorComponent implements OnInit{
   tipoV = 'Videojuego';
   tipoC = 'Consola';
   tipoCo = 'Componente';
+  imgPrincipal: any;
   constructor(
     private productoService: ProductoService,
     private comunicationService: ComunicationService,
     private router: Router,
     private activatedRoute: ActivatedRoute
   ) {
+    this.imgPrincipal = null;
     this.comunicationService.observador$.subscribe(
       (msg) => {
         console.log(msg);

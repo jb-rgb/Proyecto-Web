@@ -35,6 +35,7 @@ class Server {
         this.app = (0, express_1.default)();
         this.config();
         this.routes();
+        this.app.use(express_1.default.static(__dirname + "/img"));
     }
     config() {
         this.app.use(express_1.default.urlencoded({
