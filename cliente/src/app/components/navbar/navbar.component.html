@@ -40,32 +40,35 @@
 <!-- Modal -->
 
 <div id="modalAgregarEmpleado" class="modal">
-    <form class="formulario">
+    <form class="formulario row">
+      <div class="col s12 m6">
         <div class="modal-content">
-            <div>
-                <img [src]="dameNombre(cliente.id_cliente)"  (error)="noFoundImage($event)" class="img-cliente">
-            </div>
-            <div class="modal-content">
-                <input type="file" class="file-design" (change)="cargandoImagen($event.target, 'perfil')" multiple>
-            </div>
-            <div class="input-field">
-                <h5 for="nombre">Nombre: </h5>
-                <h4>{{cliente.nombre}}</h4>
-            </div>
-            <div class="input-field">
-                <h5 for="apellido">Apellido: </h5>
-                <h4>{{cliente.apellido}}</h4>
-            </div>
-            <div class="input-field">
-                <h5 for="correo">Correo: </h5>
-                <h4>{{cliente.correo}}</h4>
-            </div>
+          <img [src]="dameNombre(cliente.id_cliente)"  (error)="noFoundImage($event)" class="img-cliente responsive-img">
         </div>
-        <div class="modal-footer">
-            <!--Boton para agregar -->
-            <button class="modal-close btn-flat waves-effect waves-green" type="submit" name="action">OK
-                <i class="material-icons right">check_circle</i>
-            </button>
+        <div class="modal-content">
+          <input type="file" class="file-design" (change)="cargandoImagen($event.target, 'perfil')" multiple>
         </div>
+      </div>
+      <div class="col s12 m6">
+        <div class="input-field">
+          <h5 for="nombre">Nombre: </h5>
+          <h4>{{cliente.nombre}}</h4>
+        </div>
+        <div class="input-field">
+          <h5 for="apellido">Apellido: </h5>
+          <h4>{{cliente.apellido}}</h4>
+        </div>
+        <div class="input-field">
+          <h5 for="correo">Correo: </h5>
+          <h4>{{cliente.correo}}</h4>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!--Boton para agregar -->
+        <button class="modal-close btn-flat waves-effect waves-green" type="submit" name="action">OK
+          <i class="material-icons right">check_circle</i>
+        </button>
+      </div>
     </form>
-</div>
+  </div>
+  
