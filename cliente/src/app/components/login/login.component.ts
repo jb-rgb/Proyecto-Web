@@ -33,8 +33,6 @@ export class LoginComponent implements OnInit {
     }
 
   verificarUsuario() {
-    console.log(this.empleado.correo);
-    console.log(this.empleado.password);
     this.empleadoService.verificarEmpleado(this.empleado.correo, this.empleado.password).subscribe((resEmpleado: any) => {
       console.log(resEmpleado);
       if (resEmpleado == null) {

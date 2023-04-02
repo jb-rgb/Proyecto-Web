@@ -22,8 +22,11 @@
                 </button>
             </a>
         </li>
+        <li class="circle">
+            <img src="" (error)="noFoundImage($event)">
+        </li>
         <li>
-            <h5>Bienvenido(a): {{nombre}}</h5>
+            <h5 (click)="mostrarInfoCliente()" (click)="obtenerInfoCliente()" class="infoCliente">Bienvenido(a): {{nombre}}</h5>
         </li>
         <li>
             <a [routerLink]="['/pagina-carrito']" class="btn waves-effect waves-light buttonCarrito">
@@ -33,3 +36,31 @@
       </ul>
     </div>
 </nav>
+
+<!-- Modal -->
+
+<div id="modalAgregarEmpleado" class="modal">
+    <form class="formulario">
+        <h2>Información</h2>
+        <div class="modal-content">
+            <div class="input-field">
+                <h5 for="nombre">Nombre: </h5>
+                <h4>{{cliente.nombre}}</h4>
+            </div>
+            <div class="input-field">
+                <h5 for="apellido">Apellido: </h5>
+                <h4>{{cliente.apellido}}</h4>
+            </div>
+            <div class="input-field">
+                <h5 for="correo">Correo: </h5>
+                <h4>{{cliente.correo}}</h4>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <!--Boton para agregar -->
+            <button class="modal-close btn-flat waves-effect waves-green" type="submit" name="action">OK
+                <i class="material-icons right">check_circle</i>
+            </button>
+        </div>
+    </form>
+</div>
