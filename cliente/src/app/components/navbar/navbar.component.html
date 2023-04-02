@@ -23,7 +23,7 @@
             </a>
         </li>
         <li class="circle">
-            <img src="" (error)="noFoundImage($event)">
+            <img [src]="dameNombre(cliente.id_cliente)" (error)="noFoundImage($event)">
         </li>
         <li>
             <h5 (click)="mostrarInfoCliente()" (click)="obtenerInfoCliente()" class="infoCliente">Bienvenido(a): {{nombre}}</h5>
@@ -41,8 +41,13 @@
 
 <div id="modalAgregarEmpleado" class="modal">
     <form class="formulario">
-        <h2>Información</h2>
         <div class="modal-content">
+            <div>
+                <img [src]="dameNombre(cliente.id_cliente)"  (error)="noFoundImage($event)" class="img-cliente">
+            </div>
+            <div class="modal-content">
+                <input type="file" class="file-design" (change)="cargandoImagen($event.target, 'perfil')" multiple>
+            </div>
             <div class="input-field">
                 <h5 for="nombre">Nombre: </h5>
                 <h4>{{cliente.nombre}}</h4>

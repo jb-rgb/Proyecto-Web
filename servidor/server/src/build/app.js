@@ -73,9 +73,11 @@ class Server {
         }));
         this.app.post("/uploadImagen", (req, res) => {
             const file = req.body.src;
+            const carpeta = req.body.carpeta;
             const name = req.body.id;
+            console.log(carpeta, name);
             const binaryData = Buffer.from(file.replace(/^data:image\/[a-z]+;base64,/, ""), "base64").toString("binary");
-            fs_1.default.writeFile(`${__dirname}/img/principal/` + name + ".jpg", binaryData, "binary", (err) => {
+            fs_1.default.writeFile(`${__dirname}/img/` + carpeta + "/" + name + ".jpg", binaryData, "binary", (err) => {
                 console.log(err);
             });
             res.json({ fileName: name + ".jpg" });
