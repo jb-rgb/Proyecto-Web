@@ -37,36 +37,15 @@ export class RecuperarComponent {
     );
   }
   enviarContrasenia() {
-    console.log(this.cliente1.password);
-    console.log(this.cliente2.password);
-  
     if (this.cliente1.password == this.cliente2.password) {
       console.log(this.cliente1.password.length);
-  
       const regex = /^(?=.[A-Z])(?=.\d)(?=.[@$!%?&#<>~^])[A-Za-z\d@$!%*?&#<>~^]{8,}$/;
-  
       if (regex.test(this.cliente1.password)) {
         this.clienteService.cambiarPassword(this.cliente1).subscribe((res:any) => {
           console.log(res);
         })
         this.router.navigate(['login'])
       }
-      else {
-        // Swal.fire({
-        //   position: "center",
-        //   icon: "error",
-        //   title: "La contraseña no cumple con las condiciones establecidas",
-        //   showConfirmButton: true
-        // })
-      }
-    }
-    else {
-      // Swal.fire({
-      //   position: "center",
-      //   icon: "error",
-      //   title: "Las contraseñas no coinciden",
-      //   showConfirmButton: true
-      // })
     }
   }
   onPasswordChange(event: any) {

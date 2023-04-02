@@ -46,9 +46,12 @@
                   autocomplete="off"
                 />
               </div>
+              <div *ngIf="showPasswordValidationMessage" class="password-validation">
+                {{passwordValidationMessage}}
+              </div>
               <div class="col s12 customInput">
                 <i class="material-icons prefix">vpn_key</i>
-                <input [(ngModel)]="cliente.password"
+                <input (input)="onPasswordChange($event)" [(ngModel)]="cliente.password"
                   class="browser-default"
                   type="password"
                   name="password"

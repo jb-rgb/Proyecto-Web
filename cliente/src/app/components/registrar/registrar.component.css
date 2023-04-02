@@ -71,3 +71,6 @@ div img {
 .divOlvide {
   text-align: center;
 }
+.password-validation {
+  color: red;
+}
