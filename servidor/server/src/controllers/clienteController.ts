@@ -46,7 +46,7 @@ class ClienteController {
         console.log(consulta);
         const respuesta = await pool.query(consulta);
         if (respuesta.length == 0) {
-            console.log("Usuario no encontrado");
+            console.log("Cliente no encontrado");
             res.json({ mensaje: "Usuario no encontrado" });
             return;
         }
@@ -64,14 +64,6 @@ class ClienteController {
     }
     public async registrarCliente(req: Request, res: Response): Promise<void> {
         console.log(req.body);
-
-        // Validar contraseña
-        // const passwordRegex = /^(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.*[0-9])(?=.{8,})/;
-        // if (!passwordRegex.test(req.body.password)) {
-        //     res.status(400).json({ message: 'La contraseña debe tener al menos 8 caracteres, una mayúscula y un carácter especial.' });
-        //     return;
-        // }
-
         const salt = await bcrypt.genSalt(10);
         req.body.password = await bcrypt.hash(req.body.password, salt);
         const consulta = `INSERT INTO cliente (id_cliente, nombre, apellido, direccion, correo, password, telefono, pais, estado, municipio, codigo_postal) VALUES (NULL, '${req.body.nombre}', '${req.body.apellido}', NULL, '${req.body.correo}', '${req.body.password}', NULL, NULL, NULL, NULL, NULL)`;
@@ -88,10 +80,7 @@ class ClienteController {
         const salt = await bcrypt.genSalt(10);
         req.body.password = await bcrypt.hash(req.body.password, salt);
         console.log(req.body.password)
-       
-     
         const resp = await pool.query("UPDATE cliente set password=? where correo=?",[req.body.password,req.body.correo]);
-
         res.json(resp);
     }
 }

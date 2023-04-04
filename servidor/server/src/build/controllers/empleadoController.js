@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.empleadoController = void 0;
 const database_1 = __importDefault(require("../database"));
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
 class EmpleadoController {
     list(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -42,6 +43,8 @@ class EmpleadoController {
     create(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
+            const salt = yield bcryptjs_1.default.genSalt(10);
+            req.body.password = yield bcryptjs_1.default.hash(req.body.password, salt);
             const resp = yield database_1.default.query("INSERT INTO empleado set ?", [req.body]);
             res.json(resp);
         });
@@ -72,8 +75,16 @@ class EmpleadoController {
                 res.json(null);
                 return;
             }
+            const empleado = respuesta[0];
+            const contrasenaCoincide = yield bcryptjs_1.default.compare(req.body.password, empleado.password);
+            if (contrasenaCoincide) {
+                console.log("Contraseña correcta");
+                res.json({ id_empleado: empleado.id_empleado });
+                return;
+            }
             else {
-                res.json(respuesta[0]);
+                console.log("Contraseña incorrecta");
+                res.json({ mensaje: "Contraseña incorrecta" });
                 return;
             }
         });
@@ -87,6 +98,19 @@ class EmpleadoController {
             const respuesta = yield database_1.default.query(consulta);
             console.log(respuesta);
             res.json(respuesta);
+        });
+    }
+    cambiarPassword(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            console.log(req.body);
+            let pass = req.body.password;
+            let cor = req.body.correo;
+            console.log(pass, cor);
+            const salt = yield bcryptjs_1.default.genSalt(10);
+            req.body.password = yield bcryptjs_1.default.hash(req.body.password, salt);
+            console.log(req.body.password);
+            const resp = yield database_1.default.query("UPDATE empleado SET password = ? WHERE correo = ?", [req.body.password, req.body.correo]);
+            res.json(resp);
         });
     }
 }

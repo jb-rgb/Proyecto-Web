@@ -13,6 +13,7 @@ class EmpleadoRoutes {
         this.router.get('/mostrarRol/:rol', validarToken, empleadoController.mostrarRol);
         this.router.post('/', validarToken, empleadoController.create);
         this.router.post('/verificarEmpleado', validarToken, empleadoController.vereficarEmpleado);
+        this.router.post('/cambiarPassword', empleadoController.cambiarPassword);
         this.router.put('/update/:idEmpleado', validarToken, empleadoController.update);
         this.router.delete('/delete/:idEmpleado', validarToken, empleadoController.delete);
     }
