@@ -51,7 +51,7 @@
                     <td>{{producto.precio}}</td>
                     <td>{{producto.stock}}</td>
                     <td>
-                        <img src="{{producto.imagen}}">
+                        <img [src]="dameNombre(producto.id_producto)">
                     </td>
                     <td class="acciones">
                         <a (click)="visualizarModificarProducto(producto.id_producto)" class="waves-effect waves-light btn-small" routerLink="/editar-producto">
@@ -107,7 +107,7 @@
             <div class="input-field">
                 <!--Input para una imagen-->
                 <legend>Imagen</legend>
-                <input [(ngModel)]="producto.imagen" type="file" name="imagen" id="imagen">
+                <input (change)="cargandoImagen($event.target, 'productos')" type="file" name="imagen" id="imagen" multiple>
             </div>
         </div>
         <div class="modal-footer">

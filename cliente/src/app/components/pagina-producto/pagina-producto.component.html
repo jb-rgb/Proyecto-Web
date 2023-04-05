@@ -28,7 +28,7 @@
           <tbody *ngFor="let producto of productos">
             <td>{{producto.nombre}}</td>
             <td>
-              <img src="{{producto.imagen}}">
+              <img [src]="dameNombre(producto.id_producto)">
             </td>
             <td>{{producto.caracteristicas}}</td>
             <td>{{producto.precio}}</td>

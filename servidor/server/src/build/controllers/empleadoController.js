@@ -67,7 +67,7 @@ class EmpleadoController {
     vereficarEmpleado(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             console.log(req.body);
-            const consulta = `SELECT id_empleado FROM empleado WHERE correo = "${req.body.correo}" AND password = "${req.body.password}"`;
+            const consulta = `SELECT id_empleado FROM empleado WHERE correo = "${req.body.correo}"`;
             console.log(consulta);
             const respuesta = yield database_1.default.query(consulta);
             if (respuesta.length == 0) {
@@ -75,18 +75,21 @@ class EmpleadoController {
                 res.json(null);
                 return;
             }
-            const empleado = respuesta[0];
-            const contrasenaCoincide = yield bcryptjs_1.default.compare(req.body.password, empleado.password);
-            if (contrasenaCoincide) {
-                console.log("Contraseña correcta");
-                res.json({ id_empleado: empleado.id_empleado });
-                return;
-            }
             else {
-                console.log("Contraseña incorrecta");
-                res.json({ mensaje: "Contraseña incorrecta" });
+                res.json(respuesta);
                 return;
             }
+            // const empleado = respuesta[0];
+            // const contrasenaCoincide = await bcrypt.compare(req.body.password, empleado.password);
+            // if (contrasenaCoincide) {
+            //     console.log("Contraseña correcta");
+            //     res.json({ id_empleado: empleado.id_empleado });
+            //     return;
+            // } else {
+            //     console.log("Contraseña incorrecta");
+            //     res.json({ mensaje: "Contraseña incorrecta" });
+            //     return;
+            // }
         });
     }
     mostrarRol(req, res) {

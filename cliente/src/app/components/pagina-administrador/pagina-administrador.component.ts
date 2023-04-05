@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProductoService } from 'src/app/services/producto.service';
 import { Producto } from 'src/app/models/producto';
 import { ComunicationService } from 'src/app/services/comunication.service';
+import { ImagenesService } from 'src/app/services/imagenes.service';
+import { environment } from 'src/app/environments/enviroments';
 
 declare var $: any;
 
@@ -19,12 +21,15 @@ export class PaginaAdministradorComponent implements OnInit{
   tipoV = 'Videojuego';
   tipoC = 'Consola';
   tipoCo = 'Componente';
+  liga: string = environment.API_URI_IMAGENES;
   imgPrincipal: any;
+  fileToUpload: any;
   constructor(
     private productoService: ProductoService,
     private comunicationService: ComunicationService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private imagenesService: ImagenesService
   ) {
     this.imgPrincipal = null;
     this.comunicationService.observador$.subscribe(
@@ -164,5 +169,40 @@ export class PaginaAdministradorComponent implements OnInit{
       },
       (err: any) => console.error(err)
     );
+  }
+  cargandoImagen(files: any, carpeta: any) {
+    console.log(files.files[0]);
+
+    this.imgPrincipal = null;
+    this.fileToUpload = files.files[0];
+    let imgPromise = this.getFileBlob(this.fileToUpload);
+    imgPromise.then((blob) => {
+      console.log(blob);
+
+      this.imagenesService.guardarImagen(this.producto.id_producto, blob, carpeta).subscribe(
+        (res: any) => {
+          this.imgPrincipal = blob;
+        },
+        (err) => console.error(err)
+      );
+    });
+  }
+  getFileBlob(file: any) {
+    var reader = new FileReader();
+    return new Promise(function (resolve, reject) {
+      reader.onload = (function (thefile) {
+        return function (e: any) {
+          resolve(e.target.result);
+        };
+      })(file);
+      reader.readAsDataURL(file);
+    });
+  }
+  noFoundImage(event: any) {
+    event.target.src = this.liga + '/productos/0.png';
+  }
+  dameNombre(id: any) {
+    console.log('hola');
+    return this.liga + '/productos/' + id + '.jpg';
   }
 }

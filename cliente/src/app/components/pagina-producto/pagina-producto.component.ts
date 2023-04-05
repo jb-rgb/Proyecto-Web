@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ProductoService } from 'src/app/services/producto.service';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { Carrito } from 'src/app/models/carrito';
+import { environment } from 'src/app/environments/enviroments';
 
 @Component({
   selector: 'app-pagina-producto',
@@ -22,11 +23,17 @@ export class PaginaProductoComponent implements OnInit {
   valoracion = [.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5];
   carrito: any;
   carritoActual = new Carrito();
+  liga: string = environment.API_URI_IMAGENES;
+  imgPrincipal: any;
+  fileToUpload: any;
   constructor(
     private productoService: ProductoService,
     private carritoService: CarritoService,
     private router: Router
-  ) { this.id_cliente = Number(localStorage.getItem("idCliente")); }
+  ) { 
+    this.imgPrincipal = null;
+    this.id_cliente = Number(localStorage.getItem("idCliente")); 
+  }
   ngOnInit(): void {
     this.productoService.list().subscribe(
       (resProducto:any) => {
@@ -230,5 +237,9 @@ export class PaginaProductoComponent implements OnInit {
       },
       (err: any) => console.error(err)
     );
+  }
+  dameNombre(id: any) {
+    console.log('hola');
+    return this.liga + '/productos/' + id + '.jpg';
   }
 }
