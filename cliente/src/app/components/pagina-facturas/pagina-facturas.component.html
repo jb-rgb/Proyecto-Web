@@ -3,8 +3,9 @@
         <app-navbar-admin></app-navbar-admin>
         <h1>Administrador de la Tienda</h1>
         <h2>Facturas</h2>
+        <button (click)="exportAsXLSX()" class="waves-effect waves-light btn">EXCEL</button>
         <!--Tabla de productos-->
-        <table class="tabla">
+        <table class="tabla" id="tabla-1">
             <thead class="titulo">
                 <tr>
                     <th>ID Venta</th>
@@ -20,7 +21,7 @@
             <tbody class="cuerpo">
                 <tr *ngFor="let factura of facturas">
                     <td>{{factura.id_venta}}</td>
-                    <td>{{factura.pago}}</td>
+                    <td>{{factura.id_pago}}</td>
                     <td>{{factura.id_factura}}</td>
                     <td>{{factura.id_producto}}</td>
                     <td>{{factura.fecha}}</td>

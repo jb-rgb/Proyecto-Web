@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { EmpleadoService } from 'src/app/services/empleado.service';
 import { Empleado } from 'src/app/models/empleado';
 import { ComunicationService } from 'src/app/services/comunication.service';
+import { ExcelService } from 'src/app/services/excel.service';
 
 declare var $: any;
 
@@ -19,6 +20,7 @@ export class PaginaEmpleadosComponent implements OnInit {
   constructor (
     private empleadoService: EmpleadoService,
     private comunicationService: ComunicationService,
+    private excelService: ExcelService,
     private router: Router
   ) { 
     this.comunicationService.observador$.subscribe(
@@ -134,5 +136,10 @@ export class PaginaEmpleadosComponent implements OnInit {
       },
       (err: any) => console.error(err)
     );
+  }
+
+  exportAsXLSX() {
+    let element = document.getElementById('tabla-1');
+    this.excelService.exportAsExcelFile(element, 'empleados');
   }
 }

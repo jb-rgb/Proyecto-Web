@@ -55,6 +55,6 @@ export class ClientesComponent implements OnInit {
   }
   exportAsXLSX() {
     let element = document.getElementById('tabla-1');
-    this.excelService.exportAsExcelFile(element, 'sample');
+    this.excelService.exportAsExcelFile(element, 'clientes');
   }
 }

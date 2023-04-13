@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { VentaService } from 'src/app/services/venta.service';
+import { ExcelService } from 'src/app/services/excel.service';
 
 @Component({
   selector: 'app-pagina-ventas',
@@ -12,6 +13,7 @@ export class PaginaVentasComponent implements OnInit {
   totalVentas: any;
   constructor(
     private ventaService: VentaService,
+    private excelService: ExcelService,
     private router: Router
   ) { this.listInfo(); }
   ngOnInit(): void {
@@ -36,5 +38,9 @@ export class PaginaVentasComponent implements OnInit {
       },
       (err: any) => console.error(err)
     );
+  }
+  exportAsXLSX() {
+    let element = document.getElementById('tabla-1');
+    this.excelService.exportAsExcelFile(element, 'ventas');
   }
 }

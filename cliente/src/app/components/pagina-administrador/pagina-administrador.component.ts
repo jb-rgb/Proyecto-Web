@@ -4,6 +4,7 @@ import { ProductoService } from 'src/app/services/producto.service';
 import { Producto } from 'src/app/models/producto';
 import { ComunicationService } from 'src/app/services/comunication.service';
 import { ImagenesService } from 'src/app/services/imagenes.service';
+import { ExcelService } from 'src/app/services/excel.service';
 import { environment } from 'src/app/environments/enviroments';
 
 declare var $: any;
@@ -29,7 +30,8 @@ export class PaginaAdministradorComponent implements OnInit{
     private comunicationService: ComunicationService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private imagenesService: ImagenesService
+    private imagenesService: ImagenesService,
+    private excelService: ExcelService
   ) {
     this.imgPrincipal = null;
     this.comunicationService.observador$.subscribe(
@@ -204,5 +206,9 @@ export class PaginaAdministradorComponent implements OnInit{
   dameNombre(id: any) {
     console.log('hola');
     return this.liga + '/productos/' + id + '.jpg';
+  }
+  exportAsXLSX() {
+    let element = document.getElementById('tabla-1');
+    this.excelService.exportAsExcelFile(element, 'productos');
   }
 }

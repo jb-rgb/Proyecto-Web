@@ -7,6 +7,7 @@
             <div class="input-field">
                 <input id="search" type="text" class="validate">
                 <label for="search">Buscar</label>
+                <button (click)="exportAsXLSX()" class="waves-effect waves-light btn">EXCEL</button>
             </div>
             <!--Boton para mostar los vendedores-->
             <a (click)="mostrarVendedor()" class="waves-effect waves-light btn-small" routerLink="/empleados">
@@ -18,7 +19,7 @@
             </a>
         </div>
         <!--Tabla de empleados-->
-        <table class="tabla">
+        <table class="tabla" id="tabla-1">
             <thead class="titulo">
                 <tr>
                     <th>ID</th>

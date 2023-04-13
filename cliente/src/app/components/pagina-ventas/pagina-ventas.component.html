@@ -3,8 +3,9 @@
         <app-navbar-admin></app-navbar-admin>
         <h1>Administrador de la Tienda</h1>
         <h2>Ventas</h2>
+        <button (click)="exportAsXLSX()" class="waves-effect waves-light btn">EXCEL</button>
         <!--Tabla de productos-->
-        <table class="tabla">
+        <table class="tabla" id="tabla-1">
             <thead class="titulo">
                 <tr>
                     <th>ID Venta</th>
@@ -19,7 +20,7 @@
             <tbody class="cuerpo">
                 <tr *ngFor="let venta of ventas">
                     <td>{{venta.id_venta}}</td>
-                    <td>{{venta.pago}}</td>
+                    <td>{{venta.id_pago}}</td>
                     <td>{{venta.id_producto}}</td>
                     <td>{{venta.fecha}}</td>
                     <td>{{venta.nombre}}</td>

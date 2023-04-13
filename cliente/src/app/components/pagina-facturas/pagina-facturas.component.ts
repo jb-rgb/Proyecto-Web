@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FacturaService } from 'src/app/services/factura.service';
+import { ExcelService } from 'src/app/services/excel.service';
 
 @Component({
   selector: 'app-pagina-facturas',
@@ -12,6 +13,7 @@ export class PaginaFacturasComponent implements OnInit {
   totalFacturas: any;
   constructor(
     private facturaService: FacturaService,
+    private excelService: ExcelService,
     private router: Router
   ) { this.listInfo(); }
   ngOnInit(): void {
@@ -36,5 +38,9 @@ export class PaginaFacturasComponent implements OnInit {
       },
       (err: any) => console.error(err)
     );
+  }
+  exportAsXLSX() {
+    let element = document.getElementById('tabla-1');
+    this.excelService.exportAsExcelFile(element, 'facturas');
   }
 }
