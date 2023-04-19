@@ -91,7 +91,6 @@ export class NavbarComponent implements OnInit {
     event.target.src = this.liga + '/perfil/0.png';
   }
   dameNombre(id: any) {
-    console.log('hola');
     return this.liga + '/perfil/' + id + '.jpg';
   }
 }

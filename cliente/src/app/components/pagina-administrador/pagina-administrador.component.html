@@ -6,10 +6,13 @@
         <!--Buscador por id o nombre-->
         <div class="row">
             <div class="input-field">
-                <input id="search" type="text" class="validate">
-                <label for="search">Buscar</label>
-                <button (click)="exportAsXLSX()" class="waves-effect waves-light btn">EXCEL</button>
+                <!-- <input id="search" type="text" class="validate">
+                <label for="search">Buscar</label> -->
+                <button (click)="exportAsXLSX()" class="waves-effect waves-light btn">DESCARGAR EXCEL</button>
                 <!-- <img src="{{liga}}/excel.png">  -->
+                <legend>Migrar Excel</legend>
+                <input (change)="cargarExcelProducto($event)" type="file">
+                <button (click)="migrarProducto2DB()" class="waves-effect waves-light btn">MIGRAR EXCEL</button>
             </div>
             <!--Boton para mostar los videojuegos-->
             <a (click)="mostrarVideojuego()" class="waves-effect waves-light btn-small" routerLink="/productos">

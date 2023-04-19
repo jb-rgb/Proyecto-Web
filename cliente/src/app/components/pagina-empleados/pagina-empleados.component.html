@@ -8,6 +8,8 @@
                 <input id="search" type="text" class="validate">
                 <label for="search">Buscar</label>
                 <button (click)="exportAsXLSX()" class="waves-effect waves-light btn">EXCEL</button>
+                <input (change)="cargarExcelEmpleado($event)" type="file">
+                <button (click)="migrarEmpleado2DB()" class="waves-effect waves-light btn">MIGRAR EXCEL</button>
             </div>
             <!--Boton para mostar los vendedores-->
             <a (click)="mostrarVendedor()" class="waves-effect waves-light btn-small" routerLink="/empleados">
@@ -26,7 +28,7 @@
                     <th>Nombre</th>
                     <th>Apellido</th>
                     <th>Correo</th>
-                    <th>Rol</th>
+                    <th>Puesto</th>
                     <th>Contraseña</th>
                     <th>Acciones</th>
                 </tr>

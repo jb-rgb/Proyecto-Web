@@ -6,6 +6,8 @@ import { ComunicationService } from 'src/app/services/comunication.service';
 import { ImagenesService } from 'src/app/services/imagenes.service';
 import { ExcelService } from 'src/app/services/excel.service';
 import { environment } from 'src/app/environments/enviroments';
+import * as XLSX from 'xlsx';
+import Swal from 'sweetalert2';
 
 declare var $: any;
 
@@ -14,17 +16,21 @@ declare var $: any;
   templateUrl: './pagina-administrador.component.html',
   styleUrls: ['./pagina-administrador.component.css']
 })
-export class PaginaAdministradorComponent implements OnInit{
+export class PaginaAdministradorComponent implements OnInit {
   edit: boolean = false;
   producto = new Producto();
-  productos:any;
-  productoActual:any;
+  productos: any;
+  productoActual: any;
   tipoV = 'Videojuego';
   tipoC = 'Consola';
   tipoCo = 'Componente';
   liga: string = environment.API_URI_IMAGENES;
   imgPrincipal: any;
   fileToUpload: any;
+  file: any;
+  uploadEvent: any;
+  arrayBuffer: any;
+  exceljsondata: any;
   constructor(
     private productoService: ProductoService,
     private comunicationService: ComunicationService,
@@ -45,7 +51,7 @@ export class PaginaAdministradorComponent implements OnInit{
   }
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
-    if(params['id']) {
+    if (params['id']) {
       this.productoService.listOne(params['id']).subscribe(
         (res: any) => {
           console.log(res);
@@ -56,12 +62,12 @@ export class PaginaAdministradorComponent implements OnInit{
       );
     }
     this.productoService.list().subscribe(
-      (resProducto:any) => {
+      (resProducto: any) => {
         console.log(resProducto);
         this.productos = resProducto;
         console.log(this.productos);
       },
-      (err:any) => console.error(err)
+      (err: any) => console.error(err)
     );
     $(document).ready(function () {
       $(".modal").modal();
@@ -69,33 +75,33 @@ export class PaginaAdministradorComponent implements OnInit{
       $(".select").formSelect();
     })
   }
-  
+
   listar() {
     this.productoService.list().subscribe(
-      (resProducto:any) => {
+      (resProducto: any) => {
         console.log(resProducto);
         this.productos = resProducto;
         console.log(this.productos);
       },
-      (err:any) => console.error(err)
+      (err: any) => console.error(err)
     );
   }
-  
-  eliminarProducto(id:any) {
+
+  eliminarProducto(id: any) {
     console.log('Eliminar producto ' + id);
     this.productoService.delete(id).subscribe(
-      (resProducto:any) => {
+      (resProducto: any) => {
         console.log(resProducto);
         this.productoService.list().subscribe(
-          (resProducto:any) => {
+          (resProducto: any) => {
             console.log(resProducto);
             this.productos = resProducto;
             console.log(this.productos);
           },
-          (err:any) => console.error(err)
+          (err: any) => console.error(err)
         );
       },
-      (err:any) => console.log(err)
+      (err: any) => console.log(err)
     );
   }
 
@@ -106,7 +112,7 @@ export class PaginaAdministradorComponent implements OnInit{
         this.productos = resProducto;
         console.log(this.productos);
       },
-      (err: any) => console.error(err) 
+      (err: any) => console.error(err)
     );
   }
 
@@ -117,7 +123,7 @@ export class PaginaAdministradorComponent implements OnInit{
         this.productos = resProducto;
         console.log(this.productos);
       },
-      (err: any) => console.error(err) 
+      (err: any) => console.error(err)
     );
   }
 
@@ -128,7 +134,7 @@ export class PaginaAdministradorComponent implements OnInit{
         this.productos = resProducto;
         console.log(this.productos);
       },
-      (err: any) => console.error(err) 
+      (err: any) => console.error(err)
     );
   }
 
@@ -161,12 +167,12 @@ export class PaginaAdministradorComponent implements OnInit{
       (res: any) => {
         console.log('Paciente modificado con exito');
         this.productoService.list().subscribe(
-          (resProducto:any) => {
+          (resProducto: any) => {
             console.log(resProducto);
             this.productos = resProducto;
             console.log(this.productos);
           },
-          (err:any) => console.error(err)
+          (err: any) => console.error(err)
         );
       },
       (err: any) => console.error(err)
@@ -204,11 +210,43 @@ export class PaginaAdministradorComponent implements OnInit{
     event.target.src = this.liga + '/productos/0.png';
   }
   dameNombre(id: any) {
-    console.log('hola');
     return this.liga + '/productos/' + id + '.jpg';
   }
   exportAsXLSX() {
     let element = document.getElementById('tabla-1');
     this.excelService.exportAsExcelFile(element, 'productos');
+  }
+  cargarExcelProducto(event: any) {
+    if (event.target.files.length > 0) {
+      this.file = event.target.files[0];
+      this.uploadEvent = event;
+    }
+    this.file = event.target.files[0];
+    let fileReader = new FileReader();
+    fileReader.readAsArrayBuffer(this.file);
+    fileReader.onload = (e) => {
+      this.arrayBuffer = fileReader.result;
+      var data = new Uint8Array(this.arrayBuffer);
+      var arr = new Array();
+      for (var i = 0; i != data.length; ++i) arr[i] = String.fromCharCode(data[i]);
+      var bstr = arr.join("");
+      var workbook = XLSX.read(bstr, { type: "binary" });
+      var first_sheet_name = workbook.SheetNames[0];
+      var worksheet = workbook.Sheets[first_sheet_name];
+      this.exceljsondata = XLSX.utils.sheet_to_json(worksheet, { raw: true })
+      console.log(this.exceljsondata);
+    }
+  }
+  migrarProducto2DB() {
+    this.exceljsondata.map((producto: any) => {
+      console.log(producto);
+      this.productoService.create(producto).subscribe(
+        (resProducto: any) => {
+          console.log(resProducto);
+          this.listar();
+        },
+        (err: any) => console.error(err)
+      );
+    })
   }
 }
