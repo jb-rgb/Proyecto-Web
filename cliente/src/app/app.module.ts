@@ -26,6 +26,7 @@ import { PaginaVentasComponent } from './components/pagina-ventas/pagina-ventas.
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NavbarAdminComponent } from './components/navbar-admin/navbar-admin.component';
 import { RecuperarComponent } from './components/recuperar/recuperar.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { RecuperarComponent } from './components/recuperar/recuperar.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgxPaginationModule,
     FormsModule
   ],
   providers: [],

@@ -34,7 +34,11 @@
                 </tr>
             </thead>
             <tbody class="cuerpo">
-                <tr *ngFor="let empleado of empleados">
+                <tr *ngFor="let empleado of empleados |
+                paginate: {
+                    itemsPerPage: pageSize,
+                    currentPage: p
+                };let i=index">
                     <td>{{empleado.id_empleado}}</td>
                     <td>{{empleado.nombre}}</td>
                     <td>{{empleado.apellido}}</td>
@@ -54,6 +58,12 @@
                 </tr>
             </tbody>
         </table>
+        <br><br>
+        <div class="row center-align">
+            <pagination-controls class="my-pagination" (pageChange)="p = ($event)" previousLabel="Anterior"
+                nextLabel="Siguiente">
+            </pagination-controls>
+        </div>
     </div>
 </div>
 

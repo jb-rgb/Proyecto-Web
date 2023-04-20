@@ -126,8 +126,61 @@ textarea {
 }
 
 img {
-    width: 200px;
-    height: 200px;
+    width: 150px;
+    height: 150px;
     overflow: hidden;
     margin: auto;
+}
+
+/* Estilo para la paginación */
+.my-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination-previous,
+.pagination-next {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    color: #666;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-previous:hover,
+.pagination-next:hover {
+    background-color: #ddd;
+}
+
+.pagination-disabled {
+    background-color: #f2f2f2;
+    border: 1px solid #ddd;
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.pagination-active {
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    color: #fff;
+}
+
+.pagination-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #007bff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.pagination-link:hover {
+    background-color: #f2f2f2;
 }

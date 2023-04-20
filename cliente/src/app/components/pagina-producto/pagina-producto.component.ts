@@ -26,6 +26,8 @@ export class PaginaProductoComponent implements OnInit {
   liga: string = environment.API_URI_IMAGENES;
   imgPrincipal: any;
   fileToUpload: any;
+  pageSize = 6;
+  p = 1;
   constructor(
     private productoService: ProductoService,
     private carritoService: CarritoService,

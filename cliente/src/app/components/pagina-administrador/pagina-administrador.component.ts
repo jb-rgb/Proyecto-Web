@@ -31,6 +31,8 @@ export class PaginaAdministradorComponent implements OnInit {
   uploadEvent: any;
   arrayBuffer: any;
   exceljsondata: any;
+  pageSize = 4;
+  p = 1;
   constructor(
     private productoService: ProductoService,
     private comunicationService: ComunicationService,

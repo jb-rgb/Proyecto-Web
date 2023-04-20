@@ -26,7 +26,11 @@
                 </tr>
             </thead>
             <tbody class="cuerpo">
-                <tr *ngFor="let cliente of clientes">
+                <tr *ngFor="let cliente of clientes |
+                paginate: {
+                    itemsPerPage: pageSize,
+                    currentPage: p
+                };let i=index">
                     <td>{{cliente.id_cliente}}</td>
                     <td>{{cliente.nombre}}</td>
                     <td>{{cliente.apellido}}</td>
@@ -41,5 +45,11 @@
                 </tr>
             </tbody>
         </table>
+        <br><br>
+        <div class="row center-align">
+            <pagination-controls class="my-pagination" (pageChange)="p = ($event)" previousLabel="Anterior"
+                nextLabel="Siguiente">
+            </pagination-controls>
+        </div>
     </div>
 </div>

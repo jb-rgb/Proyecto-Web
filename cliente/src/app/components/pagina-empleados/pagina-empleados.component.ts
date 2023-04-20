@@ -24,6 +24,8 @@ export class PaginaEmpleadosComponent implements OnInit {
   uploadEvent: any;
   arrayBuffer: any;
   exceljsondata: any;
+  pageSize = 5;
+  p = 1;
   constructor (
     private empleadoService: EmpleadoService,
     private comunicationService: ComunicationService,

@@ -25,7 +25,11 @@
             <th>Valoracion</th>
             <th>Agregar</th>
           </thead>
-          <tbody *ngFor="let producto of productos">
+          <tbody *ngFor="let producto of productos |
+                    paginate: {
+                        itemsPerPage: pageSize,
+                        currentPage: p
+                    };let i=index">
             <td>{{producto.nombre}}</td>
             <td>
               <img [src]="dameNombre(producto.id_producto)">
@@ -41,6 +45,12 @@
           </tbody>
         </table>
       </div>
+      <br><br>
+        <div class="row center-align">
+            <pagination-controls class="my-pagination" (pageChange)="p = ($event)" previousLabel="Anterior"
+                nextLabel="Siguiente">
+            </pagination-controls>
+        </div>
     </div>
     <aside class="filtro">
       <h6>Opiniones</h6>

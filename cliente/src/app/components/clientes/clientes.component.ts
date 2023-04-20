@@ -18,6 +18,8 @@ export class ClientesComponent implements OnInit {
   uploadEvent: any;
   arrayBuffer: any;
   exceljsondata: any;
+  pageSize = 5;
+  p = 1;
   constructor(
     private clienteService: ClienteService,
     private excelService: ExcelService,
