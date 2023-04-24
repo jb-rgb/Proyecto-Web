@@ -42,7 +42,6 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['pagina-principal']);
   }
   mostrarInfoCliente() {
-    console.log('Agregar Producto');
     $('#modalAgregarEmpleado').modal();
     $('#modalAgregarEmpleado').modal('open');
   }
