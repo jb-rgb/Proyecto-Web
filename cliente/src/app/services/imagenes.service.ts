@@ -9,8 +9,6 @@ export class ImagenesService {
   constructor(private http: HttpClient) {}
 
   guardarImagen(id: any, src: any, carpeta: any) {
-    //src=null;
-    console.log(src, id, carpeta);
     return this.http.post(`${environment.API_URI_IMAGENES}/uploadImagen`, {
       id: id,
       src: src,

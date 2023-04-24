@@ -34,13 +34,9 @@ export class LoginComponent implements OnInit {
 
   verificarUsuario() {
     this.empleadoService.verificarEmpleado(this.empleado.correo, this.empleado.password).subscribe((resEmpleado: any) => {
-      console.log(resEmpleado);
       if (resEmpleado == null) {
-        console.log('El empleado no existe');
         this.clienteService.verificarCliente(this.empleado.correo, this.empleado.password).subscribe((resCliente: any) => {
-          console.log(resCliente);
           if (resCliente == null) {
-            console.log('El cliente no existe');
             Swal.fire({
               position: 'center',
               icon: 'error',
@@ -48,7 +44,6 @@ export class LoginComponent implements OnInit {
               showConfirmButton: true
             })
           } else {
-            console.log('El cliente existe');
             localStorage.setItem("nombreCliente", resCliente.nombre);
             localStorage.setItem("idCliente", resCliente.id_cliente);
             this.router.navigate(['pagina-principal']);
@@ -56,21 +51,18 @@ export class LoginComponent implements OnInit {
         },
           (err: any) => console.error(err));
       } else {
-        console.log('El empleado existe');
         this.router.navigate(['pagina-administrador']);
       }
     },
       (err: any) => console.error(err));
   }
   modalCambiarContrasenya() {
-    console.log("modalCambiarContrasenya");
     $('#modalCambiarContrasenya').modal({ dismissible: false });
     $('#modalCambiarContrasenya').modal('open');
   }
   cambiarContrasenya() {
-    console.log(this.cliente);
     this.correoService.enviarCorreoRecuperarContrasenya(this.cliente).subscribe((resUsuario: any) => {
-      console.log(resUsuario);
+      
     }, (err: any) => console.error(err));
   }
 }

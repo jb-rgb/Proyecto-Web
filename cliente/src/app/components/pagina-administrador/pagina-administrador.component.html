@@ -15,15 +15,15 @@
                 <button (click)="migrarProducto2DB()" class="waves-effect waves-light btn">MIGRAR EXCEL</button>
             </div>
             <!--Boton para mostar los videojuegos-->
-            <a (click)="mostrarVideojuego()" class="waves-effect waves-light btn-small" routerLink="/productos">
+            <a (click)="mostrarVideojuego()" class="waves-effect waves-light btn-small">
                 <i class="material-icons left">videogame_asset</i>Videojuegos
             </a>
             <!--Boton para mostar los componentes-->
-            <a (click)="mostrarComponente()" class="waves-effect waves-light btn-small" routerLink="/productos">
+            <a (click)="mostrarComponente()" class="waves-effect waves-light btn-small">
                 <i class="material-icons left">computer</i>Componentes
             </a>
             <!--Boton para mostar las consolas de videojuegos-->
-            <a (click)="mostrarConsola()" class="waves-effect waves-light btn-small" routerLink="/productos">
+            <a (click)="mostrarConsola()" class="waves-effect waves-light btn-small">
                 <i class="material-icons left">videogame_asset</i>Consolas
             </a>
         </div>
@@ -63,10 +63,10 @@
                         <img [src]="dameNombre(producto.id_producto)">
                     </td>
                     <td class="acciones">
-                        <a (click)="visualizarModificarProducto(producto.id_producto)" class="waves-effect waves-light btn-small" routerLink="/editar-producto">
+                        <a (click)="visualizarModificarProducto(producto.id_producto)" class="waves-effect waves-light btn-small">
                             <i class="material-icons left">edit</i>Editar
                         </a>
-                        <a (click)="eliminarProducto(producto.id_producto)" class="waves-effect waves-light btn-small" routerLink="/eliminar-producto">
+                        <a (click)="eliminarProducto(producto.id_producto)" class="waves-effect waves-light btn-small">
                             <i class="material-icons left">delete</i>Eliminar
                         </a>
                     </td>
@@ -74,7 +74,7 @@
             </tbody>
         </table>
         <br><br>
-        <div class="row center-align">
+        <div class="rowp center-align">
             <pagination-controls class="my-pagination" (pageChange)="p = ($event)" previousLabel="Anterior"
                 nextLabel="Siguiente">
             </pagination-controls>

@@ -39,32 +39,25 @@ export class PaginaProductoComponent implements OnInit {
   ngOnInit(): void {
     this.productoService.list().subscribe(
       (resProducto:any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err:any) => console.error(err)
     );
   }
   agregarProducto() {
-    console.log(this.productoActual);
     this.productoService.create(this.productoActual).subscribe((resProductos:any) => {
-      console.log(resProductos);
+      
     },
     (err:any) => {
       console.error(err);
     });
   }
   eliminarProducto(id:any) {
-    console.log('Eliminar producto ' + id);
     this.productoService.delete(id).subscribe(
       (resProducto:any) => {
-        console.log(resProducto);
         this.productoService.list().subscribe(
           (resProducto:any) => {
-            console.log(resProducto);
             this.productos = resProducto;
-            console.log(this.productos);
           },
           (err:any) => console.error(err)
         );
@@ -78,7 +71,7 @@ export class PaginaProductoComponent implements OnInit {
     this.carritoActual.total = idPrecioProducto;
     this.carritoService.create(this.carritoActual).subscribe(
       (resCarrito: any) => {
-        console.log(resCarrito);
+
       },
       (err: any) => console.error(err)
     );
@@ -86,36 +79,28 @@ export class PaginaProductoComponent implements OnInit {
   mostrarTipoConsolaXbox() {
     this.productoService.mostrarTipoConsola(this.tipoV, this.consolaX).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       }
     )
   }
   mostrarTipoConsolaPS() {
     this.productoService.mostrarTipoConsola(this.tipoV, this.consolaP).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       }
     )
   }
   mostrarTipoConsolaNintendo() {
     this.productoService.mostrarTipoConsola(this.tipoV, this.consolaN).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       }
     )
   }
   mostrarVideojuego() {
     this.productoService.mostrarTipo(this.tipoV).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err: any) => console.error(err) 
     );
@@ -123,9 +108,7 @@ export class PaginaProductoComponent implements OnInit {
   mostrarConsola() {
     this.productoService.mostrarTipo(this.tipoC).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err: any) => console.error(err) 
     );
@@ -133,9 +116,7 @@ export class PaginaProductoComponent implements OnInit {
   mostrarComponente() {
     this.productoService.mostrarTipo(this.tipoCo).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err: any) => console.error(err) 
     );
@@ -143,9 +124,7 @@ export class PaginaProductoComponent implements OnInit {
   mostrarValoracion1() {
     this.productoService.mostrarValoracion(this.valoracion[0]).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err: any) => console.error(err)
     );
@@ -153,9 +132,7 @@ export class PaginaProductoComponent implements OnInit {
   mostrarValoracion2() {
     this.productoService.mostrarValoracion(this.valoracion[1]).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err: any) => console.error(err)
     );
@@ -163,9 +140,7 @@ export class PaginaProductoComponent implements OnInit {
   mostrarValoracion3() {
     this.productoService.mostrarValoracion(this.valoracion[2]).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err: any) => console.error(err)
     );
@@ -173,9 +148,7 @@ export class PaginaProductoComponent implements OnInit {
   mostrarValoracion4() {
     this.productoService.mostrarValoracion(this.valoracion[3]).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err: any) => console.error(err)
     );
@@ -183,9 +156,7 @@ export class PaginaProductoComponent implements OnInit {
   mostrarValoracion5() {
     this.productoService.mostrarValoracion(this.valoracion[4]).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err: any) => console.error(err)
     );
@@ -193,9 +164,7 @@ export class PaginaProductoComponent implements OnInit {
   mostrarValoracion6() {
     this.productoService.mostrarValoracion(this.valoracion[5]).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err: any) => console.error(err)
     );
@@ -203,9 +172,7 @@ export class PaginaProductoComponent implements OnInit {
   mostrarValoracion7() {
     this.productoService.mostrarValoracion(this.valoracion[6]).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err: any) => console.error(err)
     );
@@ -213,9 +180,7 @@ export class PaginaProductoComponent implements OnInit {
   mostrarValoracion8() {
     this.productoService.mostrarValoracion(this.valoracion[7]).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err: any) => console.error(err)
     );
@@ -223,9 +188,7 @@ export class PaginaProductoComponent implements OnInit {
   mostrarValoracion9() {
     this.productoService.mostrarValoracion(this.valoracion[8]).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err: any) => console.error(err)
     );
@@ -233,15 +196,12 @@ export class PaginaProductoComponent implements OnInit {
   mostrarValoracion10() {
     this.productoService.mostrarValoracion(this.valoracion[9]).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err: any) => console.error(err)
     );
   }
   dameNombre(id: any) {
-    console.log('hola');
     return this.liga + '/productos/' + id + '.jpg';
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CarritoService } from 'src/app/services/carrito.service';
 import { Carrito } from 'src/app/models/carrito';
+import { environment } from 'src/app/environments/enviroments';
 
 @Component({
   selector: 'app-pagina-carrito',
@@ -13,12 +14,12 @@ export class PaginaCarritoComponent implements OnInit{
   totalCarritos: any;
   carritos: any;
   carritoActual = new Carrito();
+  liga: string = environment.API_URI_IMAGENES;
   constructor(
     private carritoService: CarritoService,
     private router: Router
   ) {
     this.id_cliente = Number(localStorage.getItem("idCliente"));
-    console.log(this.carritoActual);
     this.mostrarCarrito();
     this.totalCarrito();
   }
@@ -29,9 +30,7 @@ export class PaginaCarritoComponent implements OnInit{
   mostrarCarrito() {
     this.carritoService.mostrarCarrito(this.id_cliente).subscribe(
       (resCarrito: any) => {
-        console.log(resCarrito);
         this.carritos = resCarrito;
-        console.log(this.carritos);
       },
       (err: any) => console.error(err)
     );
@@ -41,12 +40,9 @@ export class PaginaCarritoComponent implements OnInit{
     console.log('Eliminar carrio ' + id);
     this.carritoService.delete(id).subscribe(
       (resCarrito: any) => {
-        console.log(resCarrito);
         this.carritoService.mostrarCarrito(this.id_cliente).subscribe(
           (resCarrito: any) => {
-            console.log(resCarrito);
             this.carritos = resCarrito;
-            console.log(this.carritos);
           },
           (err: any) => console.error(err)
         );
@@ -58,19 +54,19 @@ export class PaginaCarritoComponent implements OnInit{
   totalCarrito() {
     this.carritoService.totalCarrito(this.id_cliente).subscribe(
       (resCarrito: any) => {
-        console.log(resCarrito);
         this.totalCarritos = resCarrito;
         localStorage.setItem("total", resCarrito[0].total_carrito);
         this.carritoService.mostrarCarrito(this.id_cliente).subscribe(
           (resCarrito: any) => {
-            console.log(resCarrito);
             this.carritos = resCarrito;
-            console.log(this.carritos);
           },
           (err: any) => console.error(err)
         );
       },
       (err: any) => console.error(err)
     );
+  }
+  dameNombre(id: any) {
+    return this.liga + '/productos/' + id + '.jpg';
   }
 }

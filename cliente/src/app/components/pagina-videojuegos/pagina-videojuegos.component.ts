@@ -24,27 +24,21 @@ export class PaginaVideojuegosComponent {
   mostrarTipoConsolaXbox() {
     this.productoService.mostrarTipoConsola(this.tipoV, this.consolaX).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       }
     )
   }
   mostrarTipoConsolaPS() {
     this.productoService.mostrarTipoConsola(this.tipoV, this.consolaP).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       }
     )
   }
   mostrarTipoConsolaNintendo() {
     this.productoService.mostrarTipoConsola(this.tipoV, this.consolaN).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       }
     )
   }

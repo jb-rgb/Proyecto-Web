@@ -29,7 +29,6 @@ export class ClienteService {
       'correo': correo,
       'password': password
     };
-    console.log(cliente);
     return this.http.post(`${environment.API_URI}/api/clientes/verificarCliente`, cliente, {headers: headers});
   }
   registrarCliente(cliente: Cliente) {

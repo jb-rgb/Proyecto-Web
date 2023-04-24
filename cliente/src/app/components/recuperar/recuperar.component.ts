@@ -26,10 +26,9 @@ export class RecuperarComponent {
     this.route.paramMap.subscribe(
       params => {
         this.token = params.get('token');
-        console.log(this.token);
         this.correoService.decodificarMail(this.token).subscribe(
           (resToken: any) => {
-            console.log(resToken);
+            
           }
         ),
         (err: any) => console.error(err)
@@ -38,11 +37,10 @@ export class RecuperarComponent {
   }
   enviarContrasenia() {
     if (this.cliente1.password == this.cliente2.password) {
-      console.log(this.cliente1.password.length);
       const regex = /^(?=.[A-Z])(?=.\d)(?=.[@$!%?&#<>~^])[A-Za-z\d@$!%*?&#<>~^]{8,}$/;
       if (regex.test(this.cliente1.password)) {
         this.clienteService.cambiarPassword(this.cliente1).subscribe((res:any) => {
-          console.log(res);
+          
         })
         this.router.navigate(['login'])
       }

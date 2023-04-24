@@ -23,9 +23,7 @@ export class PaginaFacturasComponent implements OnInit {
   listInfo() {
     this.facturaService.listInfo().subscribe(
       (resFactura: any) => {
-        console.log(resFactura);
         this.facturas = resFactura;
-        console.log(this.facturas);
       },
       (err: any) => console.error(err)
     );
@@ -33,7 +31,6 @@ export class PaginaFacturasComponent implements OnInit {
   totalFactura() {
     this.facturaService.totalFactura().subscribe(
       (resFactura: any) => {
-        console.log(resFactura);
         this.totalFacturas = resFactura;
       },
       (err: any) => console.error(err)

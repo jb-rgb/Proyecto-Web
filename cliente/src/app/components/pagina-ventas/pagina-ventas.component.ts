@@ -23,9 +23,7 @@ export class PaginaVentasComponent implements OnInit {
   listInfo() {
     this.ventaService.listInfo().subscribe(
       (resVenta: any) => {
-        console.log(resVenta);
         this.ventas = resVenta;
-        console.log(this.ventas);
       },
       (err: any) => console.error(err)
     );
@@ -33,7 +31,6 @@ export class PaginaVentasComponent implements OnInit {
   totalVenta() {
     this.ventaService.totalVenta().subscribe(
       (resVenta: any) => {
-        console.log(resVenta);
         this.totalVentas = resVenta;
       },
       (err: any) => console.error(err)

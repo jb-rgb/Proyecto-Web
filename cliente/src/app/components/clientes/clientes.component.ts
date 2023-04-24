@@ -28,9 +28,7 @@ export class ClientesComponent implements OnInit {
   ngOnInit(): void {
     this.clienteService.list().subscribe(
       (resCliente: any) => {
-        console.log(resCliente);
         this.clientes = resCliente;
-        console.log(this.clientes);
       },
       (err: any) => console.error(err)
     );
@@ -38,23 +36,17 @@ export class ClientesComponent implements OnInit {
   listar() {
     this.clienteService.list().subscribe(
       (resCliente: any) => {
-        console.log(resCliente);
         this.clientes = resCliente;
-        console.log(this.clientes);
       },
       (err: any) => console.error(err)
     );
   }
   eliminarCliente(id: any) {
-    console.log('Eliminar cliente ' + id);
     this.clienteService.delete(id).subscribe(
       (resCliente: any) => {
-        console.log(resCliente);
         this.clienteService.list().subscribe(
           (resCliente: any) => {
-            console.log(resCliente);
             this.clientes = resCliente;
-            console.log(this.clientes);
           },
           (err: any) => console.error(err)
         );
@@ -83,16 +75,13 @@ export class ClientesComponent implements OnInit {
       var workbook = XLSX.read(bstr, { type: "binary" });
       var first_sheet_name = workbook.SheetNames[0];
       var worksheet = workbook.Sheets[first_sheet_name];
-      this.exceljsondata = XLSX.utils.sheet_to_json(worksheet, { raw: true })
-      console.log(this.exceljsondata);
+      this.exceljsondata = XLSX.utils.sheet_to_json(worksheet, { raw: true });
     }
   }
   migrarCliente2DB() {
     this.exceljsondata.map((cliente: any) => {
-      console.log(cliente);
       this.clienteService.registrarCliente(cliente).subscribe(
         (resCliente: any) => {
-          console.log(resCliente);
           this.listar();
         },
         (err: any) => console.error(err)

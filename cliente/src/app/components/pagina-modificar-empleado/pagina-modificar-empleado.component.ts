@@ -26,7 +26,6 @@ export class PaginaModificarEmpleadoComponent implements OnInit {
     if(params['id']) {
       this.empleadoService.listOne(params['id']).subscribe(
         (resEmpleado: any) => {
-          console.log(resEmpleado);
           this.empleado = resEmpleado;
           this.edit = true;
         },
@@ -38,8 +37,7 @@ export class PaginaModificarEmpleadoComponent implements OnInit {
     delete this.empleado.id_empleado;
     this.empleadoService.create(this.empleado).subscribe(
       (resEmpleado: any) => {
-        console.log(resEmpleado);
-        console.log('Empleado ingresado con exito');
+        
       },
       (err: any) => console.error(err)
     );
@@ -47,12 +45,9 @@ export class PaginaModificarEmpleadoComponent implements OnInit {
   modificarEmpleado() {
     this.empleadoService.update(this.empleado).subscribe(
       (resEmpleado: any) => {
-        console.log('Empleado modificado con exito');
         this.empleadoService.list().subscribe(
           (resEmpleado: any) => {
-            console.log(resEmpleado);
             this.empleados = resEmpleado;
-            console.log(this.empleados);
           },
           (err: any) => console.error(err)
         );
@@ -63,9 +58,7 @@ export class PaginaModificarEmpleadoComponent implements OnInit {
   listar() {
     this.empleadoService.list().subscribe(
       (resEmpleado: any) => {
-        console.log(resEmpleado);
         this.empleados = resEmpleado;
-        console.log(this.empleados);
       },
       (err: any) => console.error(err)
     );

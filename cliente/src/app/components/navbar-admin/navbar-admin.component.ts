@@ -33,7 +33,6 @@ export class NavbarAdminComponent implements OnInit {
     if(params['id']) {
       this.productoService.listOne(params['id']).subscribe(
         (res: any) => {
-          console.log(res);
           this.producto = res;
           this.edit = true;
         },
@@ -57,18 +56,15 @@ export class NavbarAdminComponent implements OnInit {
 
   enviarMensaje(componente: number) {
     let opciones = { "componente": componente };
-    console.log(opciones);
     this.comunicationService.enviar(opciones);
   }
 
   visualizarAgregarProducto() {
-    console.log("Agregar Producto");
     $("#modalAgregarProducto").modal();
     $("#modalAgregarProducto").modal("open");
   }
 
   visualizarAgregarEmpleado() {
-    console.log("Agregar Empleado");
     $("#modalAgregarEmpleado").modal();
     $("#modalAgregarEmpleado").modal("open");
   }
@@ -77,8 +73,6 @@ export class NavbarAdminComponent implements OnInit {
     delete this.producto.id_producto;
     this.productoService.create(this.producto).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
-        console.log('Producto ingresado con exito');
         this.enviarMensaje(1);
       },
       (err: any) => console.error(err)
@@ -88,12 +82,9 @@ export class NavbarAdminComponent implements OnInit {
   modificarProducto() {
     this.productoService.update(this.producto).subscribe(
       (res: any) => {
-        console.log('Paciente modificado con exito');
         this.productoService.list().subscribe(
           (resProducto:any) => {
-            console.log(resProducto);
             this.productos = resProducto;
-            console.log(this.productos);
           },
           (err:any) => console.error(err)
         );
@@ -105,9 +96,7 @@ export class NavbarAdminComponent implements OnInit {
   listar() {
     this.productoService.list().subscribe(
       (resProducto:any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err:any) => console.error(err)
     );
@@ -117,8 +106,6 @@ export class NavbarAdminComponent implements OnInit {
     delete this.empleado.id_empleado;
     this.empleadoService.create(this.empleado).subscribe(
       (resEmpleado: any) => {
-        console.log(resEmpleado);
-        console.log('Empleado ingresado con exito');
         this.enviarMensaje(2);
       },
       (err: any) => console.error(err)
@@ -128,12 +115,9 @@ export class NavbarAdminComponent implements OnInit {
   modificarEmpleado() {
     this.empleadoService.update(this.empleado).subscribe(
       (resEmpleado: any) => {
-        console.log('Empleado modificado con exito');
         this.empleadoService.list().subscribe(
           (resEmpleado: any) => {
-            console.log(resEmpleado);
             this.empleados = resEmpleado;
-            console.log(this.empleados);
           },
           (err: any) => console.error(err)
         );

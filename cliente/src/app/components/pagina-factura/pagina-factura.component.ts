@@ -31,14 +31,12 @@ export class PaginaFacturaComponent implements OnInit {
     this.nombreCliente = String(localStorage.getItem("nombreCliente"));
     this.id_cliente = Number(localStorage.getItem("idCliente"));
     this.total = Number(localStorage.getItem("total"));
-    console.log(this.total, this.nombreCliente, this.id_cliente);
   }
   ngOnInit(): void {
     const params = this.activatedRoute.snapshot.params;
     if(params['id']) {
       this.clienteService.listOne(params['id']).subscribe(
         (resCliente: any) => {
-          console.log(resCliente);
           this.cliente = resCliente;
         },
         (err: any) => console.error(err)
@@ -53,7 +51,7 @@ export class PaginaFacturaComponent implements OnInit {
   actualizarCliente() {
     this.clienteService.update(this.cliente).subscribe(
       (resCliente: any) => {
-        console.log("cliente actualizado");
+        
       },
       (err: any) => console.error(err)
     );
@@ -61,22 +59,21 @@ export class PaginaFacturaComponent implements OnInit {
   insertarVenta() {
     this.venta.id_cliente = Number(localStorage.getItem("idCliente"));
     this.ventaService.create(this.venta).subscribe(
-      (resVenta: any) => console.log(resVenta),
+      (resVenta: any) => {
+
+      },
       (err: any) => console.error(err)
     );
   }
   viuslizarTarjeta() {
-    console.log("Tarjeta");
     $('#modalTarjeta').modal();
     $('#modalTarjeta').modal("open");
   }
   visualizarDeposito() {
-    console.log("Deposito");
     $('#modalDeposito').modal();
     $('#modalDeposito').modal("open");
   }
   visualizarTransferencia() {
-    console.log("Transferencia");
     $('#modalTransferencia').modal();
     $('#modalTransferencia').modal("open");
   }

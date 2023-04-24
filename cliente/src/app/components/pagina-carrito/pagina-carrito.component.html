@@ -19,7 +19,9 @@
                 <tbody>
                     <tr *ngFor="let carrito of carritos">
                         <td>{{carrito.nombre}}</td>
-                        <td>{{carrito.imagen}}</td>
+                        <td>
+                            <img [src]="dameNombre(carrito.id_producto)">
+                        </td>
                         <td>{{carrito.caracteristicas}}</td>
                         <td>{{carrito.cantidad}}</td>
                         <td>{{carrito.precio}}</td>

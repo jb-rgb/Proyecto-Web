@@ -28,7 +28,6 @@ export class NavbarComponent implements OnInit {
   ) {
     this.nombre = String(localStorage.getItem('nombreCliente'));
     this.id_cliente = Number(localStorage.getItem('idCliente'));
-    console.log(this.nombre, this.id_cliente);
   }
   ngOnInit(): void {
     $(document).ready(function () {
@@ -41,8 +40,6 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('nombreCliente');
     localStorage.removeItem('idCliente');
     this.router.navigate(['pagina-principal']);
-    console.log('Se cerro la sesion');
-    console.log(this.nombre, this.id_cliente);
   }
   mostrarInfoCliente() {
     console.log('Agregar Producto');
@@ -52,22 +49,16 @@ export class NavbarComponent implements OnInit {
   obtenerInfoCliente() {
     this.clienteService.listOne(this.id_cliente).subscribe(
       (resCliente: any) => {
-        console.log(resCliente);
         this.cliente = resCliente;
-        console.log(this.cliente);
       },
       (err: any) => console.error(err)
     );
   }
   cargandoImagen(files: any, carpeta: any) {
-    console.log(files.files[0]);
-
     this.imgPrincipal = null;
     this.fileToUpload = files.files[0];
     let imgPromise = this.getFileBlob(this.fileToUpload);
     imgPromise.then((blob) => {
-      console.log(blob);
-
       this.imagenesService.guardarImagen(this.id_cliente, blob, 'perfil').subscribe(
         (res: any) => {
           this.imgPrincipal = blob;

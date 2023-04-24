@@ -22,7 +22,6 @@ export class PaginaModificarProductoComponent implements OnInit {
     if(params['id']) {
       this.productoService.listOne(params['id']).subscribe(
         (res: any) => {
-          console.log(res);
           this.producto = res;
           this.edit = true;
         },
@@ -34,8 +33,7 @@ export class PaginaModificarProductoComponent implements OnInit {
     delete this.producto.id_producto;
     this.productoService.create(this.producto).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
-        console.log('Producto ingresado con exito');
+        
       },
       (err: any) => console.error(err)
     );
@@ -43,12 +41,9 @@ export class PaginaModificarProductoComponent implements OnInit {
   modificarProducto() {
     this.productoService.update(this.producto).subscribe(
       (res: any) => {
-        console.log('Paciente modificado con exito');
         this.productoService.list().subscribe(
           (resProducto:any) => {
-            console.log(resProducto);
             this.productos = resProducto;
-            console.log(this.productos);
           },
           (err:any) => console.error(err)
         );
@@ -59,9 +54,7 @@ export class PaginaModificarProductoComponent implements OnInit {
   listar() {
     this.productoService.list().subscribe(
       (resProducto:any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err:any) => console.error(err)
     );

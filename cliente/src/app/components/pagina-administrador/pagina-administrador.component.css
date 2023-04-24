@@ -1,3 +1,5 @@
+@import '~material-design-icons/iconfont/material-icons.css';
+
 .bodyPage {
     background-color: #f5f5f5;
     padding: 0;
@@ -132,55 +134,39 @@ img {
     margin: auto;
 }
 
-/* Estilo para la paginación */
-.my-pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.pagination-previous,
-.pagination-next {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #f2f2f2;
-    border: 1px solid #ddd;
-    color: #666;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.pagination-previous:hover,
-.pagination-next:hover {
-    background-color: #ddd;
-}
-
-.pagination-disabled {
-    background-color: #f2f2f2;
-    border: 1px solid #ddd;
-    color: #ccc;
-    cursor: not-allowed;
-}
-
-.pagination-active {
-    background-color: #007bff;
-    border: 1px solid #007bff;
-    color: #fff;
-}
-
-.pagination-link {
-    display: inline-block;
-    padding: 8px 16px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    color: #007bff;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.pagination-link:hover {
-    background-color: #f2f2f2;
-}
+/* Estilos para el elemento div */
+.rowp {
+    display: flex; /* Se establece el elemento div como flex */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    margin: 20px; /* Establece un margen de 20px alrededor del elemento */
+    background-color: #f2f2f2; /* Establece un color de fondo gris claro */
+  }
+  
+  /* Estilos para el elemento de paginación personalizado */
+  .my-pagination {
+    display: flex; /* Se establece el elemento de paginación personalizado como flex */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    list-style: none; /* Elimina la lista de viñetas */
+    padding: 0; /* Elimina el relleno interno */
+  }
+  
+  /* Estilos para los botones de página anterior y siguiente */
+  .my-pagination button {
+    background-color: #4CAF50; /* Establece un color de fondo verde */
+    border: none; /* Elimina el borde del botón */
+    color: white; /* Establece el color de texto en blanco */
+    padding: 10px 20px; /* Establece el relleno del botón */
+    text-align: center; /* Centra el texto horizontalmente */
+    text-decoration: none; /* Elimina la decoración de texto */
+    display: inline-block; /* Establece el botón como un elemento en línea */
+    font-size: 16px; /* Establece el tamaño de fuente */
+    margin: 4px 2px; /* Establece el margen del botón */
+    cursor: pointer; /* Establece el cursor como puntero */
+    border-radius: 5px; /* Establece la esquina redondeada del botón */
+  }
+  
+  /* Estilos para los botones de página anterior y siguiente cuando se pasa el cursor */
+  .my-pagination button:hover {
+    background-color: #3e8e41; /* Cambia el color de fondo cuando se pasa el cursor */
+  } 

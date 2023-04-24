@@ -5,7 +5,6 @@ import { Empleado } from 'src/app/models/empleado';
 import { ComunicationService } from 'src/app/services/comunication.service';
 import { ExcelService } from 'src/app/services/excel.service';
 import * as XLSX from 'xlsx';
-import Swal from 'sweetalert2';
 
 declare var $: any;
 
@@ -34,7 +33,6 @@ export class PaginaEmpleadosComponent implements OnInit {
   ) { 
     this.comunicationService.observador$.subscribe(
       (msg) => {
-        console.log(msg);
         if (msg.componente == 2) 
           this.listar();
       }
@@ -44,9 +42,7 @@ export class PaginaEmpleadosComponent implements OnInit {
   ngOnInit(): void {
     this.empleadoService.list().subscribe(
       (resEmpleado: any) => {
-        console.log(resEmpleado);
         this.empleados = resEmpleado;
-        console.log(this.empleados);
       },
       (err: any) => console.error(err)
     );
@@ -59,23 +55,17 @@ export class PaginaEmpleadosComponent implements OnInit {
   listar() {
     this.empleadoService.list().subscribe(
       (resEmpleado: any) => {
-        console.log(resEmpleado);
         this.empleados = resEmpleado;
-        console.log(this.empleados);
       },
       (err: any) => console.error(err)
     );
   }
   eliminarEmpleado(id: any) {
-    console.log('Eliminar empleado ' + id);
     this.empleadoService.delete(id).subscribe(
       (resEmpleado: any) => {
-        console.log(resEmpleado);
         this.empleadoService.list().subscribe(
           (resEmpleado: any) => {
-            console.log(resEmpleado);
             this.empleados = resEmpleado;
-            console.log(this.empleados);
           },
           (err: any) => console.error(err)
         );
@@ -87,9 +77,7 @@ export class PaginaEmpleadosComponent implements OnInit {
   mostrarAdministrador() {
     this.empleadoService.mostrarRol(this.rolA).subscribe(
       (resEmpleado: any) => {
-        console.log(resEmpleado);
         this.empleados = resEmpleado;
-        console.log(this.empleados);
       },
       (err: any) => console.error(err)
     );
@@ -98,19 +86,15 @@ export class PaginaEmpleadosComponent implements OnInit {
   mostrarVendedor() {
     this.empleadoService.mostrarRol(this.rolV).subscribe(
       (resEmpledo: any) => {
-        console.log(resEmpledo);
         this.empleados = resEmpledo;
-        console.log(this.empleados);
       },
       (err: any) => console.error(err)
     );
   }
 
   visualizarModificarEmpleado(id: number) {
-    console.log(this.empleado);
     this.empleadoService.listOne(id).subscribe(
       (resEmpleado: any) => {
-        console.log(resEmpleado);
         this.empleado = resEmpleado;
         $("#modalModificarEmpleado").modal();
         $("#modalModificarEmpleado").modal("open");
@@ -123,8 +107,7 @@ export class PaginaEmpleadosComponent implements OnInit {
     delete this.empleado.id_empleado;
     this.empleadoService.create(this.empleado).subscribe(
       (resEmpleado: any) => {
-        console.log(resEmpleado);
-        console.log('Empleado ingresado con exito');
+        
       },
       (err: any) => console.error(err)
     );
@@ -133,12 +116,9 @@ export class PaginaEmpleadosComponent implements OnInit {
   modificarEmpleado() {
     this.empleadoService.update(this.empleado).subscribe(
       (resEmpleado: any) => {
-        console.log('Empleado modificado con exito');
         this.empleadoService.list().subscribe(
           (resEmpleado: any) => {
-            console.log(resEmpleado);
             this.empleados = resEmpleado;
-            console.log(this.empleados);
           },
           (err: any) => console.error(err)
         );
@@ -168,16 +148,13 @@ export class PaginaEmpleadosComponent implements OnInit {
       var workbook = XLSX.read(bstr, { type: "binary" });
       var first_sheet_name = workbook.SheetNames[0];
       var worksheet = workbook.Sheets[first_sheet_name];
-      this.exceljsondata = XLSX.utils.sheet_to_json(worksheet, { raw: true })
-      console.log(this.exceljsondata);
+      this.exceljsondata = XLSX.utils.sheet_to_json(worksheet, { raw: true });
     }
   }
   migrarEmpleado2DB() {
     this.exceljsondata.map((empleado: any) => {
-      console.log(empleado);
       this.empleadoService.create(empleado).subscribe(
         (resCliente: any) => {
-          console.log(resCliente);
           this.listar();
         },
         (err: any) => console.error(err)

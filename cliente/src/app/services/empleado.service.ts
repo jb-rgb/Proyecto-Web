@@ -29,7 +29,6 @@ export class EmpleadoService {
       'correo': correo,
       'password': password
     };
-    console.log(empleado);
     return this.http.post(`${environment.API_URI}/api/empleados/verificarEmpleado`, empleado, {headers: headers});
   }
   mostrarRol(rol: any) {

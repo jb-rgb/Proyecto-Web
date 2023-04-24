@@ -7,7 +7,6 @@ import { ImagenesService } from 'src/app/services/imagenes.service';
 import { ExcelService } from 'src/app/services/excel.service';
 import { environment } from 'src/app/environments/enviroments';
 import * as XLSX from 'xlsx';
-import Swal from 'sweetalert2';
 
 declare var $: any;
 
@@ -44,7 +43,6 @@ export class PaginaAdministradorComponent implements OnInit {
     this.imgPrincipal = null;
     this.comunicationService.observador$.subscribe(
       (msg) => {
-        console.log(msg);
         if (msg.componente == 1)
           this.listar();
       }
@@ -56,7 +54,6 @@ export class PaginaAdministradorComponent implements OnInit {
     if (params['id']) {
       this.productoService.listOne(params['id']).subscribe(
         (res: any) => {
-          console.log(res);
           this.producto = res;
           this.edit = true;
         },
@@ -65,9 +62,7 @@ export class PaginaAdministradorComponent implements OnInit {
     }
     this.productoService.list().subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err: any) => console.error(err)
     );
@@ -81,9 +76,7 @@ export class PaginaAdministradorComponent implements OnInit {
   listar() {
     this.productoService.list().subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err: any) => console.error(err)
     );
@@ -93,12 +86,9 @@ export class PaginaAdministradorComponent implements OnInit {
     console.log('Eliminar producto ' + id);
     this.productoService.delete(id).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productoService.list().subscribe(
           (resProducto: any) => {
-            console.log(resProducto);
             this.productos = resProducto;
-            console.log(this.productos);
           },
           (err: any) => console.error(err)
         );
@@ -110,9 +100,7 @@ export class PaginaAdministradorComponent implements OnInit {
   mostrarVideojuego() {
     this.productoService.mostrarTipo(this.tipoV).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err: any) => console.error(err)
     );
@@ -121,9 +109,7 @@ export class PaginaAdministradorComponent implements OnInit {
   mostrarConsola() {
     this.productoService.mostrarTipo(this.tipoC).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err: any) => console.error(err)
     );
@@ -132,19 +118,15 @@ export class PaginaAdministradorComponent implements OnInit {
   mostrarComponente() {
     this.productoService.mostrarTipo(this.tipoCo).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.productos = resProducto;
-        console.log(this.productos);
       },
       (err: any) => console.error(err)
     );
   }
 
   visualizarModificarProducto(id_producto: number) {
-    console.log(this.producto);
     this.productoService.listOne(id_producto).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
         this.producto = resProducto;
         $("#modalModificarProducto").modal();
         $("#modalModificarProducto").modal("open");
@@ -157,8 +139,7 @@ export class PaginaAdministradorComponent implements OnInit {
     delete this.producto.id_producto;
     this.productoService.create(this.producto).subscribe(
       (resProducto: any) => {
-        console.log(resProducto);
-        console.log('Producto ingresado con exito');
+
       },
       (err: any) => console.error(err)
     );
@@ -167,12 +148,9 @@ export class PaginaAdministradorComponent implements OnInit {
   modificarProducto() {
     this.productoService.update(this.producto).subscribe(
       (res: any) => {
-        console.log('Paciente modificado con exito');
         this.productoService.list().subscribe(
           (resProducto: any) => {
-            console.log(resProducto);
             this.productos = resProducto;
-            console.log(this.productos);
           },
           (err: any) => console.error(err)
         );
@@ -181,14 +159,10 @@ export class PaginaAdministradorComponent implements OnInit {
     );
   }
   cargandoImagen(files: any, carpeta: any) {
-    console.log(files.files[0]);
-
     this.imgPrincipal = null;
     this.fileToUpload = files.files[0];
     let imgPromise = this.getFileBlob(this.fileToUpload);
     imgPromise.then((blob) => {
-      console.log(blob);
-
       this.imagenesService.guardarImagen(this.producto.id_producto, blob, carpeta).subscribe(
         (res: any) => {
           this.imgPrincipal = blob;
@@ -235,16 +209,13 @@ export class PaginaAdministradorComponent implements OnInit {
       var workbook = XLSX.read(bstr, { type: "binary" });
       var first_sheet_name = workbook.SheetNames[0];
       var worksheet = workbook.Sheets[first_sheet_name];
-      this.exceljsondata = XLSX.utils.sheet_to_json(worksheet, { raw: true })
-      console.log(this.exceljsondata);
+      this.exceljsondata = XLSX.utils.sheet_to_json(worksheet, { raw: true });
     }
   }
   migrarProducto2DB() {
     this.exceljsondata.map((producto: any) => {
-      console.log(producto);
       this.productoService.create(producto).subscribe(
         (resProducto: any) => {
-          console.log(resProducto);
           this.listar();
         },
         (err: any) => console.error(err)

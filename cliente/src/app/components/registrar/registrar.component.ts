@@ -22,7 +22,7 @@ export class RegistrarComponent {
     delete this.cliente.id_cliente;
     this.clienteService.registrarCliente(this.cliente).subscribe(
       (resCliente: any) => {
-        console.log(resCliente);
+        
       },
       (err: any) => console.error(err) 
     );
