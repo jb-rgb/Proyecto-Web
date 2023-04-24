@@ -12,7 +12,7 @@
                 <!-- <img src="{{liga}}/excel.png">  -->
                 <legend>Migrar Excel</legend>
                 <input (change)="cargarExcelProducto($event)" type="file">
-                <button (click)="migrarProducto2DB()" class="waves-effect waves-light btn">MIGRAR EXCEL</button>
+                <button (click)="migrarProducto2DB()" class="waves-effect waves-light btn">IMPORTAR EXCEL</button>
             </div>
             <!--Boton para mostar los videojuegos-->
             <a (click)="mostrarVideojuego()" class="waves-effect waves-light btn-small">
@@ -89,45 +89,45 @@
         <h2>Rellena el formulario</h2>
         <div class="modal-content">
             <div class="input-field">
-                <input [(ngModel)]="producto.nombre" type="text" name="nombre" id="nombre">
+                <input [(ngModel)]="producto.nombre" type="text" name="nombre" id="nombre5">
                 <label for="nombre">Nombre</label>
             </div>
             <div class="input-field">
-                <input [(ngModel)]="producto.tipo" type="text" name="tipo" id="tipo">
+                <input [(ngModel)]="producto.tipo" type="text" name="tipo" id="tipo5">
                 <label for="tipo">Tipo</label>
             </div>
             <div class="input-field">
-                <input [(ngModel)]="producto.consola" type="text" name="consola" id="consola">
+                <input [(ngModel)]="producto.consola" type="text" name="consola" id="consola5">
                 <label for="consola">Consola</label>
             </div>
             <div class="input-field">
-                <input [(ngModel)]="producto.genero" type="text" name="genero" id="genero">
+                <input [(ngModel)]="producto.genero" type="text" name="genero" id="genero5">
                 <label for="genero">Genero</label>
             </div>
             <div class="input-field">
-                <input [(ngModel)]="producto.valoracion" type="number" name="valoracion" id="valoracion">
+                <input [(ngModel)]="producto.valoracion" type="number" name="valoracion" id="valoracion5">
                 <label for="valoracion">Valoracion</label>
             </div>
             <div class="input-field">
-                <input [(ngModel)]="producto.stock" type="number" name="stock" id="stock" min="0">
+                <input [(ngModel)]="producto.stock" type="number" name="stock" id="stock5" min="0">
                 <label for="stock">Stock</label>
             </div>
             <div class="input-field">
-                <input [(ngModel)]="producto.precio" type="number" name="precio" id="precio" min="0">
+                <input [(ngModel)]="producto.precio" type="number" name="precio" id="precio5" min="0">
                 <label for="precio">Precio</label>
             </div>
             <legend>Caracteristicas: </legend>
-            <textarea [(ngModel)]="producto.caracteristicas" name="caracteristicas" id="caracteristicas" cols="30" rows="10">
+            <textarea [(ngModel)]="producto.caracteristicas" name="caracteristicas" id="caracteristicas5" cols="30" rows="10">
             </textarea>
             <div class="input-field">
                 <!--Input para una imagen-->
                 <legend>Imagen</legend>
-                <input (change)="cargandoImagen($event.target, 'productos')" type="file" name="imagen" id="imagen" multiple>
+                <input (change)="cargandoImagen($event.target, 'productos')" type="file" name="imagen" id="imagen5" multiple>
             </div>
         </div>
         <div class="modal-footer">
             <!--Boton para agregar producto-->
-            <button href="!#" (click)="modificarProducto()" class="modal-close btn-flat waves-effect waves-green" type="submit" name="action">Guardar
+            <button (click)="modificarProducto()" class="modal-close btn-flat waves-effect waves-green" type="submit" name="action">Guardar
                 <i class="material-icons right">send</i>
             </button>
         </div>
