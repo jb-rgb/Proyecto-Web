@@ -135,38 +135,12 @@ img {
 }
 
 /* Estilos para el elemento div */
-.rowp {
-    display: flex; /* Se establece el elemento div como flex */
-    justify-content: center; /* Centra el contenido horizontalmente */
-    margin: 20px; /* Establece un margen de 20px alrededor del elemento */
-    background-color: #f2f2f2; /* Establece un color de fondo gris claro */
-  }
-  
-  /* Estilos para el elemento de paginación personalizado */
-  .my-pagination {
-    display: flex; /* Se establece el elemento de paginación personalizado como flex */
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center; /* Centra el contenido verticalmente */
-    list-style: none; /* Elimina la lista de viñetas */
-    padding: 0; /* Elimina el relleno interno */
-  }
-  
-  /* Estilos para los botones de página anterior y siguiente */
-  .my-pagination button {
-    background-color: #4CAF50; /* Establece un color de fondo verde */
-    border: none; /* Elimina el borde del botón */
-    color: white; /* Establece el color de texto en blanco */
-    padding: 10px 20px; /* Establece el relleno del botón */
-    text-align: center; /* Centra el texto horizontalmente */
-    text-decoration: none; /* Elimina la decoración de texto */
-    display: inline-block; /* Establece el botón como un elemento en línea */
-    font-size: 16px; /* Establece el tamaño de fuente */
-    margin: 4px 2px; /* Establece el margen del botón */
-    cursor: pointer; /* Establece el cursor como puntero */
-    border-radius: 5px; /* Establece la esquina redondeada del botón */
-  }
-  
-  /* Estilos para los botones de página anterior y siguiente cuando se pasa el cursor */
-  .my-pagination button:hover {
-    background-color: #3e8e41; /* Cambia el color de fondo cuando se pasa el cursor */
-  } 
+.my-pagination ::ng-deep .ngx-pagination {
+    background: rgb(69, 67, 221);
+    background: radial-gradient(circle, rgba(69, 67, 221, 1) 0%, rgba(19, 139, 171, 1) 50%, rgba(32, 167, 247, 1) 100%);
+}
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+    background-color: #ADD8E6;
+    color: black;
+}
