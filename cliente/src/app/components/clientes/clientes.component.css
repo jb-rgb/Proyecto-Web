@@ -89,3 +89,14 @@ td {
     display: flex;
     justify-content: center;
 }
+
+/* Estilos para el elemento div */
+.my-pagination ::ng-deep .ngx-pagination {
+    background: rgb(69, 67, 221);
+    background: radial-gradient(circle, rgba(69, 67, 221, 1) 0%, rgba(19, 139, 171, 1) 50%, rgba(32, 167, 247, 1) 100%);
+}
+
+.my-pagination ::ng-deep .ngx-pagination .current {
+    background-color: #ADD8E6;
+    color: black;
+}

@@ -1,8 +1,8 @@
 export default {
     database: {
         host: 'localhost',
-        user: 'jorge',
-        password: 'root',
+        user: 'root',
+        password: 'x',
         database: 'tienda'
     }
 }
