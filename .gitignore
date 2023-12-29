@@ -1,0 +1,5 @@
+# Ignorar carpetas de VSCode
+cliente/.vscode/
+
+# Ignorar carpetas node_modules
+servidor/server/node_modules/
